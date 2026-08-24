@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/minigames/sympathy_lighting.gd" id="1_lighting"]
+
+[node name="SympathyLightingDemo" type="Node2D"]
+
+[node name="SympathyLighting" type="Node2D" parent="."]
+script = ExtResource("1_lighting")
+
+[node name="CampfireSource" type="ColorRect" parent="SympathyLighting"]
+offset_left = 200.0
+offset_top = 300.0
+offset_right = 264.0
+offset_bottom = 364.0
+color = Color(0.9, 0.45, 0.15, 1)
+metadata/_edit_group_ = true
+
+[node name="LampTarget" type="ColorRect" parent="SympathyLighting"]
+offset_left = 800.0
+offset_top = 300.0
+offset_right = 864.0
+offset_bottom = 364.0
+color = Color(0.95, 0.95, 0.8, 1)
+metadata/_edit_group_ = true
+
+[node name="PlaceholderLabel" type="Label" parent="SympathyLighting"]
+offset_left = 200.0
+offset_top = 270.0
+offset_right = 264.0
+offset_bottom = 293.0
+text = "PLACEHOLDER"
+horizontal_alignment = 1
+
+[node name="PlaceholderLabel2" type="Label" parent="SympathyLighting"]
+offset_left = 800.0
+offset_top = 270.0
+offset_right = 864.0
+offset_bottom = 293.0
+text = "PLACEHOLDER"
+horizontal_alignment = 1
