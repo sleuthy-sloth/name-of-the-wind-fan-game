@@ -109,6 +109,11 @@ func _run_tests() -> void:
 	var door := current_scene.get_node("Door") as Area2D
 	var body := CharacterBody2D.new()
 	body.add_to_group(&"player")
+	var body_shape := CollisionShape2D.new()
+	var body_rect := RectangleShape2D.new()
+	body_rect.size = Vector2(12, 16)
+	body_shape.shape = body_rect
+	body.add_child(body_shape)
 	current_scene.add_child(body)
 	body.global_position = door.global_position
 
