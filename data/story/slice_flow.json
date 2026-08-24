@@ -1,0 +1,15 @@
+{
+  "id": "slice_flow_act1",
+  "beats": [
+    {"id": "beat_caravan", "name": "Caravan arrival", "step": 1, "scene": "res://scenes/world/caravan_route.tscn", "sets_flag": "caravan_arrived", "system": "traversal"},
+    {"id": "beat_camp", "name": "Camp tasks", "step": 2, "scene": "res://scenes/world/forest_campsite.tscn", "requires": ["caravan_arrived"], "sets_flag": "camp_established", "system": "traversal"},
+    {"id": "beat_abenthy", "name": "Abenthy tutorial", "step": 3, "scene": "res://scenes/world/forest_campsite.tscn", "requires": ["camp_established"], "sets_flag": "abenthy_tutorial_done", "system": "dialogue"},
+    {"id": "beat_lute", "name": "First lute performance", "step": 4, "scene": "res://scenes/minigames/lute_stage.tscn", "requires": ["abenthy_tutorial_done"], "sets_flag": "lute_performance_done", "system": "music"},
+    {"id": "beat_explore", "name": "Camp exploration", "step": 5, "scene": "res://scenes/world/forest_campsite.tscn", "requires": ["abenthy_tutorial_done"], "sets_flag": "camp_explored", "system": "dialogue"},
+    {"id": "beat_sympathy", "name": "Sympathy lesson", "step": 6, "scene": "res://scenes/minigames/sympathy_bench.tscn", "requires": ["abenthy_tutorial_done"], "sets_flag": "sympathy_lesson_done", "system": "sympathy"},
+    {"id": "beat_experiment", "name": "Controlled experiment", "step": 7, "scene": "res://scenes/minigames/sympathy_lighting_demo.tscn", "requires": ["sympathy_lesson_done"], "sets_flag": "sympathy_experiment_done", "system": "sympathy"},
+    {"id": "beat_evening", "name": "Evening performance", "step": 8, "scene": "res://scenes/minigames/lute_stage.tscn", "requires": ["lute_performance_done", "sympathy_experiment_done"], "sets_flag": "evening_done", "system": "music"},
+    {"id": "beat_attack", "name": "Chandrian attack", "step": 9, "scene": "res://scenes/world/chandrian_attack.tscn", "requires": ["evening_done"], "sets_flag": "chandrian_attack_occurred", "system": "narrative", "autosave": true},
+    {"id": "beat_escape", "name": "Escape and aftermath", "step": 10, "scene": "res://scenes/world/escape_aftermath.tscn", "requires": ["chandrian_attack_occurred"], "sets_flag": "vertical_slice_completed", "system": "narrative"}
+  ]
+}
