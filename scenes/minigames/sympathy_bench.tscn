@@ -1,0 +1,138 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4jbp1sympathybench01"]
+
+[ext_resource type="Script" path="res://scripts/minigames/sympathy_bench.gd" id="1_bench"]
+
+[node name="SympathyBench" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bench")
+
+# PLACEHOLDER: full-screen tint behind the workbench; replace with final panel art.
+[node name="BackgroundTint" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.05, 0.08, 0.92)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Sympathy Workbench"
+horizontal_alignment = 1
+
+# PLACEHOLDER: source/link/target slot row. Replace ColorRects with final icons.
+[node name="SlotsRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="SourceSlot" type="VBoxContainer" parent="MarginContainer/VBoxContainer/SlotsRow"]
+layout_mode = 2
+
+[node name="SourcePlaceholder" type="ColorRect" parent="MarginContainer/VBoxContainer/SlotsRow/SourceSlot"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+color = Color(0.8, 0.4, 0.2, 1)
+
+[node name="SourceLabel" type="Label" parent="MarginContainer/VBoxContainer/SlotsRow/SourceSlot"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SOURCE: --"
+horizontal_alignment = 1
+
+[node name="LinkSlot" type="VBoxContainer" parent="MarginContainer/VBoxContainer/SlotsRow"]
+layout_mode = 2
+
+[node name="LinkPlaceholder" type="ColorRect" parent="MarginContainer/VBoxContainer/SlotsRow/LinkSlot"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+color = Color(0.6, 0.6, 0.7, 1)
+
+[node name="LinkLabel" type="Label" parent="MarginContainer/VBoxContainer/SlotsRow/LinkSlot"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "LINK: --"
+horizontal_alignment = 1
+
+[node name="TargetSlot" type="VBoxContainer" parent="MarginContainer/VBoxContainer/SlotsRow"]
+layout_mode = 2
+
+[node name="TargetPlaceholder" type="ColorRect" parent="MarginContainer/VBoxContainer/SlotsRow/TargetSlot"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+color = Color(0.2, 0.5, 0.8, 1)
+
+[node name="TargetLabel" type="Label" parent="MarginContainer/VBoxContainer/SlotsRow/TargetSlot"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "TARGET: --"
+horizontal_alignment = 1
+
+[node name="EffectLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Effect"
+
+[node name="EffectPicker" type="OptionButton" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+# Pre-commit panel: cost and risk are shown BEFORE the player confirms (GDD §24).
+[node name="PreCommitPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PreCommitPanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PreCommitHeader" type="Label" parent="MarginContainer/VBoxContainer/PreCommitPanel/VBoxContainer"]
+layout_mode = 2
+text = "Preview (before committing)"
+horizontal_alignment = 1
+
+[node name="CostLabel" type="Label" parent="MarginContainer/VBoxContainer/PreCommitPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cost: --"
+
+[node name="RiskLabel" type="Label" parent="MarginContainer/VBoxContainer/PreCommitPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Risk: --"
+
+[node name="ButtonRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Commit Working"
+
+[node name="CancelButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cancel"
