@@ -1,6 +1,12 @@
 extends SceneTree
 
 func _initialize() -> void:
+	# Entry only — hand off so the main loop can start pumping frames.
+	_run_tests.call_deferred()
+
+func _run_tests() -> void:
+	await physics_frame
+
 	var total_checks := 0
 	var passed_checks := 0
 
@@ -22,15 +28,14 @@ func _initialize() -> void:
 	var player := player_scene.instantiate() as CharacterBody2D
 	root.add_child(player)
 	player.global_position = Vector2.ZERO
+	var start_x := player.global_position.x
 
-	print("DEBUG: get_vector before press = " + str(Input.get_vector("move_left", "move_right", "move_up", "move_down")))
 	Input.action_press("move_right")
-	print("DEBUG: get_vector after press = " + str(Input.get_vector("move_left", "move_right", "move_up", "move_down")))
 	for i in range(30):
 		await physics_frame
 	Input.action_release("move_right")
 
-	if player.global_position.x > 10.0:
+	if player.global_position.x > start_x + 10.0:
 		passed_checks += 1
 		print("CHECK: player movement PASS")
 	else:
@@ -66,14 +71,12 @@ func _initialize() -> void:
 	total_checks += 1
 	root.remove_child(player)
 	player.queue_free()
+	instance_b.queue_free()
 
 	root.add_child(instance_a)
 	current_scene = instance_a
 
-	await process_frame
-	await process_frame
-
-	var scene_router := root.get_node("SceneRouter")
+	var scene_router := root.get_node("SceneRouter") as Node
 	scene_router.change_scene("res://scenes/core/placeholder_test_b.tscn")
 
 	for i in range(60):
