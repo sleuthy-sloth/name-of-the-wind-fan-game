@@ -1,0 +1,52 @@
+{
+  "dialogue_id": "dialogue_act1_abenthy_lesson",
+  "root": "node_greeting",
+  "nodes": {
+    "node_greeting": {
+      "speaker": "char_abenthy",
+      "text": "The world wears a thousand quiet faces, lad. Most folk rush past them, but a trouper learns to see the shape beneath the skin. What do you see when you look at me?",
+      "choices": [
+        {
+          "text": "A man who knows more than his smile shows.",
+          "tags": ["curious"],
+          "next": "node_question",
+          "effects": [
+            {
+              "type": "relationship",
+              "target": "char_abenthy",
+              "delta": 1
+            }
+          ]
+        },
+        {
+          "text": "Just another traveler with stories.",
+          "tags": ["evasive"],
+          "next": "node_deflect",
+          "effects": []
+        }
+      ]
+    },
+    "node_question": {
+      "speaker": "char_abenthy",
+      "text": "Clever eyes. Remember this: every art has three bones — a source that feeds it, a link that shapes it, and a target that bears it. Forget the bones and the art collapses.",
+      "next": "node_end",
+      "effects": [
+        {
+          "type": "set_flag",
+          "flag": "flag_act1_abenthy_lesson_seen"
+        }
+      ]
+    },
+    "node_deflect": {
+      "speaker": "char_abenthy",
+      "text": "A careful answer. Careful is wise, but careful can also be a cage. Still, I suspect the curiosity is there — it only needs a nudge.",
+      "next": "node_end",
+      "effects": []
+    },
+    "node_end": {
+      "speaker": "",
+      "text": "",
+      "end": true
+    }
+  }
+}
