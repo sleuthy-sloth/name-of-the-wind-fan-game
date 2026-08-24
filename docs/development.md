@@ -146,31 +146,17 @@ metadata. Full tileset/entity support lands in Phase 1.
   or properly licensed. See the ground rules in
   [CONTRIBUTING.md](../CONTRIBUTING.md).
 
-## Knowledge graph (graphify)
+## Session memory protocol
 
-The project keeps a queryable knowledge graph as long-lived development
-memory, built with [graphify](https://github.com/Graphify-Labs/graphify).
+Cross-session progress and consistency are handled by the holographic memory
+MCP store (persistent SQLite with trust scoring), enforced via `AGENTS.md`:
 
-```bash
-# rebuild incrementally after code/data changes (local, no API key needed)
-graphify update .
+1. **Session start** — recall project state
+   (`holographic_memory_search("Name of the Wind status")`), check
+   `git log --oneline -5`, then resume from `.swarm/plan.json`.
+2. **After every completed task/milestone** — push a short fact
+   (`holographic_memory_add`, category `project`, tag `name-of-the-wind`).
+3. **Session end, even mid-task** — push progress + exact next step.
 
-# query instead of grepping
-graphify explain "SceneRouter"
-graphify query "how does saving work?"
-graphify path "DialogueRunner" "GameState"
-```
-
-Artifacts live in `graphify-out/` (`graph.json` is the queryable graph;
-`GRAPH_REPORT.md` summarizes highlights when generated). Re-run
-`graphify cluster-only .` after updates to refresh the report.
-
-Known limitations:
-
-- Graphify 0.9.x does not yet parse GDScript (`.gd`); upstream has no
-  extension hook. Godot-code questions are better served by reading this
-  guide or asking directly. The graph currently indexes Lua tooling and
-  JSON data files.
-- Document/PDF/image semantic extraction activates once one of
-  `GEMINI_API_KEY`, `ANTHROPIC_API_KEY`, or `OPENAI_API_KEY` is exported
-  before building — that would bring the GDD itself into the graph.
+Correct or supersede stale facts instead of accumulating duplicates; keep
+facts under ~500 characters; never store secrets.
