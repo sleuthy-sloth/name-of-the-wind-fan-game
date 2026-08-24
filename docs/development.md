@@ -145,3 +145,32 @@ metadata. Full tileset/entity support lands in Phase 1.
 - **Original assets only.** All art, audio, prose, and design must be original
   or properly licensed. See the ground rules in
   [CONTRIBUTING.md](../CONTRIBUTING.md).
+
+## Knowledge graph (graphify)
+
+The project keeps a queryable knowledge graph as long-lived development
+memory, built with [graphify](https://github.com/Graphify-Labs/graphify).
+
+```bash
+# rebuild incrementally after code/data changes (local, no API key needed)
+graphify update .
+
+# query instead of grepping
+graphify explain "SceneRouter"
+graphify query "how does saving work?"
+graphify path "DialogueRunner" "GameState"
+```
+
+Artifacts live in `graphify-out/` (`graph.json` is the queryable graph;
+`GRAPH_REPORT.md` summarizes highlights when generated). Re-run
+`graphify cluster-only .` after updates to refresh the report.
+
+Known limitations:
+
+- Graphify 0.9.x does not yet parse GDScript (`.gd`); upstream has no
+  extension hook. Godot-code questions are better served by reading this
+  guide or asking directly. The graph currently indexes Lua tooling and
+  JSON data files.
+- Document/PDF/image semantic extraction activates once one of
+  `GEMINI_API_KEY`, `ANTHROPIC_API_KEY`, or `OPENAI_API_KEY` is exported
+  before building — that would bring the GDD itself into the graph.

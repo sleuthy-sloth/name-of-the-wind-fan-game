@@ -1,0 +1,14 @@
+{
+  "data/dialogue/dialogue_act1_abenthy_lesson.json": {
+    "mtime": 1787556730.3266766,
+    "seen": 1787584360.4379861,
+    "ast_hash": "4ed2b5a13eb48b2f3a45da2e33a61077",
+    "semantic_hash": "4ed2b5a13eb48b2f3a45da2e33a61077"
+  },
+  "scripts/tools/make_placeholder_sprite.lua": {
+    "mtime": 1787555068.626853,
+    "seen": 1787584360.437988,
+    "ast_hash": "644506865918a587af7743712702d685",
+    "semantic_hash": "644506865918a587af7743712702d685"
+  }
+}
