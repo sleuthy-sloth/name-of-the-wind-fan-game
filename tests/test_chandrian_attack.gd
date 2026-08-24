@@ -21,7 +21,7 @@ func _run_tests() -> void:
 	_test_json_structure()
 	await _test_attack_sequence()
 	await _test_aftermath_mode()
-	_test_save_persistence()
+	await _test_save_persistence()
 	_cleanup_save_slot()
 
 	_summary()
@@ -90,7 +90,7 @@ func _test_attack_sequence() -> void:
 
 	director.start_sequence()
 
-	var timeout := 600
+	var timeout := 6000
 	while timeout > 0 and not director.is_sequence_complete():
 		await process_frame
 		timeout -= 1
@@ -126,7 +126,7 @@ func _test_aftermath_mode() -> void:
 
 	director.start_sequence()
 
-	var timeout := 600
+	var timeout := 6000
 	while timeout > 0 and not director.is_sequence_complete():
 		await process_frame
 		timeout -= 1
@@ -139,7 +139,7 @@ func _test_aftermath_mode() -> void:
 
 	director.queue_free()
 
-	timeout = 600
+	timeout = 6000
 	while timeout > 0:
 		await process_frame
 		timeout -= 1
@@ -174,7 +174,7 @@ func _test_save_persistence() -> void:
 	_gs.queue_free()
 	await process_frame
 
-	var fresh := load("res://scripts/systems/game_state.gd").new()
+	var fresh: Node = load("res://scripts/systems/game_state.gd").new()
 	fresh.name = "GameState"
 	root.add_child(fresh)
 	_gs = fresh

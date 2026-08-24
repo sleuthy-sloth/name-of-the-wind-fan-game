@@ -87,7 +87,7 @@ func _advance_beat() -> void:
 	if duration <= 0.0:
 		duration = 0.01
 
-	var timer := get_tree().create_timer(duration, false)
+	var timer := get_tree().create_timer(duration)
 	timer.timeout.connect(_advance_beat, CONNECT_ONE_SHOT)
 
 func _apply_beat(beat: Dictionary) -> void:
@@ -100,12 +100,12 @@ func _apply_beat(beat: Dictionary) -> void:
 
 	var flag: String = beat.get("set_flag", "")
 	if not flag.is_empty():
-		var gs := _game_state()
+		var gs: Node = _game_state()
 		if gs != null:
 			gs.set_flag(flag)
 
 	if beat.get("autosave", false) == true:
-		var sm := _save_manager()
+		var sm: Node = _save_manager()
 		if sm != null:
 			sm.save_game(0)
 
@@ -143,7 +143,7 @@ func _trigger_final_transition() -> void:
 		if explicit != null and explicit is String and not (explicit as String).is_empty():
 			next_scene = explicit as String
 
-	var router := _scene_router()
+	var router: Node = _scene_router()
 	if router != null:
 		router.change_scene(next_scene)
 
