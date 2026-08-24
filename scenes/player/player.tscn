@@ -13,7 +13,7 @@ height = 24
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player_collision"]
 size = Vector2(12, 16)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

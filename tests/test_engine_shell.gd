@@ -94,5 +94,39 @@ func _run_tests() -> void:
 		quit(1)
 		return
 
+	# Check 6: door trigger transitions scenes via body entry
+	total_checks += 1
+	if current_scene != null:
+		current_scene.queue_free()
+		await process_frame
+
+	var fresh_a := scene_a.instantiate() as Node2D
+	root.add_child(fresh_a)
+	current_scene = fresh_a
+	for i in range(2):
+		await process_frame
+
+	var door := current_scene.get_node("Door") as Area2D
+	var body := CharacterBody2D.new()
+	body.add_to_group(&"player")
+	current_scene.add_child(body)
+	body.global_position = door.global_position
+
+	for i in range(10):
+		await physics_frame
+	for i in range(60):
+		await process_frame
+
+	if current_scene != null and current_scene.name == "PlaceholderTestB":
+		passed_checks += 1
+		print("CHECK: door trigger PASS")
+	else:
+		var door_current_name := "null"
+		if current_scene != null:
+			door_current_name = current_scene.name
+		print("ENGINE_SHELL_TEST: FAIL door trigger (current=" + door_current_name + ")")
+		quit(1)
+		return
+
 	print("ENGINE_SHELL_TEST: PASS (" + str(passed_checks) + "/" + str(total_checks) + " checks)")
 	quit(0)
