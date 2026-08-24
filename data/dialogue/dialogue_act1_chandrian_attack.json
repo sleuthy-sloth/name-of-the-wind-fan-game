@@ -1,0 +1,95 @@
+{
+  "id": "dialogue_act1_chandrian_attack",
+  "beats": [
+    {
+      "id": "beat_01",
+      "narration": "The fire had burned down to embers, and the wagons stood in a loose circle beneath a sky thick with stars.",
+      "duration": 0.5,
+      "effect": "calm"
+    },
+    {
+      "id": "beat_02",
+      "narration": "Someone's lute still hummed a half-finished air, the notes warm and slow as honey.",
+      "duration": 0.4,
+      "effect": "calm"
+    },
+    {
+      "id": "beat_03",
+      "narration": "Then the music faltered. The string did not break; the player simply stopped, as if a hand had closed around his throat in wonder.",
+      "duration": 0.6,
+      "effect": "unease"
+    },
+    {
+      "id": "beat_04",
+      "narration": "The crickets stopped. The night birds stopped. Even the wind in the high leaves held its breath.",
+      "duration": 0.5,
+      "effect": "unease"
+    },
+    {
+      "id": "beat_05",
+      "narration": "A cold settled over the camp that had nothing to do with winter. It was the cold of an empty room, of a door left open on a place that should not exist.",
+      "duration": 0.6,
+      "effect": "dim"
+    },
+    {
+      "id": "beat_midpoint",
+      "narration": "The blue fire came first. It did not crackle; it sighed, and where it touched the earth, the grass turned to ash without burning.",
+      "duration": 0.8,
+      "effect": "fade_to_red",
+      "set_flag": "chandrian_attack_occurred",
+      "autosave": true
+    },
+    {
+      "id": "beat_07",
+      "narration": "Figures moved at the edge of sight, tall and wrong, their shapes remembered only by the darkness they carried with them.",
+      "duration": 0.6,
+      "effect": "screen_shake"
+    },
+    {
+      "id": "beat_08",
+      "narration": "There were no battle cries. No clashing steel. Only silence, and the terrible efficiency of something that had done this many times before.",
+      "duration": 0.5,
+      "effect": "fade_to_red"
+    },
+    {
+      "id": "beat_09",
+      "narration": "Something vast passed overhead, and for a moment the stars went out. You did not see its face. You were never meant to.",
+      "duration": 0.6,
+      "effect": "darkness"
+    },
+    {
+      "id": "beat_final",
+      "narration": "Then, only ash. The wagons, the fire, the music, all swallowed by a stillness deeper than sleep.",
+      "duration": 0.5,
+      "effect": "darkness",
+      "next_scene": "res://scenes/world/escape_aftermath.tscn"
+    }
+  ],
+  "aftermath_beats": [
+    {
+      "id": "after_01",
+      "narration": "You wake to grey. The sky is the color of old iron, and the air tastes of cinders and spent rain.",
+      "duration": 0.5,
+      "effect": "dim"
+    },
+    {
+      "id": "after_02",
+      "narration": "The wagons are gone. Not burned, not broken. Gone, as if the road itself had folded shut around them.",
+      "duration": 0.5,
+      "effect": "dim"
+    },
+    {
+      "id": "after_03",
+      "narration": "Grief is a stone in the chest. You breathe around it because there is nothing else to do.",
+      "duration": 0.5,
+      "effect": "calm"
+    },
+    {
+      "id": "after_04",
+      "narration": "But the road remains, patient and unremarkable, waiting for the next step. Some stories do not end; they only learn where to begin.",
+      "duration": 0.5,
+      "effect": "calm",
+      "next_scene": "res://scenes/ui/end_card.tscn"
+    }
+  ]
+}
