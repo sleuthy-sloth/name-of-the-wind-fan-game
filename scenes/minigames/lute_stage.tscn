@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/minigames/lute_stage.gd" id="lute_stage_script"]
+
+[node name="LuteStage" type="Node2D"]
+script = ExtResource("lute_stage_script")
+chart_path = "res://data/charts/chart_tutorial_piece.json"
+practice_mode = false
+scroll_speed_beats_per_sec = 2.0
+note_fall_distance = 400.0
