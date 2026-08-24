@@ -6,3 +6,7 @@
 npc_id = "char_troupe_member_02"
 display_name = "Pip"
 dialogue_path = "res://data/dialogue/dialogue_act1_camp_threads.json"
+
+[node name="Sprite2D" parent="." index="0"]
+region_rect = Rect2(0, 64, 16, 16)
+modulate = Color(0.8, 1.0, 0.8, 1)

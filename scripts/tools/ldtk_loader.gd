@@ -1,8 +1,9 @@
 class_name LdtkLoader
 extends RefCounted
 
-# Phase 0/1 reader: IntGrid collision, Spawn/Door/Interaction entities, and
-# data layers (Decoration, Foreground, Lighting). Keeps Phase 0 API intact.
+# Phase 0/1/3 reader: IntGrid collision, Spawn/Door/Interaction entities,
+# data layers (Decoration, Foreground, Lighting), and Tiles layers (Ground,
+# Props) rendered as Sprite2D nodes with region_rect. Keeps Phase 0 API intact.
 
 
 static func load_project(path: String) -> Dictionary:
@@ -57,6 +58,8 @@ static func build_level_node(project: Dictionary, level_index := 0, cell_size :=
 	var decoration_layer: Dictionary = {}
 	var foreground_layer: Dictionary = {}
 	var lighting_layer: Dictionary = {}
+	var ground_layer: Dictionary = {}
+	var props_layer: Dictionary = {}
 
 	for layer: Variant in layer_instances:
 		if layer == null or not layer is Dictionary:
@@ -73,6 +76,10 @@ static func build_level_node(project: Dictionary, level_index := 0, cell_size :=
 				foreground_layer = layer
 			"Lighting":
 				lighting_layer = layer
+			"Ground":
+				ground_layer = layer
+			"Props":
+				props_layer = layer
 
 	if collision_layer.is_empty():
 		push_warning("LdtkLoader: no 'Collision' layer found")
@@ -102,6 +109,12 @@ static func build_level_node(project: Dictionary, level_index := 0, cell_size :=
 					y * grid_size + grid_size * 0.5
 				)
 				static_body.add_child(collision_shape)
+
+	# Render tile layers (Ground below, Props above ground but below player)
+	if not ground_layer.is_empty():
+		_render_tile_layer(root, ground_layer, "Ground", -10)
+	if not props_layer.is_empty():
+		_render_tile_layer(root, props_layer, "Props", -5)
 
 	root.set_meta("decorations", _read_data_cells(decoration_layer, grid_size))
 	root.set_meta("foreground", _read_data_cells(foreground_layer, grid_size))
@@ -158,3 +171,67 @@ static func _read_data_cells(layer: Dictionary, grid_size: int) -> Array[Diction
 					)
 				})
 	return out
+
+
+## Return the gridTiles array for a named tile layer from the first level.
+static func get_tile_layer(project: Dictionary, layer_name: String) -> Array:
+	var levels: Variant = project.get("levels", [])
+	if not levels is Array or levels.size() < 1:
+		return []
+	var level: Variant = levels[0]
+	if not level is Dictionary:
+		return []
+	var layer_instances: Variant = level.get("layerInstances", [])
+	if not layer_instances is Array:
+		return []
+	for layer: Variant in layer_instances:
+		if layer is Dictionary and layer.get("identifier", "") == layer_name:
+			var tiles: Variant = layer.get("gridTiles", [])
+			if tiles is Array:
+				return tiles
+	return []
+
+
+## Render a Tiles layer as a container of Sprite2D nodes with region_rect.
+static func _render_tile_layer(root: Node2D, layer: Dictionary, layer_name: String, z_index: int) -> void:
+	var tileset_rel_path: String = layer.get("__tilesetRelPath", "")
+	if tileset_rel_path.is_empty():
+		return
+
+	# Resolve relative path from res://maps/ to a normalised res:// path
+	var res_path := "res://maps/" + tileset_rel_path
+	res_path = res_path.replace("maps/../", "")
+
+	var texture: Texture2D = load(res_path)
+	if texture == null:
+		push_error("LdtkLoader: failed to load tileset: %s" % res_path)
+		return
+
+	var tile_container := Node2D.new()
+	tile_container.name = layer_name
+	tile_container.z_index = z_index
+	root.add_child(tile_container)
+
+	var grid_tiles: Variant = layer.get("gridTiles", [])
+	if not grid_tiles is Array:
+		return
+
+	var tile_cols: int = int(texture.get_width() / 16)
+
+	for tile_data: Variant in grid_tiles:
+		if tile_data == null or not tile_data is Dictionary:
+			continue
+		var px: Variant = tile_data.get("px", [0, 0])
+		if not px is Array or px.size() < 2:
+			continue
+		var src_id: int = int(tile_data.get("srcId", 0))
+
+		var sprite := Sprite2D.new()
+		sprite.texture = texture
+		sprite.region_enabled = true
+		var src_col := src_id % tile_cols
+		var src_row := src_id / tile_cols
+		sprite.region_rect = Rect2(src_col * 16, src_row * 16, 16, 16)
+		sprite.position = Vector2(float(px[0]), float(px[1]))
+		sprite.centered = false
+		tile_container.add_child(sprite)

@@ -21,6 +21,8 @@ var performance: LutePerformance = null
 
 var _audio_player: AudioStreamPlayer = null
 var _generator_playback: AudioStreamGeneratorPlayback = null
+var _lute_sample_player: AudioStreamPlayer = null
+var _lute_samples: Dictionary = {}
 var _note_markers: Array[ColorRect] = []
 var _feedback_label: Label = null
 var _feedback_timer: float = 0.0
@@ -118,6 +120,15 @@ func _setup_audio() -> void:
 	generator.mix_rate = 44100
 	generator.buffer_length = 0.1
 	_audio_player.stream = generator
+	_lute_sample_player = AudioStreamPlayer.new()
+	_lute_sample_player.name = "LuteSamplePlayer"
+	add_child(_lute_sample_player)
+	var lane_notes: Array[String] = ["D3", "G3", "A3", "B3"]
+	for note_name in lane_notes:
+		var path := "res://audio/sfx/lute_%s.ogg" % note_name
+		var stream := load(path)
+		if stream is AudioStream:
+			_lute_samples[note_name] = stream
 
 func _spawn_note_markers() -> void:
 	var container := get_node_or_null("NoteMarkers")
@@ -143,7 +154,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	var judgment := performance.submit_hit(lane, _current_time_beats)
 	_show_feedback(judgment)
-	_play_tick()
+	_play_tick(lane)
 
 func _resolve_lane(event: InputEvent) -> int:
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -175,7 +186,22 @@ func _show_feedback(judgment: int) -> void:
 	_feedback_label.modulate = color
 	_feedback_timer = 0.4
 
-func _play_tick() -> void:
+func _try_lute_sample(lane: int) -> bool:
+	if _lute_sample_player == null:
+		return false
+	var lane_notes: Array[String] = ["D3", "G3", "A3", "B3"]
+	if lane < 0 or lane >= lane_notes.size():
+		return false
+	var note_name: String = lane_notes[lane]
+	if not _lute_samples.has(note_name):
+		return false
+	_lute_sample_player.stream = _lute_samples[note_name]
+	_lute_sample_player.play()
+	return true
+
+func _play_tick(lane: int = -1) -> void:
+	if _try_lute_sample(lane):
+		return
 	if _generator_playback == null:
 		return
 	var mix_rate := float(_generator_playback.get_mix_rate())

@@ -5,6 +5,7 @@ const FADE_DURATION := 0.2
 var is_transitioning := false
 var fade_layer: CanvasLayer
 var fade_rect: ColorRect
+var _sfx_player: AudioStreamPlayer = null
 
 func _ready() -> void:
 	fade_layer = CanvasLayer.new()
@@ -20,12 +21,20 @@ func _ready() -> void:
 	fade_rect.offset_bottom = 0.0
 	fade_layer.add_child(fade_rect)
 	add_child(fade_layer)
+	_sfx_player = AudioStreamPlayer.new()
+	_sfx_player.name = "TransitionSfx"
+	add_child(_sfx_player)
+	var sfx := load("res://audio/sfx/select_001.ogg")
+	if sfx is AudioStream:
+		_sfx_player.stream = sfx
 
 func change_scene(path: String) -> void:
 	if is_transitioning:
 		return
 
 	is_transitioning = true
+	if _sfx_player != null and _sfx_player.stream != null:
+		_sfx_player.play()
 	fade_rect.visible = true
 	fade_rect.modulate.a = 0.0
 

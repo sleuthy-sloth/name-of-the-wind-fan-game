@@ -36,6 +36,30 @@ func _run_tests() -> void:
 		quit(1)
 		return
 
+	# Check 2b: tile layers (Ground, Props) rendered with Sprite2D children.
+	total_checks += 1
+	var caravan_ground := caravan_node.get_node_or_null("Ground") as Node2D
+	var caravan_props := caravan_node.get_node_or_null("Props") as Node2D
+	var forest_ground := forest_node.get_node_or_null("Ground") as Node2D
+	var forest_props := forest_node.get_node_or_null("Props") as Node2D
+	if caravan_ground != null and caravan_ground.get_child_count() > 0 \
+			and caravan_props != null and caravan_props.get_child_count() > 0 \
+			and forest_ground != null and forest_ground.get_child_count() > 0 \
+			and forest_props != null and forest_props.get_child_count() > 0:
+		# Verify first child is a Sprite2D with region_enabled
+		var first_sprite := caravan_ground.get_child(0) as Sprite2D
+		if first_sprite != null and first_sprite.region_enabled:
+			passed_checks += 1
+			print("CHECK: tile layers PASS")
+		else:
+			print("WORLD_TRAVERSAL_TEST: FAIL tile layers sprite check (child=%s)" % str(caravan_ground.get_child(0)))
+			quit(1)
+			return
+	else:
+		print("WORLD_TRAVERSAL_TEST: FAIL tile layers (caravan_ground=%s, caravan_props=%s, forest_ground=%s, forest_props=%s)" % [str(caravan_ground), str(caravan_props), str(forest_ground), str(forest_props)])
+		quit(1)
+		return
+
 	# Check 3: spawn_position meta exists inside level bounds.
 	total_checks += 1
 	var caravan_spawn: Variant = caravan_node.get_meta("spawn_position", Vector2.ZERO)

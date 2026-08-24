@@ -13,6 +13,7 @@ var _ambient_baseline: Color = Color(0.9, 0.85, 0.8, 0.25)
 
 var _last_result: Dictionary = {}
 var _last_feedback_frequency: float = 0.0
+var _lute_samples: Dictionary = {}
 
 @onready var _source_node: CanvasItem = _ensure_source()
 @onready var _target_node: CanvasItem = _ensure_target()
@@ -38,9 +39,34 @@ func play_feedback(domain: String) -> void:
 	var duration: float = 0.25
 	var volume_db: float = -6.0 if domain == "light" else -3.0
 	_last_feedback_frequency = freq
+	if _try_lute_sample(domain, volume_db):
+		return
 	_feedback_player.stream = _generate_tone(freq, duration)
 	_feedback_player.volume_db = volume_db
 	_feedback_player.play()
+
+
+func _try_lute_sample(domain: String, volume_db: float) -> bool:
+	if _feedback_player == null:
+		return false
+	if _lute_samples.is_empty():
+		_load_lute_samples()
+	var note_name: String = "A4" if domain == "light" else "D3"
+	if not _lute_samples.has(note_name):
+		return false
+	_feedback_player.stream = _lute_samples[note_name]
+	_feedback_player.volume_db = volume_db
+	_feedback_player.play()
+	return true
+
+
+func _load_lute_samples() -> void:
+	var notes: Array[String] = ["D3", "G3", "A3", "B3", "D4", "E4", "G4", "A4"]
+	for note_name in notes:
+		var path := "res://audio/sfx/lute_%s.ogg" % note_name
+		var stream := load(path)
+		if stream is AudioStream:
+			_lute_samples[note_name] = stream
 
 
 func get_source_modulate() -> Color:

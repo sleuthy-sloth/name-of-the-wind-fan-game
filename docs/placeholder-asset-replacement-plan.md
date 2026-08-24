@@ -6,19 +6,19 @@ This document inventories every placeholder asset currently used in *The Name of
 
 | Asset | Current File | What It Is | Final Asset | Priority |
 |---|---|---|---|---|
-| Player sprite | `art/sprites/kvothe_placeholder_sheet.png` | Protagonist sprite sheet; currently a solid-color block-out used by `scenes/player/player.tscn`. | Hand-drawn Kvothe sprite sheet with idle, walk, lute-hold, and Sympathy-casting frames. | High |
-| Player in-scene representation | `scenes/player/player.tscn` | Uses a `GradientTexture2D` sub-resource for the Sprite2D node. | Replace with `Sprite2D.texture` referencing the final Kvothe sprite sheet and add an AnimationPlayer. | High |
-| Abenthy NPC | `scenes/npcs/abenthy.tscn` | Instances the generic `Npc` scene with Abenthy's dialogue path; uses the default placeholder sprite/color. | Custom Abenthy sprite/portrait and a dedicated interaction animation. | High |
-| Troupe member 01 (Sera) | `scenes/npcs/troupe_member_01.tscn` | Generic NPC instance with Sera's metadata. | Final sprite and portrait for Sera, the tanner's apprentice. | Medium |
-| Troupe member 02 (Pip) | `scenes/npcs/troupe_member_02.tscn` | Generic NPC instance with Pip's metadata. | Final sprite and portrait for Pip, the wagon mender. | Medium |
-| Generic NPC base | `scenes/npcs/npc.tscn` | Base scene with a placeholder collision shape and no final art. | Keep as a template; replace default sprite with a fallback traveler silhouette. | Medium |
+| Player sprite | `art/sprites/zeldalike_character.png` | CC0 sprite sheet (ArMM1998); 17×16 grid of 16px tiles with directional walk frames. Wired in `scenes/player/player.tscn` with region-enabled Sprite2D and directional switching in `player.gd`. | Hand-drawn Kvothe sprite sheet with idle, walk, lute-hold, and Sympathy-casting frames. | High |
+| Player in-scene representation | `scenes/player/player.tscn` | Uses `Sprite2D` with `region_enabled` referencing `zeldalike_character.png`; `player.gd` switches `region_rect` by movement direction. | Replace with final Kvothe sprite sheet and add an AnimationPlayer. | High |
+| Abenthy NPC | `scenes/npcs/abenthy.tscn` | Instances `npc.tscn` with Abenthy's dialogue path; uses `zeldalike_npc.png` row 0 with a purple tint (`modulate`). | Custom Abenthy sprite/portrait and a dedicated interaction animation. | High |
+| Troupe member 01 (Sera) | `scenes/npcs/troupe_member_01.tscn` | NPC instance with Sera's metadata; uses `zeldalike_npc.png` row 2 with a warm tint. | Final sprite and portrait for Sera, the tanner's apprentice. | Medium |
+| Troupe member 02 (Pip) | `scenes/npcs/troupe_member_02.tscn` | NPC instance with Pip's metadata; uses `zeldalike_npc.png` row 4 with a green tint. | Final sprite and portrait for Pip, the wagon mender. | Medium |
+| Generic NPC base | `scenes/npcs/npc.tscn` | Base scene with collision, interaction area, and `Sprite2D` using `zeldalike_npc.png` (region-enabled, row 0 default). | Keep as a template; replace default sprite with a fallback traveler silhouette. | Medium |
 
 ## Environments
 
 | Asset | Current File | What It Is | Final Asset | Priority |
 |---|---|---|---|---|
-| Caravan route map | `maps/caravan_route.ldtk` | LDtk level with simple tile shapes and a spawn/door marker. | Authored caravan-route tileset (road, wagons, trees, sky) with parallax background. | High |
-| Forest campsite map | `maps/forest_campsite.ldtk` | LDtk level defining the camp layout with placeholder tiles. | Final forest campsite tileset (tents, campfire, wagons, foliage) and lighting overlay. | High |
+| Caravan route map | `maps/caravan_route.ldtk` | LDtk level with IntGrid collision, Ground/Props Tiles layers using `zeldalike_overworld.png` (CC0), and Spawn/Door/Interaction entities. | Authored caravan-route tileset (road, wagons, trees, sky) with parallax background. | High |
+| Forest campsite map | `maps/forest_campsite.ldtk` | LDtk level with IntGrid collision, Ground/Props Tiles layers (dirt clearing + tree border), and camp layout entities. | Final forest campsite tileset (tents, campfire, wagons, foliage) and lighting overlay. | High |
 | Caravan blockout | `maps/test_caravan_blockout.ldtk` | Early geometric block-out for layout testing. | Replace with the final caravan-route art or remove once the real map is validated. | Low |
 | Campfire source (Sympathy) | Created at runtime by `scripts/minigames/sympathy_lighting.gd` | `ColorRect` placeholder representing the campfire source for light/heat workings. | Final campfire sprite/particle effect with palette-swap support. | Medium |
 | Lamp target (Sympathy) | Created at runtime by `scripts/minigames/sympathy_lighting.gd` | `ColorRect` placeholder representing the lamp target for light/heat workings. | Final lamp/prop sprite with modulate-driven brightening. | Medium |
@@ -39,18 +39,18 @@ This document inventories every placeholder asset currently used in *The Name of
 
 | Asset | Current File | What It Is | Final Asset | Priority |
 |---|---|---|---|---|
-| Music tracks | `audio/` (empty except `.gitkeep`) | No music implemented yet. | Original traveling/caravan themes, tense attack cue, and aftermath ambience. | High |
-| Lute note tones | Generated in `scripts/minigames/sympathy_lighting.gd` | Synthesized sine-wave tones used as feedback. | Recorded lute samples or carefully synthesized plucks mapped to note lanes. | High |
-| Sympathy feedback tones | Generated in `scripts/minigames/sympathy_lighting.gd` | Synthesized tones for light/heat domain feedback. | Themed Sympathy hum/burn sounds with distinct light and heat signatures. | Medium |
-| UI sounds | None | No UI audio yet. | Button click, hover, error, save/load, and scene-transition sounds. | Medium |
-| Ambience | None | No environmental ambience yet. | Forest/campfire ambience, wagon creaks, wind, and attack silence cue. | Medium |
+| Music tracks | `audio/music/` (Kenney CC0 jingles) | Pizzicato jingle wired into `end_card.tscn`; 8-Bit/Sax/Steel/Hit jingles staged for future use. | Original traveling/caravan themes, tense attack cue, and aftermath ambience. | High |
+| Lute note tones | `audio/sfx/lute_*.ogg` (synthesized) | 8 Karplus-Strong synthesized lute notes (D3–A4) wired into `lute_stage.gd` and `sympathy_lighting.gd` with generator fallback. | Recorded lute samples or carefully synthesized plucks mapped to note lanes. | High |
+| Sympathy feedback tones | `audio/sfx/lute_*.ogg` + generator fallback | Lute samples used for light (A4) and heat (D3) domain feedback in `sympathy_lighting.gd`. | Themed Sympathy hum/burn sounds with distinct light and heat signatures. | Medium |
+| UI sounds | `audio/sfx/` (Kenney CC0) | `select_001.ogg` on scene change, `click_002.ogg` on dialogue advance, `switch_002.ogg` on money change (throttled). | Button click, hover, error, save/load, and scene-transition sounds. | Medium |
+| Ambience | `audio/ambience/` (synthesized) | `campfire_loop.ogg` (30s brown-noise+crackle) in forest_campsite, `forest_night_loop.ogg` (30s wind+cricket) in caravan_route. | Forest/campfire ambience, wagon creaks, wind, and attack silence cue. | Medium |
 
 ## Maps
 
 | Asset | Current File | What It Is | Final Asset | Priority |
 |---|---|---|---|---|
-| LDtk project data | `maps/*.ldtk` | LDtk source files with placeholder tile layers and entity markers. | Final LDtk projects referencing the production tilesets and entity art. | High |
-| Tileset textures | Embedded in LDtk / generated | Simple colored tiles used for collision and layout. | Production 16x16 or 32x32 pixel-art tilesets for roads, camps, forests, and interiors. | High |
+| LDtk project data | `maps/*.ldtk` | LDtk source files with IntGrid collision, Ground/Props Tiles layers (zeldalike_overworld.png CC0), and entity markers. | Final LDtk projects referencing the production tilesets and entity art. | High |
+| Tileset textures | `art/tilesets/zeldalike_overworld.png` (CC0) | 640×576 pixel-art tileset (40×36 tiles at 16px) used for Ground and Props layers. | Production 16x16 or 32x32 pixel-art tilesets for roads, camps, forests, and interiors. | High |
 | Scene-transition fade | `scripts/systems/scene_router.gd` | Plain black `ColorRect` fade. | Optional: subtle travel wipe or caravan-themed transition once art is ready. | Low |
 
 ## Replacement Timeline

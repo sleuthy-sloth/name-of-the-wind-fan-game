@@ -7,13 +7,31 @@ extends CanvasLayer
 @onready var money_label: Label = $MoneyLabel
 @onready var price_band_label: Label = $PriceBandLabel
 
+var _sfx_player: AudioStreamPlayer = null
+var _last_sfx_time: float = 0.0
+
 func _ready() -> void:
 	set_money(0)
 	price_band_label.text = ""
+	_sfx_player = AudioStreamPlayer.new()
+	_sfx_player.name = "HudSfx"
+	add_child(_sfx_player)
+	var sfx := load("res://audio/sfx/switch_002.ogg")
+	if sfx is AudioStream:
+		_sfx_player.stream = sfx
 
 ## Updates the money display with the current balance.
 func set_money(amount: int) -> void:
 	money_label.text = "Money: %d" % amount
+	_play_sfx_throttled()
+
+func _play_sfx_throttled() -> void:
+	if _sfx_player == null or _sfx_player.stream == null:
+		return
+	var now := Time.get_ticks_msec() / 1000.0
+	if now - _last_sfx_time >= 0.15:
+		_sfx_player.play()
+		_last_sfx_time = now
 
 ## Shows a transient price-band confirmation line.
 ## Call clear_price_band() or pass an empty string to hide it.

@@ -10,11 +10,18 @@ var _panel: Panel
 var _speaker_label: Label
 var _text_label: RichTextLabel
 var _choices_box: VBoxContainer
+var _sfx_player: AudioStreamPlayer = null
 
 func _ready() -> void:
 	layer = 90
 	_build_ui()
 	hide_ui()
+	_sfx_player = AudioStreamPlayer.new()
+	_sfx_player.name = "BlipPlayer"
+	add_child(_sfx_player)
+	var sfx := load("res://audio/sfx/click_002.ogg")
+	if sfx is AudioStream:
+		_sfx_player.stream = sfx
 
 func _build_ui() -> void:
 	_panel = Panel.new()
@@ -109,6 +116,12 @@ func _show_node(id: String) -> void:
 			button.text = choice.get("text", "...")
 			button.pressed.connect(_on_choice.bind(index))
 			_choices_box.add_child(button)
+
+	_play_blip()
+
+func _play_blip() -> void:
+	if _sfx_player != null and _sfx_player.stream != null:
+		_sfx_player.play()
 
 func _resolve_text(node: Dictionary) -> String:
 	var gs := _gs()
