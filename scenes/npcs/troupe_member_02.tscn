@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/npcs/npc.tscn" id="1_npc"]
+
+[node name="TroupeMember02" instance=ExtResource("1_npc")]
+npc_id = "char_troupe_member_02"
+display_name = "Pip"
+dialogue_path = "res://data/dialogue/dialogue_act1_camp_threads.json"

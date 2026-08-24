@@ -1,0 +1,102 @@
+{
+  "dialogue_id": "dialogue_act1_abenthy_tutorial",
+  "root": "node_greeting",
+  "nodes": {
+    "node_greeting": {
+      "speaker": "Abenthy",
+      "text": "You want to learn the ways of a trouper, do you? The road teaches as much as any master, but only if you ask the right questions. How do you approach a stranger's secret?",
+      "choices": [
+        {
+          "text": "I ask plainly. Curiosity is the only honest key.",
+          "tag": "curious",
+          "next": "node_teaching",
+          "effects": [
+            {
+              "type": "relationship",
+              "target": "char_abenthy",
+              "delta": 2
+            },
+            {
+              "type": "set_flag",
+              "flag": "flag_abenthy_curious"
+            }
+          ]
+        },
+        {
+          "text": "I watch and wait. A secret offered is safer than a secret taken.",
+          "tag": "cautious",
+          "next": "node_teaching",
+          "effects": [
+            {
+              "type": "relationship",
+              "target": "char_abenthy",
+              "delta": -1
+            },
+            {
+              "type": "set_flag",
+              "flag": "flag_abenthy_cautious"
+            }
+          ]
+        }
+      ]
+    },
+    "node_teaching": {
+      "speaker": "Abenthy",
+      "text_by_flag": [
+        {
+          "flag": "flag_abenthy_curious",
+          "text": "Honest, if a little loud. Curiosity opens doors, but it also leaves fingerprints. Remember: a trouper listens twice for every word spoken."
+        },
+        {
+          "flag": "flag_abenthy_cautious",
+          "text": "Wise. Patience is a kind of power, and power should be quiet. A trouper learns to read the silence between the words."
+        }
+      ],
+      "next": "node_lesson"
+    },
+    "node_lesson": {
+      "speaker": "Abenthy",
+      "text": "Here is your first lesson, then. Every story has three threads: what is said, what is meant, and what is feared. Hold all three at once, and you hold the audience.",
+      "next": "node_practice"
+    },
+    "node_practice": {
+      "speaker": "Abenthy",
+      "text": "Now, practice. I tell a tale of a farmer who sold his shadow. Do you ask after the buyer, or do you ask after the price?",
+      "choices": [
+        {
+          "text": "Who would buy a shadow? The buyer is the mystery.",
+          "tag": "curious",
+          "next": "node_encouragement",
+          "effects": [
+            {
+              "type": "relationship",
+              "target": "char_abenthy",
+              "delta": 1
+            }
+          ]
+        },
+        {
+          "text": "What did the farmer gain? The price tells the worth.",
+          "tag": "cautious",
+          "next": "node_caution",
+          "effects": []
+        }
+      ]
+    },
+    "node_encouragement": {
+      "speaker": "Abenthy",
+      "text": "You reach for the stranger first. That is the heart of it. Keep that hunger, and you will learn faster than most.",
+      "next": "node_end"
+    },
+    "node_caution": {
+      "speaker": "Abenthy",
+      "text": "You weigh the cost before the tale. There is wisdom in that, too. Not every audience wants to be startled.",
+      "next": "node_end"
+    },
+    "node_end": {
+      "speaker": "",
+      "text": "",
+      "end": true
+    }
+  }
+}

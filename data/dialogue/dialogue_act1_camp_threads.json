@@ -1,0 +1,39 @@
+{
+  "dialogue_id": "dialogue_act1_camp_threads",
+  "root": "node_camp_hub",
+  "nodes": {
+    "node_camp_hub": {
+      "speaker": "Troupe Member",
+      "text": "Evening, traveler. The fire's warm and the wagons are quiet. What do you want to talk about?",
+      "choices": [
+        {
+          "text": "Ask about life on the road.",
+          "next": "node_road_life"
+        },
+        {
+          "text": "Ask about the wagons.",
+          "next": "node_wagons"
+        },
+        {
+          "text": "Say goodnight and move on.",
+          "next": "node_end"
+        }
+      ]
+    },
+    "node_road_life": {
+      "speaker": "Sera",
+      "text": "The road? It is long, dusty, and never the same twice. You learn to sleep through the creak of wheels and wake at the smell of rain.",
+      "next": "node_end"
+    },
+    "node_wagons": {
+      "speaker": "Pip",
+      "text": "These old wagons have seen more leagues than I have years. Every joint has a story, and every squeak is a promise that it still wants to roll.",
+      "next": "node_end"
+    },
+    "node_end": {
+      "speaker": "",
+      "text": "",
+      "end": true
+    }
+  }
+}
