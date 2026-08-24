@@ -105,6 +105,8 @@ func _test_npc_scene() -> void:
 
 	var instance := scene.instantiate()
 	_assert_true(instance != null, "npc scene instantiates")
+	var npc_has_script := instance != null and instance.get_script() != null
+	_assert_true(npc_has_script, "npc scene root has a valid attached script")
 	if instance != null:
 		instance.queue_free()
 

@@ -39,7 +39,7 @@ func interact() -> void:
 	var json_text := file.get_as_text()
 	file.close()
 
-	var result := JSON.parse_string(json_text)
+	var result: Variant = JSON.parse_string(json_text)
 	if result == null or not result is Dictionary:
 		push_error("Npc '%s' dialogue file is not valid JSON: %s" % [npc_id, dialogue_path])
 		return
