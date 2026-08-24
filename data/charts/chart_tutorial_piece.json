@@ -1,0 +1,16 @@
+{
+  "id": "chart_music_tutorial_v1",
+  "title": "First Strings",
+  "bpm": 90,
+  "length_beats": 16,
+  "notes": [
+    {"t": 1.0, "lane": 0},
+    {"t": 3.0, "lane": 1},
+    {"t": 5.0, "lane": 0},
+    {"t": 7.0, "lane": 1},
+    {"t": 9.0, "lane": 2},
+    {"t": 11.0, "lane": 1},
+    {"t": 13.0, "lane": 3},
+    {"t": 15.0, "lane": 0}
+  ]
+}
