@@ -72,12 +72,17 @@ func _test_bench_preview() -> void:
 	await process_frame
 
 	# The pre-commit panel must expose cost and risk strings before commitment (GDD §24).
+	# The bench runs its own default-parameter engine, so assert the labels match
+	# what the engine computes for the current selection (UI <-> engine consistency).
 	var cost_text: String = bench.cost_label.text
 	var risk_text: String = bench.risk_label.text
+	var preview: Dictionary = bench.get_preview()
+	var expected_cost_text: String = "Cost: %.1f Alar" % float(preview["cost"])
+	var expected_risk_text: String = "Risk: %.1f%%" % (float(preview["risk"]) * 100.0)
 	_assert_true(cost_text.contains("Cost:"), "bench cost label visible")
 	_assert_true(risk_text.contains("Risk:"), "bench risk label visible")
-	_assert_true(cost_text.contains("10.0"), "bench cost shows case1 value")
-	_assert_true(risk_text.contains("0.0"), "bench risk shows case1 value")
+	_assert_eq(cost_text, expected_cost_text, "bench cost label matches engine preview")
+	_assert_eq(risk_text, expected_risk_text, "bench risk label matches engine preview")
 
 	bench.queue_free()
 

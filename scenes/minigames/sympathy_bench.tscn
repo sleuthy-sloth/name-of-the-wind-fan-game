@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4jbp1sympathybench01"]
+[gd_scene load_steps=2 format=3]
 
 [ext_resource type="Script" path="res://scripts/minigames/sympathy_bench.gd" id="1_bench"]
 
@@ -11,7 +11,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bench")
 
-# PLACEHOLDER: full-screen tint behind the workbench; replace with final panel art.
 [node name="BackgroundTint" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -43,7 +42,6 @@ theme_override_font_sizes/font_size = 28
 text = "Sympathy Workbench"
 horizontal_alignment = 1
 
-# PLACEHOLDER: source/link/target slot row. Replace ColorRects with final icons.
 [node name="SlotsRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
@@ -99,7 +97,6 @@ text = "Effect"
 unique_name_in_owner = true
 layout_mode = 2
 
-# Pre-commit panel: cost and risk are shown BEFORE the player confirms (GDD §24).
 [node name="PreCommitPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 

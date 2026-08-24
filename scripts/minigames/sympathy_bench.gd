@@ -9,7 +9,8 @@ extends Control
 signal working_committed(result: Dictionary)
 signal working_cancelled
 
-@export var alar_holder: Object = null
+# Injected via setup(); plain Object is not an exportable type.
+var alar_holder: Object = null
 
 @onready var source_label: Label = %SourceLabel
 @onready var link_label: Label = %LinkLabel
