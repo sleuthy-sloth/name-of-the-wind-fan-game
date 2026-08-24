@@ -1,0 +1,81 @@
+{
+  "appBuild": "1.5.3",
+  "jsonVersion": "1.5.3",
+  "nextUid": 20,
+  "defs": {
+    "layerDefs": [
+      {
+        "uid": 1,
+        "identifier": "Collision",
+        "type": "IntGrid",
+        "gridSize": 16,
+        "autoSourceLayerDefUid": null,
+        "intGridValues": [
+          {
+            "value": 1,
+            "identifier": "wall",
+            "color": "#8B4513"
+          }
+        ]
+      },
+      {
+        "uid": 2,
+        "identifier": "Entities",
+        "type": "Entities",
+        "gridSize": 16,
+        "entityDefUids": [2]
+      }
+    ],
+    "entities": [
+      {
+        "uid": 2,
+        "identifier": "Spawn",
+        "width": 16,
+        "height": 16
+      }
+    ]
+  },
+  "levels": [
+    {
+      "identifier": "test_caravan_blockout",
+      "uid": 10,
+      "pxWid": 320,
+      "pxHei": 192,
+      "worldX": 0,
+      "worldY": 0,
+      "__bgColor": "#2B2B2B",
+      "fieldInstances": [],
+      "layerInstances": [
+        {
+          "layerDefUid": 1,
+          "identifier": "Collision",
+          "__type": "IntGrid",
+          "__cWid": 20,
+          "__cHei": 12,
+          "__gridSize": 16,
+          "intGridCsv": "1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1\n1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1\n1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1\n1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1\n1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1\n1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1\n1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1\n1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1\n1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1\n1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1\n1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1\n1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1"
+        },
+        {
+          "layerDefUid": 2,
+          "identifier": "Entities",
+          "__type": "Entities",
+          "__cWid": 20,
+          "__cHei": 12,
+          "__gridSize": 16,
+          "entityInstances": [
+            {
+              "__identifier": "Spawn",
+              "__grid": [5, 6],
+              "__pivot": [0, 0],
+              "px": [88, 104],
+              "width": 16,
+              "height": 16,
+              "defUid": 2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "worlds": []
+}
