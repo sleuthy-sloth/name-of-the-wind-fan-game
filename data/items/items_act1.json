@@ -1,0 +1,92 @@
+{
+  "items": [
+    {
+      "id": "item_food_travel_biscuit_v1",
+      "display_name": "Travel Biscuit",
+      "category": "food_and_warmth",
+      "base_price": 3,
+      "key_item": false,
+      "description": "A dense, slightly sweet biscuit that keeps well on the road."
+    },
+    {
+      "id": "item_food_dried_apple_v1",
+      "display_name": "Dried Apple Slices",
+      "category": "food_and_warmth",
+      "base_price": 2,
+      "key_item": false,
+      "description": "Chewy rings of dried apple, a favorite among troupe children."
+    },
+    {
+      "id": "item_tool_lute_strings_v1",
+      "display_name": "Lute Strings",
+      "category": "tools_and_materials",
+      "base_price": 12,
+      "key_item": false,
+      "description": "A spare set of gut strings for a traveling lute."
+    },
+    {
+      "id": "item_tool_whetstone_v1",
+      "display_name": "Travel Whetstone",
+      "category": "tools_and_materials",
+      "base_price": 8,
+      "key_item": false,
+      "description": "A small stone for keeping knives and tools sharp on the road."
+    },
+    {
+      "id": "item_material_wood_shavings_v1",
+      "display_name": "Aromatic Wood Shavings",
+      "category": "tools_and_materials",
+      "base_price": 5,
+      "key_item": false,
+      "description": "Fine shavings saved from carving; useful for kindling or packing."
+    },
+    {
+      "id": "item_document_road_map_v1",
+      "display_name": "Faded Road Map",
+      "category": "documents_and_clues",
+      "base_price": 15,
+      "key_item": true,
+      "description": "A carefully drawn map of safe roads and troupe meeting points."
+    },
+    {
+      "id": "item_crafted_lucky_charm_v1",
+      "display_name": "Lucky Charm",
+      "category": "crafted_items",
+      "base_price": 25,
+      "key_item": false,
+      "description": "A small braided charm made by a troupe elder for good fortune."
+    },
+    {
+      "id": "item_instrument_travel_lute_v1",
+      "display_name": "Travel Lute",
+      "category": "instruments_and_performance_aids",
+      "base_price": 75,
+      "key_item": false,
+      "description": "A modest but well-kept lute, road-worn and resonant."
+    },
+    {
+      "id": "item_quest_mothers_brooch_v1",
+      "display_name": "Mother's Brooch",
+      "category": "quest_objects",
+      "base_price": 200,
+      "key_item": true,
+      "description": "A silver brooch in the shape of a singing bird. Irreplaceable."
+    },
+    {
+      "id": "item_food_warm_cider_v1",
+      "display_name": "Warm Cider",
+      "category": "food_and_warmth",
+      "base_price": 4,
+      "key_item": false,
+      "description": "A tin cup of spiced cider that takes the chill off a long evening."
+    },
+    {
+      "id": "item_performance_troupe_badge_v1",
+      "display_name": "Troupe Badge",
+      "category": "instruments_and_performance_aids",
+      "base_price": 30,
+      "key_item": false,
+      "description": "A small enameled pin marking the bearer as a member of the troupe."
+    }
+  ]
+}
