@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/npcs/npc.tscn" id="1_npc"]
+
+[node name="Abenthy" instance=ExtResource("1_npc")]
+npc_id = "char_abenthy"
+display_name = "Abenthy"
+dialogue_path = "res://data/dialogue/dialogue_act1_abenthy_tutorial.json"
