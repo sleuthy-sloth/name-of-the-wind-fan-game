@@ -1,8 +1,8 @@
 class_name LdtkLoader
 extends RefCounted
 
-# Phase 0 minimal reader (IntGrid collision + Spawn only).
-# Full tileset/entity support lands in Phase 1.
+# Phase 0/1 reader: IntGrid collision, Spawn/Door/Interaction entities, and
+# data layers (Decoration, Foreground, Lighting). Keeps Phase 0 API intact.
 
 
 static func load_project(path: String) -> Dictionary:
@@ -11,7 +11,7 @@ static func load_project(path: String) -> Dictionary:
 		push_error("LdtkLoader: failed to read file: %s" % path)
 		return {}
 
-	var parsed = JSON.parse_string(text)
+	var parsed: Variant = JSON.parse_string(text)
 	if parsed == null or not parsed is Dictionary:
 		push_error("LdtkLoader: failed to parse JSON: %s" % path)
 		return {}
@@ -25,7 +25,7 @@ static func load_project(path: String) -> Dictionary:
 		push_error("LdtkLoader: missing levels in: %s" % path)
 		return {}
 
-	var levels = project["levels"]
+	var levels: Variant = project["levels"]
 	if not levels is Array or levels.size() < 1:
 		push_error("LdtkLoader: project has no levels: %s" % path)
 		return {}
@@ -34,17 +34,17 @@ static func load_project(path: String) -> Dictionary:
 
 
 static func build_level_node(project: Dictionary, level_index := 0, cell_size := 16) -> Node2D:
-	var levels = project.get("levels", [])
+	var levels: Variant = project.get("levels", [])
 	if level_index < 0 or level_index >= levels.size():
 		push_error("LdtkLoader: level_index %d out of range" % level_index)
 		return Node2D.new()
 
-	var level = levels[level_index]
+	var level: Variant = levels[level_index]
 	if level == null or not level is Dictionary:
 		push_error("LdtkLoader: level %d is not a dictionary" % level_index)
 		return Node2D.new()
 
-	var layer_instances = level.get("layerInstances", [])
+	var layer_instances: Variant = level.get("layerInstances", [])
 	if not layer_instances is Array:
 		push_error("LdtkLoader: layerInstances missing or invalid")
 		return Node2D.new()
@@ -54,14 +54,25 @@ static func build_level_node(project: Dictionary, level_index := 0, cell_size :=
 
 	var collision_layer: Dictionary = {}
 	var entities_layer: Dictionary = {}
-	for layer in layer_instances:
+	var decoration_layer: Dictionary = {}
+	var foreground_layer: Dictionary = {}
+	var lighting_layer: Dictionary = {}
+
+	for layer: Variant in layer_instances:
 		if layer == null or not layer is Dictionary:
 			continue
 		var identifier: String = layer.get("identifier", "")
-		if identifier == "Collision":
-			collision_layer = layer
-		elif identifier == "Entities":
-			entities_layer = layer
+		match identifier:
+			"Collision":
+				collision_layer = layer
+			"Entities":
+				entities_layer = layer
+			"Decoration":
+				decoration_layer = layer
+			"Foreground":
+				foreground_layer = layer
+			"Lighting":
+				lighting_layer = layer
 
 	if collision_layer.is_empty():
 		push_warning("LdtkLoader: no 'Collision' layer found")
@@ -92,17 +103,58 @@ static func build_level_node(project: Dictionary, level_index := 0, cell_size :=
 				)
 				static_body.add_child(collision_shape)
 
+	root.set_meta("decorations", _read_data_cells(decoration_layer, grid_size))
+	root.set_meta("foreground", _read_data_cells(foreground_layer, grid_size))
+	root.set_meta("lighting", _read_data_cells(lighting_layer, grid_size))
+
 	var spawn := Vector2.ZERO
-	var entity_instances = entities_layer.get("entityInstances", [])
+	var doors: Array[Dictionary] = []
+	var interactions: Array[Dictionary] = []
+
+	var entity_instances: Variant = entities_layer.get("entityInstances", [])
 	if entity_instances is Array:
-		for entity in entity_instances:
+		for entity: Variant in entity_instances:
 			if entity == null or not entity is Dictionary:
 				continue
-			if entity.get("__identifier", "") == "Spawn":
-				var px = entity.get("px", [0, 0])
-				if px is Array and px.size() >= 2:
-					spawn = Vector2(float(px[0]), float(px[1]))
-				break
+			var entity_id: String = entity.get("__identifier", "")
+			var px: Variant = entity.get("px", [0, 0])
+			if not px is Array or px.size() < 2:
+				continue
+			var pos := Vector2(float(px[0]), float(px[1]))
+			match entity_id:
+				"Spawn":
+					spawn = pos
+				"Door":
+					doors.append({"id": "door_%d" % doors.size(), "position": pos})
+				"Interaction":
+					interactions.append({"id": "interaction_%d" % interactions.size(), "position": pos})
 
 	root.set_meta("spawn_position", spawn)
+	root.set_meta("doors", doors)
+	root.set_meta("interactions", interactions)
 	return root
+
+
+static func _read_data_cells(layer: Dictionary, grid_size: int) -> Array[Dictionary]:
+	var out: Array[Dictionary] = []
+	if layer.is_empty():
+		return out
+
+	var csv_text: String = layer.get("intGridCsv", "")
+	var rows := csv_text.split("\n", false)
+	var c_wid: int = layer.get("__cWid", rows.size())
+	var c_hei: int = layer.get("__cHei", rows.size())
+
+	for y in range(min(rows.size(), c_hei)):
+		var row := rows[y]
+		var cells := row.split(",", false)
+		for x in range(min(cells.size(), c_wid)):
+			if cells[x].strip_edges() == "1":
+				out.append({
+					"grid": Vector2i(x, y),
+					"position": Vector2(
+						x * grid_size + grid_size * 0.5,
+						y * grid_size + grid_size * 0.5
+					)
+				})
+	return out
