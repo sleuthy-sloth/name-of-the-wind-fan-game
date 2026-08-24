@@ -63,6 +63,12 @@ func start(data: Dictionary) -> void:
 func get_current_id() -> String:
 	return _current_node_id
 
+func get_current_text() -> String:
+	return _text_label.text
+
+func get_current_speaker() -> String:
+	return _speaker_label.text
+
 func hide_ui() -> void:
 	_panel.visible = false
 
@@ -85,7 +91,7 @@ func _show_node(id: String) -> void:
 		return
 
 	_speaker_label.text = node.get("speaker", "")
-	_text_label.text = node.get("text", "")
+	_text_label.text = _resolve_text(node)
 
 	for child in _choices_box.get_children():
 		child.queue_free()
@@ -103,6 +109,18 @@ func _show_node(id: String) -> void:
 			button.text = choice.get("text", "...")
 			button.pressed.connect(_on_choice.bind(index))
 			_choices_box.add_child(button)
+
+func _resolve_text(node: Dictionary) -> String:
+	var gs := _gs()
+	var text_by_flag: Array = node.get("text_by_flag", [])
+	for entry in text_by_flag:
+		if not entry is Dictionary:
+			continue
+		var item: Dictionary = entry
+		var flag: String = item.get("flag", "")
+		if not flag.is_empty() and gs != null and gs.has_flag(flag):
+			return item.get("text", "")
+	return node.get("text", "")
 
 func _on_choice(index: int) -> void:
 	var nodes: Dictionary = _data.get("nodes", {})
@@ -181,8 +199,16 @@ static func validate(data: Dictionary) -> PackedStringArray:
 		var is_end: bool = node.get("end", false)
 
 		if not is_end:
-			var text: String = node.get("text", "")
-			if text.is_empty():
+			var has_text := false
+			if node.has("text") and not node.get("text", "").is_empty():
+				has_text = true
+			if node.has("text_by_flag"):
+				var text_by_flag: Array = node.get("text_by_flag", [])
+				for entry in text_by_flag:
+					if entry is Dictionary and not entry.get("text", "").is_empty():
+						has_text = true
+						break
+			if not has_text:
 				errors.append("node '%s' has empty text on non-end node" % node_id)
 
 		if node.has("next"):
@@ -201,6 +227,29 @@ static func validate(data: Dictionary) -> PackedStringArray:
 				var choice_next: String = choice_dict.get("next", "")
 				if not choice_next.is_empty() and not nodes.has(choice_next):
 					errors.append("node '%s' choice[%d] references unknown next node '%s'" % [node_id, index, choice_next])
+
+			if choice_dict.has("tag"):
+				var tag_value: Variant = choice_dict.get("tag")
+				if not tag_value is String:
+					errors.append("node '%s' choice[%d] 'tag' must be a string" % [node_id, index])
+
+			if choice_dict.has("tags"):
+				var tags_value: Variant = choice_dict.get("tags")
+				if not tags_value is Array:
+					errors.append("node '%s' choice[%d] 'tags' must be an array" % [node_id, index])
+
+		if node.has("text_by_flag"):
+			var text_by_flag: Array = node.get("text_by_flag", [])
+			for index in range(text_by_flag.size()):
+				var entry = text_by_flag[index]
+				if not entry is Dictionary:
+					errors.append("node '%s' text_by_flag[%d] is not a dictionary" % [node_id, index])
+					continue
+				var item: Dictionary = entry
+				if not item.has("flag"):
+					errors.append("node '%s' text_by_flag[%d] missing 'flag'" % [node_id, index])
+				if not item.has("text"):
+					errors.append("node '%s' text_by_flag[%d] missing 'text'" % [node_id, index])
 
 		var effects: Array = node.get("effects", [])
 		for index in range(effects.size()):

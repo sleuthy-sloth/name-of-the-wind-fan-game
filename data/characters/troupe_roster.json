@@ -1,0 +1,26 @@
+{
+  "roster_id": "roster_act1_troupe",
+  "members": [
+    {
+      "id": "char_abenthy",
+      "display_name": "Abenthy",
+      "role": "arcanist",
+      "base_relationship": 0.0,
+      "description": "A traveling arcanist who rides with the troupe. Speaks in riddles and watches the world with patient eyes."
+    },
+    {
+      "id": "char_troupe_member_01",
+      "display_name": "Sera",
+      "role": "tanner's apprentice",
+      "base_relationship": 0.0,
+      "description": "Practical, sharp-tongued, and rarely without a scrap of leather to mend. Keeps the wagons stocked and the hides curing."
+    },
+    {
+      "id": "char_troupe_member_02",
+      "display_name": "Pip",
+      "role": "wagon mender",
+      "base_relationship": 0.0,
+      "description": "Cheerful, restless, and handy with a brace and bit. Knows every squeak and groan of the troupe's wagons."
+    }
+  ]
+}
