@@ -60,7 +60,7 @@ minute playable journey from caravan life to the Chandrian attack.
 
 | Phase | Goal | Status |
 |---|---|---|
-| 0 — Foundation | Engine shell: movement, scenes, save/load, debug overlay | 🔨 In progress |
+| 0 — Foundation | Engine shell: movement, scenes, save/load, debug overlay | ✅ Complete |
 | 1 — Vertical slice | Act I: Edema Ruh — music, Sympathy, the attack | ⏳ Planned |
 | 2 — Architecture pass | Data-driven quests, schedules, reputation | ⏳ Planned |
 | 3 — Tarbean prototype | Survival loop: hunger, warmth, stealth | ⏳ Planned |
