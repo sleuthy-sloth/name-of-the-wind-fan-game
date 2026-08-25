@@ -23,3 +23,14 @@ Thumbs.db
 *.tmp
 *.bak
 *~
+
+# LPC factory generated outputs (sources, definitions, palettes, credits stay tracked)
+
+tools/lpc-factory/upstream/
+
+tools/lpc-factory/build/
+
+tools/lpc-factory/node_modules/
+
+# Machine-local config (Aseprite path differs per machine)
+tools/lpc-factory/config/local.json

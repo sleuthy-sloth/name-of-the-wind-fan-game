@@ -1,0 +1,12 @@
+name: lpc_sword_test
+item: weapon.arming_sword
+bodyType: male
+variant: iron
+animations:
+  - walk
+  - idle
+  - combat_idle
+  - hurt
+  - slash_128
+  - backslash_128
+  - halfslash_128

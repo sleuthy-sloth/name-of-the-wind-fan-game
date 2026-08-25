@@ -1,0 +1,19 @@
+{
+  "upstream": {
+    "repository": "https://github.com/LiberatedPixelCup/Universal-LPC-Spritesheet-Character-Generator",
+    "path": "upstream/universal-lpc"
+  },
+  "frameSize": 64,
+  "directions": ["up", "left", "down", "right"],
+  "bodyTypes": ["male", "female", "teen", "child", "muscular", "pregnant"],
+  "build": {
+    "asepriteDir": "build/aseprite",
+    "sheetsDir": "build/sheets",
+    "metadataDir": "build/metadata",
+    "previewsDir": "build/previews"
+  },
+  "publish": {
+    "targetDir": "../../art/sprites/lpc",
+    "requireReviewApproved": false
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "notw-lpc-factory",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Name of the Wind — automated LPC sprite factory (Aseprite-driven)",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "lpc:inspect": "node scripts/inspect-lpc.mjs",
+    "lpc:update": "node scripts/update-lpc.mjs",
+    "lpc:build": "node scripts/build-character.mjs",
+    "lpc:weapon": "node scripts/build-weapon.mjs",
+    "lpc:group": "node scripts/build-group.mjs",
+    "lpc:npcs": "node scripts/generate-npcs.mjs",
+    "lpc:validate": "node scripts/validate-build.mjs",
+    "lpc:credits": "node scripts/generate-credits.mjs",
+    "lpc:all": "node scripts/build-all.mjs",
+    "test": "node --test tests/"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "pngjs": "^7.0.0"
+  }
+}

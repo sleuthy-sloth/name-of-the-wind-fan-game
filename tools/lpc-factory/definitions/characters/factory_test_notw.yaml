@@ -1,0 +1,20 @@
+name: factory_test_notw
+bodyType: male
+animations:
+  - idle
+layers:
+  - item: body.body_color
+    color: swarthy
+    palette: notw-body
+  - item: legs.pants
+    color: tarbean_brown
+    palette: notw-cloth
+  - item: shoes.basic_boots
+    color: chandrian_black
+    palette: notw-cloth
+  - item: clothes.longsleeve
+    color: ruh_green
+    palette: notw-cloth
+  - item: hair.long_messy
+    color: kvothe_rust
+    palette: notw-hair

@@ -1,0 +1,20 @@
+# factory_test.yaml — Smoke test character for the LPC Sprite Factory
+# A simple character with body + hair + shirt + trousers + boots
+# Tests: flat per-animation PNG resolution, palette recoloring, multi-layer composition
+
+name: factory_test
+bodyType: male
+animations:
+  - idle
+  - walk
+layers:
+  - item: body.body_color
+    color: light
+  - item: legs.pants
+    color: brown
+  - item: shoes.basic_boots
+    color: brown
+  - item: clothes.longsleeve
+    color: blue
+  - item: hair.long_messy
+    color: red

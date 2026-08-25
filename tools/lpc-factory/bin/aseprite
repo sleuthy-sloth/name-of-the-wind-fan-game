@@ -1,0 +1,18 @@
+#!/bin/sh
+# Wrapper: invokes the Aseprite executable configured in config/local.json
+# (falls back to config/local.example.json). All project tooling must use this
+# wrapper instead of hard-coding machine-specific paths.
+set -eu
+DIR=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+CONFIG="$DIR/config/local.json"
+[ -f "$CONFIG" ] || CONFIG="$DIR/config/local.example.json"
+ASEPRITE_PATH=$(node -e "process.stdout.write(JSON.parse(require('fs').readFileSync(process.argv[1],'utf8')).asepritePath||'')" "$CONFIG")
+if [ -z "$ASEPRITE_PATH" ]; then
+  echo "ERROR: no asepritePath configured in $CONFIG" >&2
+  exit 1
+fi
+if [ ! -x "$ASEPRITE_PATH" ]; then
+  echo "ERROR: configured asepritePath is not executable: $ASEPRITE_PATH" >&2
+  exit 1
+fi
+exec "$ASEPRITE_PATH" "$@"
