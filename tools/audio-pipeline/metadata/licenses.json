@@ -1,0 +1,422 @@
+{
+  "version": 1,
+  "notes": [
+    "Registry of every tracked audio asset. Generated credits/index read this; edit by hand.",
+    "policy 'project-original' exempts an asset from third-party license classification (governed by LICENSE-ASSETS.md).",
+    "events map logical IDs -> original files under sources/original/. Processed filenames are derived as <slug>_<NN>.ogg."
+  ],
+  "assets": [
+    {
+      "id": "kenney_interface_sounds",
+      "type": "sfx",
+      "source": {
+        "site": "kenney.nl",
+        "creator": "Kenney",
+        "title": "Interface Sounds",
+        "url": "https://kenney.nl/assets/interface-sounds",
+        "downloadDate": "2026-08-24"
+      },
+      "license": {
+        "name": "CC0-1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "attributionRequired": false
+      },
+      "review": { "status": "approved", "reviewer": null, "notes": "Shipped pre-pipeline (commit 8430e26); grandfathered with existing CREDITS.md entry." },
+      "original": ["kenney_interface_sounds"],
+      "events": {
+        "SFX_UI_HOVER": ["kenney_interface_sounds/click_001.ogg", "kenney_interface_sounds/click_002.ogg", "kenney_interface_sounds/click_003.ogg", "kenney_interface_sounds/click_004.ogg", "kenney_interface_sounds/click_005.ogg"],
+        "SFX_UI_SELECT": ["kenney_interface_sounds/select_001.ogg", "kenney_interface_sounds/select_002.ogg", "kenney_interface_sounds/select_003.ogg", "kenney_interface_sounds/select_004.ogg", "kenney_interface_sounds/select_005.ogg", "kenney_interface_sounds/select_006.ogg", "kenney_interface_sounds/select_007.ogg", "kenney_interface_sounds/select_008.ogg"],
+        "SFX_UI_BACK": ["kenney_interface_sounds/back_001.ogg", "kenney_interface_sounds/back_002.ogg", "kenney_interface_sounds/back_003.ogg", "kenney_interface_sounds/back_004.ogg"],
+        "SFX_UI_CONFIRM": ["kenney_interface_sounds/confirmation_001.ogg", "kenney_interface_sounds/confirmation_002.ogg", "kenney_interface_sounds/confirmation_003.ogg", "kenney_interface_sounds/confirmation_004.ogg"],
+        "SFX_UI_ERROR": ["kenney_interface_sounds/error_001.ogg", "kenney_interface_sounds/error_002.ogg", "kenney_interface_sounds/error_003.ogg", "kenney_interface_sounds/error_004.ogg", "kenney_interface_sounds/error_005.ogg", "kenney_interface_sounds/error_006.ogg", "kenney_interface_sounds/error_007.ogg", "kenney_interface_sounds/error_008.ogg"],
+        "SFX_UI_OPEN": ["kenney_interface_sounds/open_001.ogg", "kenney_interface_sounds/open_002.ogg", "kenney_interface_sounds/open_003.ogg", "kenney_interface_sounds/open_004.ogg"],
+        "SFX_UI_CLOSE": ["kenney_interface_sounds/close_001.ogg", "kenney_interface_sounds/close_002.ogg", "kenney_interface_sounds/close_003.ogg", "kenney_interface_sounds/close_004.ogg"],
+        "SFX_UI_TOGGLE": ["kenney_interface_sounds/toggle_001.ogg", "kenney_interface_sounds/toggle_002.ogg", "kenney_interface_sounds/toggle_003.ogg", "kenney_interface_sounds/toggle_004.ogg", "kenney_interface_sounds/switch_001.ogg", "kenney_interface_sounds/switch_002.ogg", "kenney_interface_sounds/switch_003.ogg", "kenney_interface_sounds/switch_004.ogg", "kenney_interface_sounds/switch_005.ogg", "kenney_interface_sounds/switch_006.ogg", "kenney_interface_sounds/switch_007.ogg"],
+        "SFX_UI_SCROLL": ["kenney_interface_sounds/scroll_001.ogg", "kenney_interface_sounds/scroll_002.ogg", "kenney_interface_sounds/scroll_003.ogg", "kenney_interface_sounds/scroll_004.ogg", "kenney_interface_sounds/scroll_005.ogg"],
+        "SFX_UI_NOTIFICATION": ["kenney_interface_sounds/question_001.ogg", "kenney_interface_sounds/question_002.ogg", "kenney_interface_sounds/question_003.ogg", "kenney_interface_sounds/question_004.ogg"]
+      }
+    },
+    {
+      "id": "kenney_music_jingles",
+      "type": "music",
+      "source": {
+        "site": "kenney.nl",
+        "creator": "Kenney",
+        "title": "Music Jingles (8-Bit, Hit, Pizzicato, Sax, Steel)",
+        "url": "https://kenney.nl/assets/music-jingles",
+        "downloadDate": "2026-08-24"
+      },
+      "license": {
+        "name": "CC0-1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "attributionRequired": false
+      },
+      "review": {
+        "status": "approved",
+        "reviewer": "session-2026-08-25",
+        "notes": "Grandfathered: pack shipped pre-pipeline (commit 8430e26) with CREDITS.md attribution. CC0; approved ONLY as short UI/end-card stings (MUS_STING_ENDCARD), NOT as location soundtrack. Remaining unmapped jingles stay candidate material."
+      },
+      "original": [
+        "kenney_music_jingles/8-Bit jingles",
+        "kenney_music_jingles/Hit jingles",
+        "kenney_music_jingles/Pizzicato jingles",
+        "kenney_music_jingles/Sax jingles",
+        "kenney_music_jingles/Steel jingles"
+      ],
+      "events": {
+        "MUS_STING_ENDCARD": ["kenney_music_jingles/Pizzicato jingles/jingles_PIZZI00.ogg"]
+      }
+    },
+    {
+      "id": "notw_lute_notes",
+      "type": "sfx",
+      "policy": "project-original",
+      "source": {
+        "site": "in-repo",
+        "creator": "NOTW contributors",
+        "title": "Karplus-Strong synthesized lute notes (scripts/tools/synth_lute.py)",
+        "url": "scripts/tools/synth_lute.py",
+        "downloadDate": "2026-08-24"
+      },
+      "license": {
+        "name": "Project-original (CC BY-NC-SA 4.0 per LICENSE-ASSETS.md)",
+        "url": "../../LICENSE-ASSETS.md",
+        "attributionRequired": false
+      },
+      "review": { "status": "approved", "reviewer": null, "notes": "Self-authored; playable note samples for lute minigames." },
+      "original": [
+        "notw_synthesized/lute/lute_D3.ogg", "notw_synthesized/lute/lute_G3.ogg",
+        "notw_synthesized/lute/lute_A3.ogg", "notw_synthesized/lute/lute_B3.ogg",
+        "notw_synthesized/lute/lute_D4.ogg", "notw_synthesized/lute/lute_E4.ogg",
+        "notw_synthesized/lute/lute_G4.ogg", "notw_synthesized/lute/lute_A4.ogg"
+      ],
+      "events": {
+        "INSTR_LUTE_NOTE_D3": ["notw_synthesized/lute/lute_D3.ogg"],
+        "INSTR_LUTE_NOTE_G3": ["notw_synthesized/lute/lute_G3.ogg"],
+        "INSTR_LUTE_NOTE_A3": ["notw_synthesized/lute/lute_A3.ogg"],
+        "INSTR_LUTE_NOTE_B3": ["notw_synthesized/lute/lute_B3.ogg"],
+        "INSTR_LUTE_NOTE_D4": ["notw_synthesized/lute/lute_D4.ogg"],
+        "INSTR_LUTE_NOTE_E4": ["notw_synthesized/lute/lute_E4.ogg"],
+        "INSTR_LUTE_NOTE_G4": ["notw_synthesized/lute/lute_G4.ogg"],
+        "INSTR_LUTE_NOTE_A4": ["notw_synthesized/lute/lute_A4.ogg"]
+      }
+    },
+    {
+      "id": "notw_ambience_loops",
+      "type": "ambience",
+      "policy": "project-original",
+      "source": {
+        "site": "in-repo",
+        "creator": "NOTW contributors",
+        "title": "Procedurally synthesized ambience loops (scripts/tools/synth_ambience.py)",
+        "url": "scripts/tools/synth_ambience.py",
+        "downloadDate": "2026-08-24"
+      },
+      "license": {
+        "name": "Project-original (CC BY-NC-SA 4.0 per LICENSE-ASSETS.md)",
+        "url": "../../LICENSE-ASSETS.md",
+        "attributionRequired": false
+      },
+      "review": { "status": "approved", "reviewer": null, "notes": "Self-authored placeholders; replace with recorded CC0 ambience when available." },
+      "original": [
+        "notw_synthesized/ambience/campfire_loop.ogg",
+        "notw_synthesized/ambience/forest_night_loop.ogg"
+      ],
+      "events": {
+        "AMB_CAMPFIRE_LOOP": ["notw_synthesized/ambience/campfire_loop.ogg"],
+        "AMB_FOREST_NIGHT": ["notw_synthesized/ambience/forest_night_loop.ogg"]
+      }
+    },
+    {
+      "id": "oga_rpg_sound_pack",
+      "type": "sfx",
+      "source": {
+        "site": "OpenGameArt",
+        "creator": "artisticdude",
+        "title": "RPG Sound Pack",
+        "url": "https://opengameart.org/content/rpg-sound-pack",
+        "downloadDate": "2026-08-24"
+      },
+      "license": {
+        "name": "CC0-1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "attributionRequired": false
+      },
+      "review": { "status": "approved", "reviewer": "session-2026-08-25", "notes": "CC0 confirmed from the asset page itself; common SFX may enter dev builds (plan s41). Signature sounds intentionally NOT mapped from this pack." },
+      "original": [
+        "oga_rpg_sound_pack.zip",
+        "rpg_sound_pack/battle/swing.wav",
+        "rpg_sound_pack/battle/swing2.wav",
+        "rpg_sound_pack/battle/swing3.wav",
+        "rpg_sound_pack/battle/sword-unsheathe.wav",
+        "rpg_sound_pack/battle/sword-unsheathe2.wav",
+        "rpg_sound_pack/battle/sword-unsheathe3.wav",
+        "rpg_sound_pack/battle/sword-unsheathe4.wav",
+        "rpg_sound_pack/battle/sword-unsheathe5.wav",
+        "rpg_sound_pack/inventory/coin.wav",
+        "rpg_sound_pack/inventory/coin2.wav",
+        "rpg_sound_pack/inventory/coin3.wav",
+        "rpg_sound_pack/inventory/cloth.wav",
+        "rpg_sound_pack/inventory/cloth-heavy.wav",
+        "rpg_sound_pack/inventory/chainmail1.wav",
+        "rpg_sound_pack/inventory/chainmail2.wav",
+        "rpg_sound_pack/world/door.wav"
+      ],
+      "events": {
+        "SFX_SWORD_SWING_LIGHT": [
+          "rpg_sound_pack/battle/swing.wav",
+          "rpg_sound_pack/battle/swing2.wav",
+          "rpg_sound_pack/battle/swing3.wav"
+        ],
+        "SFX_SWORD_DRAW": [
+          "rpg_sound_pack/battle/sword-unsheathe.wav",
+          "rpg_sound_pack/battle/sword-unsheathe2.wav",
+          "rpg_sound_pack/battle/sword-unsheathe3.wav",
+          "rpg_sound_pack/battle/sword-unsheathe4.wav",
+          "rpg_sound_pack/battle/sword-unsheathe5.wav"
+        ],
+        "SFX_COIN_SINGLE": [
+          "rpg_sound_pack/inventory/coin.wav",
+          "rpg_sound_pack/inventory/coin2.wav",
+          "rpg_sound_pack/inventory/coin3.wav"
+        ],
+        "SFX_CLOTH_MOVE_LIGHT": ["rpg_sound_pack/inventory/cloth.wav"],
+        "SFX_CLOTH_MOVE_HEAVY": ["rpg_sound_pack/inventory/cloth-heavy.wav"],
+        "SFX_GEAR_RATTLE": [
+          "rpg_sound_pack/inventory/chainmail1.wav",
+          "rpg_sound_pack/inventory/chainmail2.wav"
+        ],
+        "SFX_DOOR_WOOD_OPEN": ["rpg_sound_pack/world/door.wav"]
+      }
+    },
+    {
+      "id": "oga_80_cc0_rpg_sfx",
+      "type": "sfx",
+      "source": {
+        "site": "OpenGameArt",
+        "creator": "rubberduck",
+        "title": "80 CC0 RPG SFX",
+        "url": "https://opengameart.org/content/80-cc0-rpg-sfx",
+        "downloadDate": "2026-08-24"
+      },
+      "license": {
+        "name": "CC0-1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "attributionRequired": false
+      },
+      "review": { "status": "approved", "reviewer": "session-2026-08-25", "notes": "CC0 confirmed on asset page. book_01..04 are interchangeable book-handling sounds; open-vs-turn assignment is nominal. Blades/spells/stones kept as unmapped candidates." },
+      "original": [
+        "oga_80_cc0_rpg_sfx.zip",
+        "rpg_sfx_80_cc0/book_01.ogg", "rpg_sfx_80_cc0/book_02.ogg",
+        "rpg_sfx_80_cc0/book_03.ogg", "rpg_sfx_80_cc0/book_04.ogg",
+        "rpg_sfx_80_cc0/item_coins_01.ogg", "rpg_sfx_80_cc0/item_coins_02.ogg",
+        "rpg_sfx_80_cc0/item_coins_03.ogg", "rpg_sfx_80_cc0/item_coins_04.ogg",
+        "rpg_sfx_80_cc0/chain_01.ogg", "rpg_sfx_80_cc0/chain_02.ogg",
+        "rpg_sfx_80_cc0/chain_03.ogg"
+      ],
+      "events": {
+        "SFX_BOOK_OPEN": ["rpg_sfx_80_cc0/book_01.ogg"],
+        "SFX_PAGE_TURN_01": ["rpg_sfx_80_cc0/book_02.ogg"],
+        "SFX_PAGE_TURN_02": ["rpg_sfx_80_cc0/book_03.ogg"],
+        "SFX_PAGE_TURN_03": ["rpg_sfx_80_cc0/book_04.ogg"],
+        "SFX_COIN_SMALL": [
+          "rpg_sfx_80_cc0/item_coins_01.ogg",
+          "rpg_sfx_80_cc0/item_coins_02.ogg",
+          "rpg_sfx_80_cc0/item_coins_03.ogg",
+          "rpg_sfx_80_cc0/item_coins_04.ogg"
+        ],
+        "SFX_CHAIN": [
+          "rpg_sfx_80_cc0/chain_01.ogg",
+          "rpg_sfx_80_cc0/chain_02.ogg",
+          "rpg_sfx_80_cc0/chain_03.ogg"
+        ]
+      }
+    },
+    {
+      "id": "oga_different_steps",
+      "type": "sfx",
+      "source": {
+        "site": "OpenGameArt",
+        "creator": "TinyWorlds",
+        "title": "Different steps on wood, stone, leaves, gravel and mud",
+        "url": "https://opengameart.org/content/different-steps-on-wood-stone-leaves-gravel-and-mud",
+        "downloadDate": "2026-08-24"
+      },
+      "license": {
+        "name": "CC0-1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "attributionRequired": false
+      },
+      "review": { "status": "approved", "reviewer": "session-2026-08-25", "notes": "CC0 confirmed on asset page. Gravel treated as stone-family step; leaves kept as spare (no leaves surface in requirements)." },
+      "original": [
+        "oga_different_steps_wood_stone_leaves_gravel_mud.zip",
+        "steps_wood_stone_leaves_gravel_mud/wood01.ogg",
+        "steps_wood_stone_leaves_gravel_mud/wood02.ogg",
+        "steps_wood_stone_leaves_gravel_mud/wood03.ogg",
+        "steps_wood_stone_leaves_gravel_mud/stone01.ogg",
+        "steps_wood_stone_leaves_gravel_mud/gravel.ogg",
+        "steps_wood_stone_leaves_gravel_mud/mud02.ogg"
+      ],
+      "events": {
+        "SFX_FOOT_WOOD": [
+          "steps_wood_stone_leaves_gravel_mud/wood01.ogg",
+          "steps_wood_stone_leaves_gravel_mud/wood02.ogg",
+          "steps_wood_stone_leaves_gravel_mud/wood03.ogg"
+        ],
+        "SFX_FOOT_STONE": [
+          "steps_wood_stone_leaves_gravel_mud/stone01.ogg",
+          "steps_wood_stone_leaves_gravel_mud/gravel.ogg"
+        ],
+        "SFX_FOOT_MUD": ["steps_wood_stone_leaves_gravel_mud/mud02.ogg"]
+      }
+    },
+    {
+      "id": "oga_old_tower_inn",
+      "type": "music",
+      "source": {
+        "site": "OpenGameArt",
+        "creator": "RandomMind",
+        "title": "Medieval: The Old Tower Inn (loop)",
+        "url": "https://opengameart.org/content/medieval-the-old-tower-inn",
+        "downloadDate": "2026-08-24"
+      },
+      "license": {
+        "name": "CC0-1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "attributionRequired": false
+      },
+      "review": { "status": "pending", "reviewer": null, "notes": "MUS_RUH_CAMP candidate: warm tavern/inn folk, 50 s seamless WAV loop. Music NEVER auto-publishes (plan s40); awaiting human review." },
+      "original": ["oga_old_tower_inn_loop.wav"],
+      "events": {
+        "MUS_RUH_CAMP": ["oga_old_tower_inn_loop.wav"]
+      }
+    },
+    {
+      "id": "oga_dark_ambient_loop_13",
+      "type": "music",
+      "source": {
+        "site": "OpenGameArt",
+        "creator": "MundoSound (Lucas Calvo)",
+        "title": "Dark Ambient Loop 13",
+        "url": "https://opengameart.org/content/dark-ambient-loop-13",
+        "downloadDate": "2026-08-24"
+      },
+      "license": {
+        "name": "CC-BY-3.0",
+        "url": "http://creativecommons.org/licenses/by/3.0/",
+        "attributionRequired": true
+      },
+      "review": { "status": "pending", "reviewer": null, "notes": "MUS_TARBEAN candidate: subtle dark drone, 1:55 seamless loop, lossless source. CC-BY attribution will be emitted via credits if approved." },
+      "original": ["oga_dark_ambient_loop_13.wav"],
+      "events": {
+        "MUS_TARBEAN": ["oga_dark_ambient_loop_13.wav"]
+      }
+    },
+    {
+      "id": "kenney_impact_sounds",
+      "type": "sfx",
+      "source": {
+        "site": "kenney.nl",
+        "creator": "Kenney",
+        "title": "Impact Sounds",
+        "url": "https://kenney.nl/assets/impact-sounds",
+        "downloadDate": "2026-08-24"
+      },
+      "license": {
+        "name": "CC0-1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "attributionRequired": false
+      },
+      "review": { "status": "approved", "reviewer": "session-2026-08-25", "notes": "CC0. Concrete steps stand in for stone; mining impacts for stone hits; soft-heavy thuds for flesh hits. Glass/bell/tin/plate/punch/light variants retained as spares." },
+      "original": [
+        "kenney_impact_sounds.zip",
+        "kenney_impact_sounds/footstep_concrete_000.ogg",
+        "kenney_impact_sounds/footstep_concrete_001.ogg",
+        "kenney_impact_sounds/footstep_concrete_002.ogg",
+        "kenney_impact_sounds/footstep_concrete_003.ogg",
+        "kenney_impact_sounds/footstep_concrete_004.ogg",
+        "kenney_impact_sounds/footstep_grass_000.ogg",
+        "kenney_impact_sounds/footstep_grass_001.ogg",
+        "kenney_impact_sounds/footstep_grass_002.ogg",
+        "kenney_impact_sounds/footstep_grass_003.ogg",
+        "kenney_impact_sounds/footstep_grass_004.ogg",
+        "kenney_impact_sounds/footstep_wood_000.ogg",
+        "kenney_impact_sounds/footstep_wood_001.ogg",
+        "kenney_impact_sounds/footstep_wood_002.ogg",
+        "kenney_impact_sounds/footstep_wood_003.ogg",
+        "kenney_impact_sounds/footstep_wood_004.ogg",
+        "kenney_impact_sounds/impactMetal_medium_000.ogg",
+        "kenney_impact_sounds/impactMetal_medium_001.ogg",
+        "kenney_impact_sounds/impactMetal_medium_002.ogg",
+        "kenney_impact_sounds/impactMetal_medium_003.ogg",
+        "kenney_impact_sounds/impactMetal_medium_004.ogg",
+        "kenney_impact_sounds/impactPlank_medium_000.ogg",
+        "kenney_impact_sounds/impactPlank_medium_001.ogg",
+        "kenney_impact_sounds/impactPlank_medium_002.ogg",
+        "kenney_impact_sounds/impactPlank_medium_003.ogg",
+        "kenney_impact_sounds/impactPlank_medium_004.ogg",
+        "kenney_impact_sounds/impactMining_000.ogg",
+        "kenney_impact_sounds/impactMining_001.ogg",
+        "kenney_impact_sounds/impactMining_002.ogg",
+        "kenney_impact_sounds/impactMining_003.ogg",
+        "kenney_impact_sounds/impactMining_004.ogg",
+        "kenney_impact_sounds/impactSoft_heavy_000.ogg",
+        "kenney_impact_sounds/impactSoft_heavy_001.ogg",
+        "kenney_impact_sounds/impactSoft_heavy_002.ogg",
+        "kenney_impact_sounds/impactSoft_heavy_003.ogg",
+        "kenney_impact_sounds/impactSoft_heavy_004.ogg"
+      ],
+      "events": {
+        "SFX_FOOT_STONE": [
+          "kenney_impact_sounds/footstep_concrete_000.ogg",
+          "kenney_impact_sounds/footstep_concrete_001.ogg",
+          "kenney_impact_sounds/footstep_concrete_002.ogg",
+          "kenney_impact_sounds/footstep_concrete_003.ogg",
+          "kenney_impact_sounds/footstep_concrete_004.ogg"
+        ],
+        "SFX_FOOT_GRASS": [
+          "kenney_impact_sounds/footstep_grass_000.ogg",
+          "kenney_impact_sounds/footstep_grass_001.ogg",
+          "kenney_impact_sounds/footstep_grass_002.ogg",
+          "kenney_impact_sounds/footstep_grass_003.ogg",
+          "kenney_impact_sounds/footstep_grass_004.ogg"
+        ],
+        "SFX_FOOT_WOOD": [
+          "kenney_impact_sounds/footstep_wood_000.ogg",
+          "kenney_impact_sounds/footstep_wood_001.ogg",
+          "kenney_impact_sounds/footstep_wood_002.ogg",
+          "kenney_impact_sounds/footstep_wood_003.ogg",
+          "kenney_impact_sounds/footstep_wood_004.ogg"
+        ],
+        "SFX_SWORD_HIT_METAL": [
+          "kenney_impact_sounds/impactMetal_medium_000.ogg",
+          "kenney_impact_sounds/impactMetal_medium_001.ogg",
+          "kenney_impact_sounds/impactMetal_medium_002.ogg",
+          "kenney_impact_sounds/impactMetal_medium_003.ogg",
+          "kenney_impact_sounds/impactMetal_medium_004.ogg"
+        ],
+        "SFX_SWORD_HIT_WOOD": [
+          "kenney_impact_sounds/impactPlank_medium_000.ogg",
+          "kenney_impact_sounds/impactPlank_medium_001.ogg",
+          "kenney_impact_sounds/impactPlank_medium_002.ogg",
+          "kenney_impact_sounds/impactPlank_medium_003.ogg",
+          "kenney_impact_sounds/impactPlank_medium_004.ogg"
+        ],
+        "SFX_SWORD_HIT_STONE": [
+          "kenney_impact_sounds/impactMining_000.ogg",
+          "kenney_impact_sounds/impactMining_001.ogg",
+          "kenney_impact_sounds/impactMining_002.ogg",
+          "kenney_impact_sounds/impactMining_003.ogg",
+          "kenney_impact_sounds/impactMining_004.ogg"
+        ],
+        "SFX_SWORD_HIT_FLESH": [
+          "kenney_impact_sounds/impactSoft_heavy_000.ogg",
+          "kenney_impact_sounds/impactSoft_heavy_001.ogg",
+          "kenney_impact_sounds/impactSoft_heavy_002.ogg",
+          "kenney_impact_sounds/impactSoft_heavy_003.ogg",
+          "kenney_impact_sounds/impactSoft_heavy_004.ogg"
+        ]
+      }
+    }
+  ]
+}

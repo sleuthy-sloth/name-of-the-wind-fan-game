@@ -1,0 +1,21 @@
+{
+  "id": "oga_rpg_sound_pack",
+  "source": {
+    "site": "OpenGameArt",
+    "creator": "artisticdude",
+    "title": "RPG Sound Pack",
+    "url": "https://opengameart.org/content/rpg-sound-pack",
+    "downloadDate": "2026-08-24",
+    "pageText": "Asset page states: License CC0 (Creative Commons Public Domain Dedication) — http://creativecommons.org/publicdomain/zero/1.0/. Author: artisticdude. Single attachment rpg_sound_pack.zip (12.5 MB)."
+  },
+  "license": {
+    "name": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attributionRequired": false
+  },
+  "evidenceNotes": [
+    "License verified directly on the asset page at download time (plan s43: confirm actual terms, never infer).",
+    "Archival copy of the untouched download: sources/original/oga_rpg_sound_pack.zip.",
+    "Only mapped files are extracted to rpg_sound_pack/; the zip retains the complete pack including unmapped NPC/interface material held as candidate material."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "notw_ambience_loops",
+  "source": {
+    "site": "in-repo",
+    "creator": "NOTW contributors",
+    "title": "Procedurally synthesized ambience loops (campfire, forest night)",
+    "url": "scripts/tools/synth_ambience.py",
+    "downloadDate": "2026-08-24",
+    "pageText": "Generated in-repository by scripts/tools/synth_ambience.py; no third-party recordings involved."
+  },
+  "license": {
+    "name": "Project-original (CC BY-NC-SA 4.0 per LICENSE-ASSETS.md)",
+    "url": "../../../LICENSE-ASSETS.md",
+    "attributionRequired": false
+  },
+  "evidenceNotes": [
+    "policy: project-original — exempt from third-party license tiers; governed by the project license.",
+    "Placeholders to be replaced by recorded CC0 ambience when acquired through this pipeline."
+  ]
+}

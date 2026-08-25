@@ -1,0 +1,21 @@
+{
+  "id": "oga_dark_ambient_loop_13",
+  "source": {
+    "site": "OpenGameArt",
+    "creator": "MundoSound (Lucas Calvo)",
+    "title": "Dark Ambient Loop 13",
+    "url": "https://opengameart.org/content/dark-ambient-loop-13",
+    "downloadDate": "2026-08-24",
+    "pageText": "Asset page states: License CC-BY 3.0 (http://creativecommons.org/licenses/by/3.0/) and OGA-BY 3.0. Author: MundoSound (Lucas Calvo per copyright notice). Attachment: Dark_Atmosphere13_Looped_24bit.wav (48 kHz 24 bit, ~1:54). Description: 'Seamless looping dark ambient/drone track... good for aesthetically darker levels and games.'"
+  },
+  "license": {
+    "name": "CC-BY-3.0",
+    "url": "http://creativecommons.org/licenses/by/3.0/",
+    "attributionRequired": true
+  },
+  "evidenceNotes": [
+    "Tier 2 asset: attribution REQUIRED — creator/title/source recorded here and emitted by generate-credits.mjs.",
+    "Dual license CC-BY / OGA-BY; we rely on the CC-BY 3.0 grant only.",
+    "Lossless 24-bit source preserved (plan s31). Registered review-pending as MUS_TARBEAN candidate."
+  ]
+}

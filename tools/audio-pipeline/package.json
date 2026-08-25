@@ -1,0 +1,19 @@
+{
+  "name": "notw-audio-pipeline",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Name of the Wind — licensed game-audio acquisition, processing and publishing pipeline",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "audio:index": "node scripts/index-audio.mjs",
+    "audio:validate": "node scripts/validate-license.mjs",
+    "audio:normalize": "node scripts/normalize-audio.mjs",
+    "audio:publish": "node scripts/publish-audio.mjs",
+    "audio:credits": "node scripts/generate-credits.mjs",
+    "audio:all": "npm run audio:index && npm run audio:validate && npm run audio:publish && npm run audio:credits",
+    "test": "node --test tests/"
+  }
+}

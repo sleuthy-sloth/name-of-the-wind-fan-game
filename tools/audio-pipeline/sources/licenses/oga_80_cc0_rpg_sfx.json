@@ -1,0 +1,21 @@
+{
+  "id": "oga_80_cc0_rpg_sfx",
+  "source": {
+    "site": "OpenGameArt",
+    "creator": "rubberduck",
+    "title": "80 CC0 RPG SFX",
+    "url": "https://opengameart.org/content/80-cc0-rpg-sfx",
+    "downloadDate": "2026-08-24",
+    "pageText": "Asset page states: License CC0 — http://creativecommons.org/publicdomain/zero/1.0/. Author: rubberduck. Attachment: 80-CC0-RPG-SFX_0.zip. Description: 'I created 80 sound effects for fantasy / rpg games including: 3x blade, 4x book / page flip, 3x chain, 22x creature ...'"
+  },
+  "license": {
+    "name": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attributionRequired": false
+  },
+  "evidenceNotes": [
+    "License verified directly on the asset page at download time (plan s43).",
+    "Archival copy: sources/original/oga_80_cc0_rpg_sfx.zip; mapped files extracted to rpg_sfx_80_cc0/.",
+    "Unmapped candidates retained in zip: blade x3, spell/spell_fire x12, stones x4, wood x5, metal x3, locks x3, gems/items, creature families."
+  ]
+}

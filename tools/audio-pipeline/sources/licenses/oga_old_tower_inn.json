@@ -1,0 +1,21 @@
+{
+  "id": "oga_old_tower_inn",
+  "source": {
+    "site": "OpenGameArt",
+    "creator": "RandomMind",
+    "title": "Medieval: The Old Tower Inn (loop version)",
+    "url": "https://opengameart.org/content/medieval-the-old-tower-inn",
+    "downloadDate": "2026-08-24",
+    "pageText": "Asset page states: License CC0 — http://creativecommons.org/publicdomain/zero/1.0/. Author: RandomMind. Attachments: The_Old_Tower_Inn.mp3 (2.5 Mb) and Loop_The_Old_Tower_Inn.wav (8.8 Mb). Tags: medieval, loop, castle, tavern, inn, upbeat, folk, peaceful, calm."
+  },
+  "license": {
+    "name": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attributionRequired": false
+  },
+  "evidenceNotes": [
+    "License verified on the individual asset page (not the aggregator collection) per plan s43.",
+    "Lossless WAV loop variant downloaded (plan s31: prefer lossless over MP3).",
+    "Registered as review-pending MUS_RUH_CAMP candidate; publish gate must refuse it until approved."
+  ]
+}

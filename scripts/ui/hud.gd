@@ -16,7 +16,7 @@ func _ready() -> void:
 	_sfx_player = AudioStreamPlayer.new()
 	_sfx_player.name = "HudSfx"
 	add_child(_sfx_player)
-	var sfx := load("res://audio/sfx/switch_002.ogg")
+	var sfx := AudioLibrary.stream_for("SFX_UI_TOGGLE")
 	if sfx is AudioStream:
 		_sfx_player.stream = sfx
 

@@ -19,7 +19,7 @@ func _ready() -> void:
 	_sfx_player = AudioStreamPlayer.new()
 	_sfx_player.name = "BlipPlayer"
 	add_child(_sfx_player)
-	var sfx := load("res://audio/sfx/click_002.ogg")
+	var sfx := AudioLibrary.stream_for("SFX_UI_HOVER")
 	if sfx is AudioStream:
 		_sfx_player.stream = sfx
 

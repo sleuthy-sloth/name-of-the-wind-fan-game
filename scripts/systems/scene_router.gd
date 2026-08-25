@@ -24,7 +24,7 @@ func _ready() -> void:
 	_sfx_player = AudioStreamPlayer.new()
 	_sfx_player.name = "TransitionSfx"
 	add_child(_sfx_player)
-	var sfx := load("res://audio/sfx/select_001.ogg")
+	var sfx := AudioLibrary.stream_for("SFX_UI_SELECT")
 	if sfx is AudioStream:
 		_sfx_player.stream = sfx
 

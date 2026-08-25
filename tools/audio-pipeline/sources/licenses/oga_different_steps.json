@@ -1,0 +1,21 @@
+{
+  "id": "oga_different_steps",
+  "source": {
+    "site": "OpenGameArt",
+    "creator": "TinyWorlds",
+    "title": "Different steps on wood, stone, leaves, gravel and mud",
+    "url": "https://opengameart.org/content/different-steps-on-wood-stone-leaves-gravel-and-mud",
+    "downloadDate": "2026-08-24",
+    "pageText": "Asset page states: License CC0 — http://creativecommons.org/publicdomain/zero/1.0/. Author: TinyWorlds. Attachment: [kdd]DifferentSteps_0.zip. Description: 'The zip includes 8 different sounds, which can be for example used as steps in a RPG or platformer.'"
+  },
+  "license": {
+    "name": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attributionRequired": false
+  },
+  "evidenceNotes": [
+    "License verified directly on the asset page at download time (plan s43).",
+    "Archival copy: sources/original/oga_different_steps_wood_stone_leaves_gravel_mud.zip; mapped files extracted to steps_wood_stone_leaves_gravel_mud/.",
+    "Only one step per surface in the pack — surfaces remain below variant minimums and need a dedicated footsteps acquisition pass (Freesound CC0)."
+  ]
+}

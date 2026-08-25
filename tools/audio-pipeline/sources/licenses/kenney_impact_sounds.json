@@ -1,0 +1,20 @@
+{
+  "id": "kenney_impact_sounds",
+  "source": {
+    "site": "kenney.nl",
+    "creator": "Kenney",
+    "title": "Impact Sounds",
+    "url": "https://kenney.nl/assets/impact-sounds",
+    "downloadDate": "2026-08-24",
+    "pageText": "Kenney game asset pack: 130 impact and footstep sounds (metal, wood, plank, glass, soft, mining, plus footstep carpet/concrete/grass/snow/wood). All assets on kenney.nl are published under Creative Commons Zero (CC0)."
+  },
+  "license": {
+    "name": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attributionRequired": false
+  },
+  "evidenceNotes": [
+    "Local license snapshot inside the pack (License.txt) and art/licenses/kenney_cc0_license.txt.",
+    "Footsteps continue existing surface pools via cross-asset variant numbering (concrete stands in for stone; wood continues the TinyWorlds wood pool)."
+  ]
+}

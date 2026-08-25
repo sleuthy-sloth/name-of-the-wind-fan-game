@@ -25,7 +25,15 @@ fan-work disclaimer and licensing terms.
 - Source: [kenney.nl](https://kenney.nl)
 - Packs: Interface Sounds, Music Jingles (8-Bit, Pizzicato, Sax, Steel, Hit)
 - License: CC0 1.0 Universal (Public Domain Dedication)
-- License evidence: `art/licenses/kenney_cc0_license.txt`
+- License evidence: `art/licenses/kenney_cc0_license.txt` and
+  `tools/audio-pipeline/sources/licenses/kenney_*.json`
+
+> **Full per-file audio provenance is auto-generated**: see
+> [`CREDITS/AUDIO-CREDITS.txt`](CREDITS/AUDIO-CREDITS.txt) and
+> [`.csv`](CREDITS/AUDIO-CREDITS.csv) (regenerate with
+> `npm run audio:credits` in `tools/audio-pipeline/`). All third-party audio
+> must be acquired through that pipeline — see its `AGENTS.md` for the
+> licensing rules.
 
 ## Original Synthesized Content
 

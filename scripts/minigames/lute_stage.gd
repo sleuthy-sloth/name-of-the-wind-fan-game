@@ -125,8 +125,7 @@ func _setup_audio() -> void:
 	add_child(_lute_sample_player)
 	var lane_notes: Array[String] = ["D3", "G3", "A3", "B3"]
 	for note_name in lane_notes:
-		var path := "res://audio/sfx/lute_%s.ogg" % note_name
-		var stream := load(path)
+		var stream := AudioLibrary.stream_for("INSTR_LUTE_NOTE_" + note_name)
 		if stream is AudioStream:
 			_lute_samples[note_name] = stream
 

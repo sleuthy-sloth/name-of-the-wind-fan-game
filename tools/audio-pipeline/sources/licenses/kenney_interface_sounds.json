@@ -1,0 +1,20 @@
+{
+  "id": "kenney_interface_sounds",
+  "source": {
+    "site": "kenney.nl",
+    "creator": "Kenney",
+    "title": "Interface Sounds",
+    "url": "https://kenney.nl/assets/interface-sounds",
+    "downloadDate": "2026-08-24",
+    "pageText": "Kenney game assets page: 160 interface sounds (clicks, switches, scrolls, notifications). All assets on kenney.nl are published under Creative Commons Zero (CC0)."
+  },
+  "license": {
+    "name": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attributionRequired": false
+  },
+  "evidenceNotes": [
+    "Local license snapshot: art/licenses/kenney_cc0_license.txt",
+    "Kenney states all assets are CC0 on https://kenney.nl/support; attribution appreciated but not required."
+  ]
+}

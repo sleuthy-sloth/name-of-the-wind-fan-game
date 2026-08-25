@@ -34,3 +34,11 @@ tools/lpc-factory/node_modules/
 
 # Machine-local config (Aseprite path differs per machine)
 tools/lpc-factory/config/local.json
+
+# Audio pipeline local state (sources, processed files, licenses stay tracked)
+tools/audio-pipeline/node_modules/
+tools/audio-pipeline/.cache/
+
+# Game-ready re-encodes are derived: rebuild with `npm run audio:normalize`
+# inside tools/audio-pipeline (production copies live in tracked audio/).
+tools/audio-pipeline/processed/

@@ -55,17 +55,26 @@ All code, art, music, and writing are original. See [Legal](#legal--disclaimers)
 
 ## Current status
 
-🚧 **Phase 0 — Foundation.** The vertical slice target is Act I: a 45–90
-minute playable journey from caravan life to the Chandrian attack.
+🚧 **Phase 1 — Act I vertical slice in active development.** Phase 0's
+foundation is complete and covered by automated headless suites; the first
+Act I systems (caravan/campsite maps, inventory & economy HUD, lute rhythm
+stage, Sympathy bench + lighting, journal, NPC roster & tutorial dialogue)
+are merged, and an integrated slice check runs green.
 
 | Phase | Goal | Status |
 |---|---|---|
-| 0 — Foundation | Engine shell: movement, scenes, save/load, debug overlay | ✅ Complete |
-| 1 — Vertical slice | Act I: Edema Ruh — music, Sympathy, the attack | ⏳ Planned |
+| 0 — Foundation | Engine shell: movement, scenes, save/load, dialogue, NPC interaction, LDtk pipeline | ✅ Complete |
+| 1 — Vertical slice | Act I: Edema Ruh — music, Sympathy, the attack | 🚧 In progress |
 | 2 — Architecture pass | Data-driven quests, schedules, reputation | ⏳ Planned |
 | 3 — Tarbean prototype | Survival loop: hunger, warmth, stealth | ⏳ Planned |
 | 4 — University core | Life-sim hub: classes, tuition, Fishery, Eolian | ⏳ Planned |
 | 5 — Full narrative | Complete scope, polish, accessibility, release build | ⏳ Planned |
+
+Automated verification: **13 Godot headless suites** (engine shell, LDtk
+pipeline, save/load, dialogue, sympathy engine + lighting, lute stage,
+inventory/economy, roster, world traversal, Chandrian attack, phase-0 exit,
+integrated vertical slice) plus unit-tested asset pipelines for sprites and
+audio. Run instructions live in [`docs/development.md`](docs/development.md).
 
 ---
 
@@ -115,6 +124,60 @@ definition format and pipeline details.
 
 ---
 
+## Audio pipeline
+
+Game audio is managed by a licensed acquisition & publishing pipeline,
+`tools/audio-pipeline/`, with one rule above all: **every asset's license is
+verified at its source and every file is traceable** — no rips, no
+"royalty-free" vibes, no unattributed CC-BY. Assets flow strictly:
+
+```
+DOWNLOAD -> SOURCE ARCHIVE -> LICENSE VALIDATION -> CANDIDATE ->
+PROCESS -> AUDIO REVIEW -> PUBLISH -> GAME ASSETS
+```
+
+- **Licensing tiers** — CC0 preferred; CC-BY allowed with stored attribution;
+  CC-BY-SA / OGA-BY / GPL quarantined for review; NC / ND / unclear /
+  unknown rejected outright.
+- **Provenance** — `metadata/licenses.json` records creator, source URL,
+  download date and license per asset, backed by evidence files in
+  `sources/licenses/` and untouched originals in `sources/original/`.
+  `CREDITS/AUDIO-CREDITS.txt/.csv` are generated from it.
+- **Event-driven runtime** — gameplay never loads audio files directly. The
+  pipeline publishes `audio/audio-manifest.json`, mapping logical IDs
+  (`SFX_PAGE_TURN`, `MUS_UNIVERSITY_DAY`, `AMB_TARBEAN_NIGHT`) to variant
+  pools, and the static `AudioLibrary` class rotates variants per event.
+  Assets can be replaced without touching game code.
+- **Review gating** — music (and signature sounds: Sympathy, Naming,
+  Chandrian, lute performances) publish only after an explicit human
+  approval recorded in the registry; everything else still needs a clean
+  license validation to ship.
+- **Processing** — FFmpeg loudness normalization per category (music /
+  ambience / SFX), OGG Vorbis output with lossless sources preferred, WAV
+  fallback for latency-sensitive samples; originals are never modified.
+
+```bash
+cd tools/audio-pipeline
+
+npm test                       # policy + metadata invariants
+npm run audio:index            # validate registry <-> files, coverage report
+npm run audio:validate         # enforce license tiers
+npm run audio:normalize -- --all   # FFmpeg -> processed/
+npm run audio:publish          # approved assets -> audio/ + manifest
+npm run audio:credits          # regenerate CREDITS/AUDIO-CREDITS.*
+```
+
+Current coverage: **144 logical requirements catalogued** (18 music events,
+ambience beds/layers, and full SFX families from footsteps to Sympathy);
+37 filled and 7 partially filled from verified CC0/CC-BY sources
+(OpenGameArt packs by artisticdude, rubberduck, TinyWorlds, plus Kenney
+interface/impact/jingle sets); two music candidates sit normalized in the
+review queue awaiting human approval. See
+[`tools/audio-pipeline/README.md`](tools/audio-pipeline/README.md) and its
+[`AGENTS.md`](tools/audio-pipeline/AGENTS.md) for the complete rules.
+
+---
+
 ## Built with
 
 | Tool | Role |
@@ -123,9 +186,10 @@ definition format and pipeline details.
 | [LDtk](https://ldtk.io) | Authored maps, collision & intention layers |
 | [Aseprite](https://www.aseprite.org) | Pixel art & animation |
 | [Universal LPC sprites](https://opengameart.org/content/lpc-collection) | Character/weapon bases, assembled by our sprite factory |
-| Node.js | Sprite factory tooling (pngjs, js-yaml) |
+| Node.js | Sprite factory + audio pipeline tooling |
+| FFmpeg | Audio normalization & encoding |
 | Git | Version control |
-| [Kenney](https://kenney.nl) & itch.io CC assets | Placeholder audio/SFX during prototyping |
+| [Kenney](https://kenney.nl), [OpenGameArt](https://opengameart.org) CC0/CC-BY assets | Licensed production audio via our audio pipeline |
 
 ---
 
@@ -143,22 +207,24 @@ git clone https://github.com/sleuthy-sloth/name-of-the-wind-fan-game.git
 cd name-of-the-wind-fan-game
 ```
 
-Open `project.godot` in Godot and press **F5** (a playable main scene lands
-with Phase 0's first milestone).
+Open `project.godot` in Godot and press **F5**, or run headless from the
+command line — controls, suite commands, and architecture notes are in
+[`docs/development.md`](docs/development.md).
 
 ### Project layout
 
 ```
 ├── scenes/        # core, player, npcs, ui, minigames, locations
-├── scripts/       # systems, dialogue, quests, minigames, tools
+├── scripts/       # systems (incl. AudioLibrary), dialogue, quests, minigames
 ├── data/          # characters, items, recipes, workings, schedules, dialogue
 ├── art/           # Aseprite sources & exported sheets (incl. generated lpc/)
-├── audio/         # music beds, SFX, stems
+├── audio/         # event-organized production audio + audio-manifest.json
 ├── maps/          # LDtk projects
 ├── docs/          # design documents (GDD lives here)
-├── tests/         # automated checks for pure logic
+├── tests/         # 13 headless Godot test suites
+├── CREDITS/       # generated audio credits (AUDIO-CREDITS.txt/.csv)
 ├── addons/        # editor plugins (e.g. LDtk importer)
-└── tools/         # build tooling — lpc-factory sprite pipeline
+└── tools/         # build tooling — lpc-factory sprites, audio-pipeline sound
 ```
 
 ---

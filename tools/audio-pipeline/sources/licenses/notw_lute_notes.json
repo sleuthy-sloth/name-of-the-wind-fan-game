@@ -1,0 +1,20 @@
+{
+  "id": "notw_lute_notes",
+  "source": {
+    "site": "in-repo",
+    "creator": "NOTW contributors",
+    "title": "Karplus-Strong synthesized lute notes (D3-A4)",
+    "url": "scripts/tools/synth_lute.py",
+    "downloadDate": "2026-08-24",
+    "pageText": "Generated in-repository by scripts/tools/synth_lute.py (Karplus-Strong physical modeling); no third-party recordings involved."
+  },
+  "license": {
+    "name": "Project-original (CC BY-NC-SA 4.0 per LICENSE-ASSETS.md)",
+    "url": "../../../LICENSE-ASSETS.md",
+    "attributionRequired": false
+  },
+  "evidenceNotes": [
+    "policy: project-original — exempt from third-party license tiers; governed by the project license.",
+    "Playable note samples for the lute minigames; real recorded performances must come through this pipeline (plan s24)."
+  ]
+}
