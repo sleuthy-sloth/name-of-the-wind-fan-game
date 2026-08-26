@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-26T00:55:38.560Z",
+  "generatedAt": "2026-08-26T01:45:44.347Z",
   "events": {
     "SFX_FOOT_STONE": {
       "category": "sfx",
@@ -249,7 +249,12 @@
       "loop": false,
       "review": "standard",
       "files": [
-        "music/menu/sting_endcard_01.ogg"
+        "music/menu/sting_endcard_01.ogg",
+        "music/menu/sting_endcard_02.ogg"
+      ],
+      "contributors": [
+        "kenney_music_jingles",
+        "notw_synthesized_sfx"
       ]
     },
     "AMB_CAMPFIRE_LOOP": {
@@ -267,7 +272,13 @@
       "loop": true,
       "review": "standard",
       "files": [
-        "ambience/forest/forest_night_01.ogg"
+        "ambience/forest/forest_night_01.ogg",
+        "ambience/forest/forest_night_02.ogg",
+        "ambience/forest/forest_night_03.ogg"
+      ],
+      "contributors": [
+        "notw_ambience_loops",
+        "notw_synthesized_sfx"
       ]
     },
     "INSTR_LUTE_NOTE_D3": {
@@ -340,6 +351,52 @@
       "review": "standard",
       "files": [
         "instruments/lute/lute_note_a4_01.wav"
+      ]
+    },
+    "AMB_ARCHIVES_ROOMTONE": {
+      "category": "ambience",
+      "asset": "notw_synthesized_sfx",
+      "loop": true,
+      "review": "standard",
+      "files": [
+        "ambience/archives/archives_roomtone_01.ogg"
+      ]
+    },
+    "AMB_FIRE_SMALL": {
+      "category": "ambience",
+      "asset": "notw_synthesized_sfx",
+      "loop": true,
+      "review": "standard",
+      "files": [
+        "ambience/fire/fire_small_01.ogg"
+      ]
+    },
+    "AMB_UNDERTHING_BASE": {
+      "category": "ambience",
+      "asset": "notw_synthesized_sfx",
+      "loop": true,
+      "review": "standard",
+      "files": [
+        "ambience/underthing/underthing_base_01.ogg",
+        "ambience/underthing/underthing_base_02.wav"
+      ]
+    },
+    "AMB_UNIVERSITY_COURTYARD_BASE": {
+      "category": "ambience",
+      "asset": "notw_synthesized_sfx",
+      "loop": true,
+      "review": "standard",
+      "files": [
+        "ambience/university/university_courtyard_base_01.ogg"
+      ]
+    },
+    "AMB_WIND_LIGHT_LAYER": {
+      "category": "ambience",
+      "asset": "notw_synthesized_sfx",
+      "loop": true,
+      "review": "standard",
+      "files": [
+        "ambience/weather/wind_light_layer_01.ogg"
       ]
     },
     "SFX_ARROW_FLY": {
@@ -484,7 +541,7 @@
       "review": "standard",
       "files": [
         "sfx/coins/coin_medium_01.ogg",
-        "sfx/coins/coin_medium_02.ogg"
+        "sfx/coins/coin_medium_02.wav"
       ]
     },
     "SFX_COIN_POUCH": {
@@ -590,7 +647,7 @@
       "loop": false,
       "review": "standard",
       "files": [
-        "sfx/combat/knife_block_01.ogg",
+        "sfx/combat/knife_block_01.wav",
         "sfx/combat/knife_block_02.ogg"
       ]
     },
@@ -715,7 +772,7 @@
       "review": "standard",
       "files": [
         "sfx/combat/sword_block_01.ogg",
-        "sfx/combat/sword_block_02.wav",
+        "sfx/combat/sword_block_02.ogg",
         "sfx/combat/sword_block_03.ogg"
       ]
     },
@@ -737,7 +794,7 @@
       "files": [
         "sfx/combat/sword_parry_01.ogg",
         "sfx/combat/sword_parry_02.ogg",
-        "sfx/combat/sword_parry_03.ogg"
+        "sfx/combat/sword_parry_03.wav"
       ]
     },
     "SFX_SWORD_SHEATHE": {

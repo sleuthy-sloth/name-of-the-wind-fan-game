@@ -18,6 +18,7 @@ import json
 import os
 import subprocess
 import sys
+import zlib
 
 import numpy as np
 
@@ -29,10 +30,9 @@ REQ_FILE = os.path.join(PIPELINE, "metadata", "requirements.json")
 
 # Events we deliberately do NOT synthesize (need recordings or approval).
 SKIP_EVENTS = {
-    # ambience needing real-world texture (crowd/voice/birds)
+    # ambience needing real-world texture (crowd/voice/birds/city)
     "AMB_TAVERN_MURMUR", "AMB_CROWD_DISTANT_STUDENTS", "AMB_BIRDS_LAYER",
-    "AMB_CITY_TARBEAN_NIGHT", "AMB_ARCHIVES_ROOMTONE",
-    "AMB_UNDERTHING_BASE", "AMB_UNIVERSITY_COURTYARD_BASE",
+    "AMB_CITY_TARBEAN_NIGHT",
 }
 
 # ---------------------------------------------------------------------------
@@ -414,11 +414,114 @@ def wind_bed(rng, dur, strength=0.5, interior=False):
     out = body * gusts * (0.6 + 0.8 * strength) + howl
     if interior:
         out = lowpass(out, 0.012) * 0.7
-    # make seamless loop
-    xfade = int(1.5 * SR)
+    return seamless(out)
+
+
+def seamless(x, fade=1.5):
+    """Crossfade tail into head so the loop point is inaudible."""
+    xfade = int(fade * SR)
+    if len(x) <= xfade * 2:
+        return x
     ramp = np.linspace(0, 1, xfade)
-    out[:xfade] = out[:xfade] * ramp + out[-xfade:] * (1 - ramp)
-    return out[: n - xfade]
+    x = x.copy()
+    x[:xfade] = x[:xfade] * ramp + x[-xfade:] * (1 - ramp)
+    return x[: len(x) - xfade]
+
+
+def roomtone(rng, dur=45.0):
+    """Quiet interior air: deep filtered noise bed with rare soft settling."""
+    n = int(dur * SR)
+    air = lowpass(_noise(rng, n), 0.004)
+    air /= np.max(np.abs(air)) + 1e-9
+    wander = 0.75 + 0.25 * lowpass(_noise(rng, n), 0.00003)
+    out = air * wander * 0.55
+    for _ in range(int(dur / 14)):  # rare building-settle groans
+        plen = int(rng.uniform(0.25, 0.6) * SR)
+        t = np.arange(plen) / SR
+        f = rng.uniform(90, 190)
+        groan = np.sin(2 * np.pi * (f + 18 * np.sin(2 * np.pi * 1.7 * t)) * t) * \
+            env_adsr(plen, 0.08, 0.3, 0.5, 0.25) * 0.05
+        place(out, groan, rng.uniform(0, dur - 1))
+    return seamless(out)
+
+
+def underthing_base(rng, dur=40.0):
+    """Dripping water + distant machinery pulse + low drone."""
+    n = int(dur * SR)
+    drone_t = np.arange(n) / SR
+    drone = (np.sin(2 * np.pi * rng.uniform(46, 60) * drone_t) +
+             0.6 * np.sin(2 * np.pi * rng.uniform(88, 120) * drone_t +
+                          rng.uniform(0, 6))) * 0.12
+    # machinery: slow irregular thumps through a resonant body
+    mach = np.zeros(n)
+    at = rng.uniform(0.5, 2.0)
+    while at < dur - 0.5:
+        plen = int(rng.uniform(0.08, 0.16) * SR)
+        t = np.arange(plen) / SR
+        f = rng.uniform(70, 130)
+        thump = np.sin(2 * np.pi * f * t) * env_exp(plen, rng.uniform(28, 55)) * \
+            rng.uniform(0.10, 0.22)
+        place(mach, thump, at)
+        at += rng.uniform(1.4, 3.2)
+    water = np.zeros(n)
+    for _ in range(int(dur * rng.uniform(1.2, 2.2))):  # sparse drips
+        d = drip(rng) * rng.uniform(0.25, 0.6)
+        place(water, d, rng.uniform(0, dur - 0.6))
+    hiss = lowpass(_noise(rng, n), 0.006) * 0.05
+    return seamless(drone + mach + water + hiss)
+
+
+def courtyard_air(rng, dur=35.0):
+    """Open-air base: light wind gusts over soft high rustle; no birds/crowd."""
+    base = wind_bed(rng, dur, strength=0.25)
+    n = len(base)
+    leaf = band(_noise(rng, n), 0.30, 0.65)
+    sway = 0.5 + 0.5 * np.sin(2 * np.pi * rng.uniform(0.05, 0.09) *
+                              np.arange(n) / SR + rng.uniform(0, 6))
+    return seamless(base + leaf * sway * 0.06)
+
+
+def forest_night_variant(rng, dur=30.0):
+    """Second forest-night bed: deeper wind, sparser insects than v1."""
+    bed = wind_bed(rng, dur, strength=0.4)
+    n = len(bed)
+    chirp = np.zeros(n)
+    for _ in range(int(dur * 3)):  # sparse cricket chirps, varied pitch
+        plen = int(rng.uniform(0.04, 0.09) * SR)
+        t = np.arange(plen) / SR
+        f = rng.uniform(3400, 4600)
+        c = np.sin(2 * np.pi * f * t) * env_exp(plen, rng.uniform(60, 140)) * \
+            rng.uniform(0.02, 0.05)
+        place(chirp, c, rng.uniform(0, dur - 0.1))
+    return seamless(bed + chirp)
+
+
+def fire_loop(rng, dur=32.0, density=7.0, bed=0.4):
+    return crackle_bed(rng, dur, density, bed=bed)
+
+
+def sting_endcard(rng):
+    """Jingle-class scene-end sting: warm plucked arpeggio with decay tail."""
+    notes = [293.66, 369.99, 440.0, 587.33]  # D4 F#4 A4 D5 — open, resolved
+    total = 2.8
+    n = int(total * SR)
+    out = np.zeros(n)
+    for i, f in enumerate(notes):
+        plen = int(1.6 * SR)
+        t = np.arange(plen) / SR
+        # Karplus-Strong-ish pluck: noise burst into slow decay + harmonic
+        burst = band(_noise(rng, min(plen, int(0.01 * SR))), 0.2, 0.8)
+        tone = (np.sin(2 * np.pi * f * t) +
+                0.4 * np.sin(2 * np.pi * f * 2 * t) +
+                0.2 * np.sin(2 * np.pi * f * 3 * t)) * env_exp(plen, 3.2)
+        voice = tone.copy()
+        voice[: len(burst)] += burst * 0.4
+        place(out, voice * (0.9 - i * 0.12), i * 0.22)
+    shimmer_len = int(0.9 * SR)
+    st = np.arange(shimmer_len) / SR
+    shimmer = np.sin(2 * np.pi * 1174.66 * st) * env_exp(shimmer_len, 5) * 0.05
+    place(out, shimmer, 0.88)
+    return out
 
 
 def drip(rng):
@@ -693,6 +796,15 @@ SYNTH_TABLE = {
     "SFX_COIN_MEDIUM": v_coins("medium"),
     "SFX_COIN_LARGE":  v_coins("large"),
     "SFX_COIN_POUCH":  v_coins("pouch"),
+    # ambience bases & loops that synthesize cleanly
+    "AMB_WIND_LIGHT_LAYER": lambda rng, i: wind_bed(rng, 35.0, 0.3),
+    "AMB_ARCHIVES_ROOMTONE": lambda rng, i: roomtone(rng),
+    "AMB_UNDERTHING_BASE": lambda rng, i: underthing_base(rng),
+    "AMB_UNIVERSITY_COURTYARD_BASE": lambda rng, i: courtyard_air(rng),
+    "AMB_FIRE_SMALL": lambda rng, i: fire_loop(rng, density=5.0, bed=0.3),
+    "AMB_FOREST_NIGHT": lambda rng, i: forest_night_variant(rng),
+    # jingle-class sting (review: standard per requirements.json)
+    "MUS_STING_ENDCARD": lambda rng, i: sting_endcard(rng),
 }
 
 
@@ -716,7 +828,9 @@ def main():
         count = spec["min"]
         files = []
         for i in range(count):
-            seed = hash((eid, i)) % (2 ** 32)
+            # Stable across processes (unlike builtin hash(), which is
+            # salt-randomized for strings) so regeneration is byte-stable.
+            seed = (zlib.crc32(eid.encode("utf-8")) ^ (i * 0x9E3779B9)) & 0xFFFFFFFF
             rng = np.random.default_rng(seed)
             x = spec["gen"](rng, i)
             stem = stem_for(eid, i + 1)

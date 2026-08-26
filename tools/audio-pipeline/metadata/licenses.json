@@ -366,6 +366,15 @@
         "notes": "Self-authored deterministic synthesis; standard-review SFX only. Music/crowd/signature sounds intentionally excluded."
       },
       "original": [
+        "notw_synthesized_sfx/archives_roomtone_01.ogg",
+        "notw_synthesized_sfx/fire_small_01.ogg",
+        "notw_synthesized_sfx/forest_night_01.ogg",
+        "notw_synthesized_sfx/forest_night_02.ogg",
+        "notw_synthesized_sfx/underthing_base_01.ogg",
+        "notw_synthesized_sfx/underthing_base_02.ogg",
+        "notw_synthesized_sfx/university_courtyard_base_01.ogg",
+        "notw_synthesized_sfx/wind_light_layer_01.ogg",
+        "notw_synthesized_sfx/sting_endcard_01.ogg",
         "notw_synthesized_sfx/arrow_fly_01.ogg",
         "notw_synthesized_sfx/arrow_fly_02.ogg",
         "notw_synthesized_sfx/arrow_fly_03.ogg",
@@ -483,6 +492,29 @@
         "notw_synthesized_sfx/wood_creak_03.ogg"
       ],
       "events": {
+        "AMB_ARCHIVES_ROOMTONE": [
+          "notw_synthesized_sfx/archives_roomtone_01.ogg"
+        ],
+        "AMB_FIRE_SMALL": [
+          "notw_synthesized_sfx/fire_small_01.ogg"
+        ],
+        "AMB_FOREST_NIGHT": [
+          "notw_synthesized_sfx/forest_night_01.ogg",
+          "notw_synthesized_sfx/forest_night_02.ogg"
+        ],
+        "AMB_UNDERTHING_BASE": [
+          "notw_synthesized_sfx/underthing_base_01.ogg",
+          "notw_synthesized_sfx/underthing_base_02.ogg"
+        ],
+        "AMB_UNIVERSITY_COURTYARD_BASE": [
+          "notw_synthesized_sfx/university_courtyard_base_01.ogg"
+        ],
+        "AMB_WIND_LIGHT_LAYER": [
+          "notw_synthesized_sfx/wind_light_layer_01.ogg"
+        ],
+        "MUS_STING_ENDCARD": [
+          "notw_synthesized_sfx/sting_endcard_01.ogg"
+        ],
         "SFX_ARROW_FLY": [
           "notw_synthesized_sfx/arrow_fly_01.ogg",
           "notw_synthesized_sfx/arrow_fly_02.ogg",

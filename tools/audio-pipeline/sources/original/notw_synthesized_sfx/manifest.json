@@ -1,4 +1,48 @@
 {
+  "AMB_ARCHIVES_ROOMTONE": {
+    "dir": "ambience/archives",
+    "files": [
+      "archives_roomtone_01.ogg"
+    ]
+  },
+  "AMB_FIRE_SMALL": {
+    "dir": "ambience/fire",
+    "files": [
+      "fire_small_01.ogg"
+    ]
+  },
+  "AMB_FOREST_NIGHT": {
+    "dir": "ambience/forest",
+    "files": [
+      "forest_night_01.ogg",
+      "forest_night_02.ogg"
+    ]
+  },
+  "AMB_UNDERTHING_BASE": {
+    "dir": "ambience/underthing",
+    "files": [
+      "underthing_base_01.ogg",
+      "underthing_base_02.ogg"
+    ]
+  },
+  "AMB_UNIVERSITY_COURTYARD_BASE": {
+    "dir": "ambience/university",
+    "files": [
+      "university_courtyard_base_01.ogg"
+    ]
+  },
+  "AMB_WIND_LIGHT_LAYER": {
+    "dir": "ambience/weather",
+    "files": [
+      "wind_light_layer_01.ogg"
+    ]
+  },
+  "MUS_STING_ENDCARD": {
+    "dir": "music/menu",
+    "files": [
+      "sting_endcard_01.ogg"
+    ]
+  },
   "SFX_ARROW_FLY": {
     "dir": "sfx/combat",
     "files": [

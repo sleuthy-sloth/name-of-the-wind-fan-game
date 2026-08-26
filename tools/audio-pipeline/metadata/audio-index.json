@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-26T00:54:51.783Z",
+  "generatedAt": "2026-08-26T01:45:44.683Z",
   "totals": {
     "requirements": 144,
-    "filled": 84,
-    "partial": 7,
-    "unfilled": 53,
+    "filled": 90,
+    "partial": 6,
+    "unfilled": 48,
     "assets": 11,
-    "productionFiles": 136
+    "productionFiles": 264
   },
   "verticalSlice": [
     {
@@ -53,8 +53,8 @@
       "id": "AMB_FOREST_NIGHT",
       "dir": "ambience/forest",
       "min": 2,
-      "status": "partial",
-      "variants": 1,
+      "status": "filled",
+      "variants": 3,
       "priority": "vertical-slice"
     },
     {
@@ -320,15 +320,15 @@
       "dir": "music/menu",
       "min": 1,
       "status": "filled",
-      "variants": 1,
+      "variants": 2,
       "priority": null
     },
     {
       "id": "AMB_FOREST_NIGHT",
       "dir": "ambience/forest",
       "min": 2,
-      "status": "partial",
-      "variants": 1,
+      "status": "filled",
+      "variants": 3,
       "priority": "vertical-slice"
     },
     {
@@ -343,8 +343,8 @@
       "id": "AMB_FIRE_SMALL",
       "dir": "ambience/fire",
       "min": 1,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 1,
       "priority": null
     },
     {
@@ -367,24 +367,24 @@
       "id": "AMB_ARCHIVES_ROOMTONE",
       "dir": "ambience/archives",
       "min": 1,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 1,
       "priority": null
     },
     {
       "id": "AMB_UNDERTHING_BASE",
       "dir": "ambience/underthing",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
       "id": "AMB_UNIVERSITY_COURTYARD_BASE",
       "dir": "ambience/university",
       "min": 1,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 1,
       "priority": null
     },
     {
@@ -407,8 +407,8 @@
       "id": "AMB_WIND_LIGHT_LAYER",
       "dir": "ambience/weather",
       "min": 1,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 1,
       "priority": null
     },
     {
@@ -2115,6 +2115,86 @@
         "reviewer": null
       },
       "events": {
+        "AMB_ARCHIVES_ROOMTONE": {
+          "dir": "ambience/archives",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/archives_roomtone_01.ogg",
+              "processed": "notw_synthesized_sfx/archives_roomtone_01",
+              "target": "ambience/archives/archives_roomtone_01"
+            }
+          ]
+        },
+        "AMB_FIRE_SMALL": {
+          "dir": "ambience/fire",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/fire_small_01.ogg",
+              "processed": "notw_synthesized_sfx/fire_small_01",
+              "target": "ambience/fire/fire_small_01"
+            }
+          ]
+        },
+        "AMB_FOREST_NIGHT": {
+          "dir": "ambience/forest",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/forest_night_01.ogg",
+              "processed": "notw_synthesized_sfx/forest_night_02",
+              "target": "ambience/forest/forest_night_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/forest_night_02.ogg",
+              "processed": "notw_synthesized_sfx/forest_night_03",
+              "target": "ambience/forest/forest_night_03"
+            }
+          ]
+        },
+        "AMB_UNDERTHING_BASE": {
+          "dir": "ambience/underthing",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/underthing_base_01.ogg",
+              "processed": "notw_synthesized_sfx/underthing_base_01",
+              "target": "ambience/underthing/underthing_base_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/underthing_base_02.ogg",
+              "processed": "notw_synthesized_sfx/underthing_base_02",
+              "target": "ambience/underthing/underthing_base_02"
+            }
+          ]
+        },
+        "AMB_UNIVERSITY_COURTYARD_BASE": {
+          "dir": "ambience/university",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/university_courtyard_base_01.ogg",
+              "processed": "notw_synthesized_sfx/university_courtyard_base_01",
+              "target": "ambience/university/university_courtyard_base_01"
+            }
+          ]
+        },
+        "AMB_WIND_LIGHT_LAYER": {
+          "dir": "ambience/weather",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/wind_light_layer_01.ogg",
+              "processed": "notw_synthesized_sfx/wind_light_layer_01",
+              "target": "ambience/weather/wind_light_layer_01"
+            }
+          ]
+        },
+        "MUS_STING_ENDCARD": {
+          "dir": "music/menu",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/sting_endcard_01.ogg",
+              "processed": "notw_synthesized_sfx/sting_endcard_02",
+              "target": "music/menu/sting_endcard_02"
+            }
+          ]
+        },
         "SFX_ARROW_FLY": {
           "dir": "sfx/combat",
           "files": [
@@ -2926,7 +3006,7 @@
           ]
         }
       },
-      "originalCount": 115
+      "originalCount": 124
     },
     {
       "id": "oga_80_cc0_rpg_sfx",
