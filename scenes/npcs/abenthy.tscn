@@ -6,7 +6,7 @@
 npc_id = "char_abenthy"
 display_name = "Abenthy"
 dialogue_path = "res://data/dialogue/dialogue_act1_abenthy_tutorial.json"
+lpc_sheet = "res://art/sprites/lpc/abenthy"
 
 [node name="Sprite2D" parent="." index="0"]
-region_rect = Rect2(0, 0, 16, 16)
-modulate = Color(0.9, 0.85, 1.0, 1)
+visible = false

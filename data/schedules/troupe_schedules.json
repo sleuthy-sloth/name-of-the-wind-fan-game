@@ -27,5 +27,19 @@
     "overrides": [
       {"when": {"time_blocks": ["afternoon"]}, "marker": "marker_campfire"}
     ]
+  },
+  {
+    "npc_id": "char_troupe_member_01",
+    "default": {"scene": "res://scenes/world/forest_campsite.tscn", "marker": "marker_wagons_east"},
+    "overrides": [
+      {"when": {"time_blocks": ["night"]}, "hide": true}
+    ]
+  },
+  {
+    "npc_id": "char_troupe_member_02",
+    "default": {"scene": "res://scenes/world/forest_campsite.tscn", "marker": "marker_wagons_south"},
+    "overrides": [
+      {"when": {"time_blocks": ["morning"]}, "marker": "marker_campfire"}
+    ]
   }
 ]

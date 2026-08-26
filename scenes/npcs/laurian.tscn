@@ -2,11 +2,12 @@
 
 [ext_resource type="PackedScene" path="res://scenes/npcs/npc.tscn" id="1_npc"]
 
-[node name="TroupeMember02" instance=ExtResource("1_npc")]
-npc_id = "char_troupe_member_02"
-display_name = "Pip"
+[node name="Laurian" instance=ExtResource("1_npc")]
+npc_id = "char_laurian"
+display_name = "Laurian"
 dialogue_path = "res://data/dialogue/dialogue_act1_camp_threads.json"
-lpc_sheet = "res://art/sprites/lpc/ruh_crew_03"
+lpc_sheet = "res://art/sprites/lpc/laurian"
+idle_facing = "right"
 
 [node name="Sprite2D" parent="." index="0"]
 visible = false

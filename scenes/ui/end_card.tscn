@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=2 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/end_card.gd" id="end_card_gd"]
-[ext_resource type="AudioStreamOggVorbis" path="res://audio/music/menu/sting_endcard_01.ogg" id="jingle_ogg"]
 
 [node name="EndCard" type="Control"]
 layout_mode = 3
@@ -67,8 +66,3 @@ offset_top = 60.0
 offset_right = 80.0
 offset_bottom = 100.0
 text = "Continue"
-
-[node name="JinglePlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("jingle_ogg")
-volume_db = -6.0
-autoplay = true

@@ -15,6 +15,7 @@ func _ready() -> void:
 		_subtitle_label.text = "The road ahead is long, and the story has only just begun."
 	if _continue_button != null:
 		_continue_button.pressed.connect(_on_continue_pressed)
+	AudioLibrary.play("MUS_STING_ENDCARD", -6.0)
 
 func _set_flag(flag_id: String) -> void:
 	var gs := get_node_or_null("/root/GameState")

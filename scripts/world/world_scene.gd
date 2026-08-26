@@ -1,0 +1,145 @@
+class_name WorldScene
+extends Node2D
+
+## WorldScene
+# Shared builder for LDtk-backed playable locations (GDD Phase 1/2 polish).
+# Replaces the per-scene inline scripts so every location gets the same
+# treatment: level build, player spawn, doors, layered looping ambience,
+# time-of-day canvas tint, and schedule-driven troupe placement.
+
+@export var ldtk_path: String = ""
+@export var door_target_scene: String = ""
+## Logical audio events played as looping layers (AMB_*).
+@export var ambience_events: Array[String] = []
+@export var ambience_volume_db: float = -12.0
+## Spawn scheduled NPCs whose ScheduleSystem location resolves here.
+@export var spawn_troupe := false
+## Apply GameState.time_block canvas tint.
+@export var tint_enabled := true
+
+const PLAYER_SCENE := "res://scenes/player/player.tscn"
+const DOOR_SCENE_SCRIPT := "res://scripts/systems/scene_door.gd"
+
+const TINT_BY_BLOCK := {
+	"morning": Color(1.0, 0.96, 0.88),
+	"afternoon": Color(1.0, 1.0, 1.0),
+	"evening": Color(1.0, 0.85, 0.69),
+	"night": Color(0.55, 0.60, 0.78),
+}
+
+func _ready() -> void:
+	if ldtk_path.is_empty():
+		push_error("WorldScene: ldtk_path is empty on %s" % name)
+		return
+	var project := LdtkLoader.load_project(ldtk_path)
+	if project.is_empty():
+		push_error("WorldScene: failed to load %s" % ldtk_path)
+		return
+	var level := LdtkLoader.build_level_node(project)
+	add_child(level)
+
+	var spawn_position: Variant = level.get_meta("spawn_position", Vector2.ZERO)
+	if not spawn_position is Vector2:
+		spawn_position = Vector2.ZERO
+
+	var player_scene := load(PLAYER_SCENE) as PackedScene
+	if player_scene != null:
+		var player := player_scene.instantiate() as CharacterBody2D
+		player.position = spawn_position as Vector2
+		add_child(player)
+
+	var doors: Variant = level.get_meta("doors", [])
+	if doors is Array:
+		for door_data: Variant in doors:
+			if door_data is Dictionary:
+				_create_door(door_data as Dictionary)
+
+	_setup_ambience()
+	_setup_tint()
+	if spawn_troupe:
+		_spawn_scheduled_npcs(spawn_position as Vector2)
+
+func _create_door(data: Dictionary) -> void:
+	var door := Area2D.new()
+	door.name = "Door"
+	var script := load(DOOR_SCENE_SCRIPT) as GDScript
+	if script != null:
+		door.set_script(script)
+		door.set("target_scene", door_target_scene)
+	var shape := RectangleShape2D.new()
+	shape.size = Vector2(16, 16)
+	var collision := CollisionShape2D.new()
+	collision.shape = shape
+	door.add_child(collision)
+	var pos: Variant = data.get("position", Vector2.ZERO)
+	if pos is Vector2:
+		door.position = pos as Vector2
+	add_child(door)
+
+func _setup_ambience() -> void:
+	for event_id in ambience_events:
+		var stream := AudioLibrary.stream_for(event_id)
+		if stream == null:
+			continue
+		if stream is AudioStreamOggVorbis:
+			(stream as AudioStreamOggVorbis).loop = true
+		elif stream is AudioStreamWAV:
+			(stream as AudioStreamWAV).loop_mode = AudioStreamWAV.LOOP_FORWARD
+		var player := AudioStreamPlayer.new()
+		player.name = "Ambience_" + event_id
+		player.stream = stream
+		player.volume_db = ambience_volume_db
+		player.autoplay = true
+		add_child(player)
+
+func _setup_tint() -> void:
+	if not tint_enabled:
+		return
+	var gs := get_node_or_null("/root/GameState")
+	var block := "afternoon"
+	if gs != null:
+		block = str(gs.get("time_block"))
+	var tint := CanvasModulate.new()
+	tint.name = "TimeTint"
+	tint.color = TINT_BY_BLOCK.get(block, TINT_BY_BLOCK["afternoon"])
+	add_child(tint)
+
+func _spawn_scheduled_npcs(fallback_center: Vector2) -> void:
+	var schedules := get_node_or_null("/root/ScheduleSystem")
+	if schedules == null:
+		return
+	var scene_path := scene_file_path
+	var index := 0
+	for npc_id_v: Variant in schedules.call("get_npc_ids"):
+		var npc_id := str(npc_id_v)
+		var location: Dictionary = schedules.call("resolve_now", npc_id)
+		if str(location.get("scene", "")) != scene_path:
+			continue
+		var packed := load(_scene_for_npc(npc_id)) as PackedScene
+		if packed == null:
+			continue
+		var npc := packed.instantiate() as Node2D
+		npc.position = _position_for(location, fallback_center, index)
+		add_child(npc)
+		index += 1
+
+## char_troupe_member_01 -> res://scenes/npcs/troupe_member_01.tscn
+func _scene_for_npc(npc_id: String) -> String:
+	var short := npc_id.trim_prefix("char_")
+	return "res://scenes/npcs/%s.tscn" % short
+
+## Marker names resolve against known camp anchors; unknown markers fall back
+## to a ring around the player spawn so nobody spawns inside scenery.
+func _position_for(location: Dictionary, center: Vector2, index: int) -> Vector2:
+	var marker := str(location.get("marker", ""))
+	const MARKER_OFFSETS := {
+		"marker_campfire": Vector2(72, 8),
+		"marker_abenthy_wagon": Vector2(-56, -24),
+		"marker_abenthy_workbench": Vector2(-24, -48),
+		"marker_arliden_tent": Vector2(104, -32),
+		"marker_laurian_tent": Vector2(-88, 24),
+	}
+	if MARKER_OFFSETS.has(marker):
+		return center + (MARKER_OFFSETS[marker] as Vector2)
+	var angle := TAU * float(index) / 6.0
+	return center + Vector2(cos(angle), sin(angle)) * 88.0
