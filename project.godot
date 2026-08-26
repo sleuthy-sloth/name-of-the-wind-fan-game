@@ -17,6 +17,9 @@ run/main_scene="res://scenes/core/placeholder_test_a.tscn"
 SceneRouter="*res://scripts/systems/scene_router.gd"
 GameState="*res://scripts/systems/game_state.gd"
 SaveManager="*res://scripts/systems/save_manager.gd"
+QuestManager="*res://scripts/systems/quest_manager.gd"
+RelationshipManager="*res://scripts/systems/relationship_manager.gd"
+ScheduleSystem="*res://scripts/systems/schedule_system.gd"
 DebugOverlay="*res://scripts/systems/debug_overlay.gd"
 
 [display]

@@ -1,0 +1,27 @@
+{
+  "quest_id": "quest_act1_camp_duties",
+  "title": "Camp Duties",
+  "auto_start": true,
+  "stages": [
+    {
+      "stage_id": "stage_lesson",
+      "objectives": [
+        {"objective_id": "obj_tutorial_done", "type": "flag", "flag": "flag_act1_abenthy_tutorial_done"}
+      ],
+      "on_complete": {
+        "relationships": [{"character": "char_abenthy", "delta": 2.0}],
+        "set_flags": ["flag_act1_camp_duties_started"]
+      }
+    },
+    {
+      "stage_id": "stage_performance",
+      "objectives": [
+        {"objective_id": "obj_first_performance", "type": "relationship", "character": "char_troupe_audience", "min": 3.0}
+      ],
+      "on_complete": {
+        "reputation": [{"group": "edema_ruh", "delta": 5}],
+        "set_flags": ["flag_act1_camp_duties_complete"]
+      }
+    }
+  ]
+}

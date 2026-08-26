@@ -9,6 +9,20 @@
       "description": "A traveling arcanist who rides with the troupe. Speaks in riddles and watches the world with patient eyes."
     },
     {
+      "id": "char_arliden",
+      "display_name": "Arliden",
+      "role": "troupe leader",
+      "base_relationship": 0.0,
+      "description": "Kvothe's father. Leader of the Edema Ruh troupe, composing a song he will not finish."
+    },
+    {
+      "id": "char_laurian",
+      "display_name": "Laurian",
+      "role": "performer",
+      "base_relationship": 0.0,
+      "description": "Kvothe's mother. A baron's daughter by birth, a trouper by choice, and sharper than either lets on."
+    },
+    {
       "id": "char_troupe_member_01",
       "display_name": "Sera",
       "role": "tanner's apprentice",

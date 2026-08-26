@@ -1,0 +1,31 @@
+[
+  {
+    "npc_id": "char_abenthy",
+    "default": {"scene": "res://scenes/world/forest_campsite.tscn", "marker": "marker_abenthy_wagon"},
+    "overrides": [
+      {
+        "when": {"time_blocks": ["morning"]},
+        "marker": "marker_abenthy_workbench"
+      },
+      {
+        "when": {"days": [7]},
+        "hide": true,
+        "comment": "Tinker rounds away from camp one day a week"
+      }
+    ]
+  },
+  {
+    "npc_id": "char_arliden",
+    "default": {"scene": "res://scenes/world/forest_campsite.tscn", "marker": "marker_campfire"},
+    "overrides": [
+      {"when": {"time_blocks": ["evening", "night"]}, "marker": "marker_arliden_tent"}
+    ]
+  },
+  {
+    "npc_id": "char_laurian",
+    "default": {"scene": "res://scenes/world/forest_campsite.tscn", "marker": "marker_laurian_tent"},
+    "overrides": [
+      {"when": {"time_blocks": ["afternoon"]}, "marker": "marker_campfire"}
+    ]
+  }
+]
