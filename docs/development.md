@@ -198,10 +198,14 @@ Alar cost; composure drops as pressure rises). Failed attempts escalate
 `pressure`; hitting `pressure_limit` ends the encounter in forced failure.
 Definitions live in `data/threats/*.json`; `flags_for()` maps outcomes to
 world flags. Presented in-game by `ThreatPanel`
-(`scripts/ui/threat_panel.gd`). The playable tutorial lives at
-`scenes/world/combat_tutorial.tscn` (reachable through the campsite's east
-door): Abenthy's lesson dialogue, then the ford-carter encounter where all
-four doors open. Completion sets `flag_threat_tutorial_done`.
+(`scripts/ui/threat_panel.gd`). Threats appear in the world through
+WorldScene's `threat_triggers` export (`ThreatTrigger` interactables with an
+amber marker); a successfully resolved trigger retires itself. The playable
+tutorial lives at `scenes/world/combat_tutorial.tscn` (reachable through the
+campsite's east door): Abenthy's lesson dialogue, then the ford-carter
+encounter where all four doors open — completion sets
+`flag_threat_tutorial_done`. `caravan_route.tscn` hosts the road-dogs threat
+(flee/hide only, showing subset threats) plus the tutorial door.
 
 ### SympathyPuzzle / SympathyTarget
 
@@ -213,7 +217,9 @@ weaker sources raise Alar cost and risk through the shared engine formulas.
 WorldScene's `sympathy_targets` export and applies the committed working:
 `open_door` disables/fades its barrier, `move_obstacle` tweens it aside, then
 the success flag lands in GameState. `SympathyPuzzlePanel` renders the
-prompt, source choice, and live cost/risk preview.
+prompt, source choice, and live cost/risk preview, and journals every
+committed working like the bench does. The campsite carries the wagon-gate
+and hatch puzzles; `caravan_route.tscn` adds the fire-split boulder.
 
 ## Conventions
 

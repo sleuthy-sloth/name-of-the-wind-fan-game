@@ -34,5 +34,23 @@
     "world_effect": "open_door",
     "on_success_flag": "flag_camp_supply_hatch_opened",
     "success_text": "The hasp expands with a soft tick and the latch slips free. The hatch swings open on its own."
+  },
+  {
+    "id": "working_split_boulder",
+    "title": "Boulder on the Track",
+    "prompt": "A fallen boulder hems the wagons against the cut bank. There is a rain-crack running through its heart. Abenthy's trick: hammer in an iron wedge, feed real fire into it, and let the stone do the breaking for you.",
+    "mastery": 0.3,
+    "composure": 0.45,
+    "difficulty": 1.4,
+    "sources": [
+      { "id": "src_pitch_torch", "label": "A pitch torch", "domain": "thermal", "energy": 11.0 },
+      { "id": "src_friction_palm", "label": "Friction from your palms", "domain": "thermal", "energy": 3.5 }
+    ],
+    "link": { "id": "link_iron_wedge", "label": "The iron wedge seated in the crack", "domains": ["thermal"], "quality": 0.85 },
+    "target": { "id": "target_rain_crack", "label": "The water-seamed crack in the stone", "domain": "thermal", "tolerance": 7.0 },
+    "effect": { "id": "effect_fire_the_wedge", "label": "Fire the wedge and split the stone", "domain": "thermal", "cost": 6.0, "payload": {} },
+    "world_effect": "move_obstacle",
+    "on_success_flag": "flag_road_boulder_cleared",
+    "success_text": "The wedge glows, the crack hisses steam, and with a crack like a struck bell half the boulder sloughs away from the track."
   }
 ]

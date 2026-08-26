@@ -165,6 +165,10 @@ func attempt(type: String, payload: Dictionary, holder: Object) -> Dictionary:
 		outcome["text"] = "The moment has already passed."
 		return outcome
 
+	if not def.has(type):
+		outcome["text"] = "That is no way out of trouble."
+		return outcome
+
 	match type:
 		TYPE_FLEE:
 			_attempt_flee(payload, outcome)

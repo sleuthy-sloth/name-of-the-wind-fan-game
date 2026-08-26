@@ -18,15 +18,19 @@ extends Node2D
 @export var tint_enabled := true
 ## Out-of-combat sympathy puzzles placed into this scene.
 ## Entries: {working_id: String, display_name: String, position: Vector2,
-##           obstacle_path: NodePath, move_offset: Vector2}
+##           obstacle_path: String, move_offset: Vector2}
 @export var sympathy_targets: Array[Dictionary] = []
 ## Additional scene doors beyond the LDtk Door entity.
 ## Entries: {position: Vector2, target_scene: String}
 @export var extra_doors: Array[Dictionary] = []
+## GDD §7.5 threats placed into this scene (combat found throughout the game).
+## Entries: {threat_id: String, display_name: String, position: Vector2}
+@export var threat_triggers: Array[Dictionary] = []
 
 const PLAYER_SCENE := "res://scenes/player/player.tscn"
 const DOOR_SCENE_SCRIPT := "res://scripts/systems/scene_door.gd"
 const SYMPATHY_TARGET_SCRIPT := "res://scripts/world/sympathy_target.gd"
+const THREAT_TRIGGER_SCRIPT := "res://scripts/world/threat_trigger.gd"
 
 const TINT_BY_BLOCK := {
 	"morning": Color(1.0, 0.96, 0.88),
@@ -68,6 +72,9 @@ func _ready() -> void:
 
 	if not sympathy_targets.is_empty():
 		_setup_sympathy_targets()
+
+	if not threat_triggers.is_empty():
+		_setup_threat_triggers()
 
 	_setup_ambience()
 	_setup_tint()
@@ -129,6 +136,45 @@ func _open_sympathy_puzzle(panel: SympathyPuzzlePanel, target: Area2D) -> void:
 		return
 	var gs := get_node_or_null("/root/GameState")
 	panel.open_for(puzzle, gs if gs != null else self)
+
+func _setup_threat_triggers() -> void:
+	var panel := ThreatPanel.new()
+	panel.name = "ThreatPanel"
+	add_child(panel)
+	for entry: Variant in threat_triggers:
+		if not entry is Dictionary:
+			continue
+		var data := entry as Dictionary
+		var script := load(THREAT_TRIGGER_SCRIPT) as GDScript
+		if script == null:
+			continue
+		var trigger := Area2D.new()
+		trigger.set_script(script)
+		trigger.name = "ThreatTrigger_" + str(data.get("threat_id", "unnamed"))
+		trigger.position = data.get("position", Vector2.ZERO) as Vector2
+		trigger.set("threat_id", str(data.get("threat_id", "")))
+		trigger.set("display_name", str(data.get("display_name", "")))
+		add_child(trigger)
+		if trigger.has_signal("threat_requested"):
+			(trigger as Area2D).connect(
+				"threat_requested",
+				func(t) -> void: _open_threat(panel, t)
+			)
+
+func _open_threat(panel: ThreatPanel, trigger) -> void:
+	if panel.is_open():
+		return
+	var threat := trigger.call("build_threat") as ThreatEncounter
+	if threat == null or threat.def.is_empty():
+		push_warning("WorldScene: no threat def for '%s'" % trigger.name)
+		return
+	var gs := get_node_or_null("/root/GameState")
+	panel.open_for(threat, gs if gs != null else self)
+	panel.encounter_finished.connect(
+		func(_outcome: Dictionary) -> void:
+			var last: Dictionary = panel.get_last_outcome()
+			trigger.call("resolve_after_encounter", threat, last)
+	)
 
 func _setup_ambience() -> void:
 	for event_id in ambience_events:

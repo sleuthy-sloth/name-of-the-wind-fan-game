@@ -82,5 +82,39 @@
       "success_flag": "flag_threat_cutpurse_resolved",
       "failure_flag": "flag_threat_cutpurse_failed"
     }
+  },
+  {
+    "id": "threat_road_dogs",
+    "title": "Half-Starved Dogs on the Road",
+    "intro": "As the light goes amber, a pack of half-starved dogs begins shadowing the wagons — patient, silent, and circling wider with every pass. They are not looking for a fight yet. They are choosing.",
+    "pressure_limit": 3,
+    "failure_text": "The pack stops circling and rushes the lead wagon. The oxen bolt, a wheel finds a rut, and the trouble costs the troupe a whole day mending what breaks.",
+    "flee": {
+      "routes": [
+        {
+          "id": "route_hard_pace",
+          "label": "Push the wagons hard and outrun them before full dark",
+          "risk": 0.25,
+          "success_text": "You drive a punishing pace and leave the dogs behind as the last light fails. By morning they are a story.",
+          "fail_text": "The oxen are spent too soon. The pack is still there when the moon comes up, closer than before."
+        },
+        {
+          "id": "route_fire_ring",
+          "label": "Circle the wagons and build a fire ring to hold through the night",
+          "risk": 0.1,
+          "success_text": "Firelight holds them at the edge of the dark until dawn, when only their tracks remain."
+        }
+      ]
+    },
+    "hide": {
+      "window_center": 0.55,
+      "window_width": 0.2,
+      "success_text": "You keep everyone still and quiet through the worst hour. The pack loses interest in wagons that neither smell nor speak.",
+      "fail_text": "A pan rattles at exactly the wrong moment. Every set of ears turns toward your wagon at once."
+    },
+    "flags": {
+      "success_flag": "flag_threat_road_dogs_resolved",
+      "failure_flag": "flag_threat_road_dogs_failed"
+    }
   }
 ]

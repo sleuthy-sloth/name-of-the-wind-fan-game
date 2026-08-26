@@ -35,6 +35,8 @@ func _run() -> void:
 	await _test_threat_hide()
 	await _test_threat_sympathy()
 	await _test_threat_pressure()
+	await _test_road_threat_subset()
+	await _test_threat_trigger_node()
 	await _test_waystone_opening_data()
 	await _test_beat_cutscene_playback()
 	await _test_tutorial_content()
@@ -72,7 +74,7 @@ func _seeded_rng(first_roll: float, want_at_or_above: bool) -> RandomNumberGener
 
 func _test_workings_data() -> void:
 	var defs := SympathyPuzzle.load_defs()
-	_check(defs.size() == 2, "workings_act1 has 2 defs")
+	_check(defs.size() == 3, "workings_act1 has 3 defs")
 	var ids := {}
 	for d in defs:
 		for error in SympathyPuzzle.validate_def(d):
@@ -80,6 +82,7 @@ func _test_workings_data() -> void:
 		ids[str(d.get("id", ""))] = true
 	_check(ids.has("working_jammed_wagon_gate"), "wagon gate working present")
 	_check(ids.has("working_swollen_hatch_latch"), "hatch working present")
+	_check(ids.has("working_split_boulder"), "boulder working present")
 
 
 # --- sympathy puzzle model -------------------------------------------------------
@@ -190,7 +193,7 @@ func _test_sympathy_target_node() -> void:
 
 func _test_threats_data() -> void:
 	var defs := ThreatEncounter.load_defs()
-	_check(defs.size() == 2, "threats_act1 has 2 defs")
+	_check(defs.size() == 3, "threats_act1 has 3 defs")
 	var ford_found := false
 	for d in defs:
 		for error in ThreatEncounter.validate_def(d):
@@ -309,6 +312,74 @@ func _test_threat_pressure() -> void:
 	_check(flags.has("flag_test_forced_fail"), "failure flag mapped")
 
 
+# --- subset threats + trigger node ------------------------------------------------
+
+func _test_road_threat_subset() -> void:
+	var dogs := ThreatEncounter.new(ThreatEncounter.find_def("threat_road_dogs"))
+	_check(dogs.flee_routes().size() == 2, "road dogs offer two flee routes")
+	_check(dogs.def.has("hide"), "road dogs offer hide")
+	_check(not dogs.def.has("talk"), "road dogs cannot be talked to")
+	_check(not dogs.def.has("sympathy"), "road dogs offer no sympathy resolution")
+
+	var outcome := dogs.attempt("talk", {}, _mock_holder(9.0))
+	_check(not bool(outcome.get("success", true)), "talk on talk-less threat rejected")
+	_check(int(outcome.get("pressure", 0)) == 0, "invalid attempt does not escalate pressure")
+
+	var hide := dogs.attempt("hide", {"timing": 0.55}, _mock_holder(0.0))
+	_check(bool(hide.get("success", false)), "road dog hide window works")
+
+	var boulder := _make_puzzle("working_split_boulder")
+	boulder.select_source(0)
+	var strong := boulder.preview()
+	_check(bool(strong.get("valid", false)), "boulder torch binding valid")
+	_check(float(strong.get("risk", 1.0)) < 0.05, "torch source splits stone near-certainly")
+	var holder := MockHolder.new()
+	var committed := boulder.commit(holder)
+	_check(bool(committed.get("success", false)), "boulder commit succeeds with torch")
+	_check(str(committed.get("world_effect", "")) == "move_obstacle", "boulder effect moves obstacle")
+	_check(str(committed.get("flag", "")) == "flag_road_boulder_cleared", "boulder flag mapped")
+
+
+func _test_threat_trigger_node() -> void:
+	var script := load("res://scripts/world/threat_trigger.gd") as GDScript
+	_check(script != null, "threat_trigger.gd loads")
+	if script == null:
+		return
+	var trigger_holder := Node2D.new()
+	root.add_child(trigger_holder)
+	var trigger := Area2D.new()
+	trigger.set_script(script)
+	trigger_holder.add_child(trigger)
+	trigger.set("threat_id", "threat_road_dogs")
+
+	var requested := [false]
+	trigger.connect(
+		"threat_requested",
+		func(_t) -> void: requested[0] = true
+	)
+	trigger.call("interact")
+	_check(requested[0], "trigger interact emits threat_requested")
+
+	var built := trigger.call("build_threat") as ThreatEncounter
+	_check(built != null and not built.def.is_empty(), "build_threat finds def by id")
+	if built != null:
+		_check(str(built.get_title()) == "Half-Starved Dogs on the Road", "built threat is road dogs")
+
+	# Successful resolution retires the trigger.
+	trigger.call("resolve_after_encounter", built, {"resolved": true, "success": true})
+	_check(trigger.is_queued_for_deletion(), "successful encounter retires trigger")
+
+	# Failed resolution keeps a fresh trigger available for retry.
+	var retry := Area2D.new()
+	retry.set_script(script)
+	trigger_holder.add_child(retry)
+	retry.set("threat_id", "threat_road_dogs")
+	retry.call("resolve_after_encounter", built, {"resolved": true, "success": false})
+	_check(not retry.is_queued_for_deletion(), "failed encounter leaves trigger for retry")
+
+	trigger_holder.queue_free()
+
+
 # --- waystone opening ------------------------------------------------------------
 
 const KNOWN_EFFECTS := ["calm", "unease", "dim", "warm", "darkness"]
@@ -400,6 +471,12 @@ func _test_scene_wiring() -> void:
 	_check(campsite_text.contains("working_jammed_wagon_gate"), "campsite wires wagon gate target")
 	_check(campsite_text.contains("working_swollen_hatch_latch"), "campsite wires hatch target")
 	_check(campsite_text.contains("combat_tutorial.tscn"), "campsite door leads to combat tutorial")
+
+	var caravan_text := FileAccess.get_file_as_string("res://scenes/world/caravan_route.tscn")
+	_check(caravan_text.contains("working_split_boulder"), "caravan wires boulder target")
+	_check(caravan_text.contains("threat_road_dogs"), "caravan hosts road dogs threat trigger")
+	_check(caravan_text.contains("combat_tutorial.tscn"), "caravan door leads to combat tutorial")
+
 	_check(ResourceLoader.exists("res://scenes/world/combat_tutorial.tscn"), "combat tutorial scene exists")
 	_check(ResourceLoader.exists("res://scripts/ui/threat_panel.gd"), "ThreatPanel script exists")
 	_check(ResourceLoader.exists("res://scripts/ui/sympathy_puzzle_panel.gd"), "SympathyPuzzlePanel script exists")

@@ -12,6 +12,7 @@ signal cancelled
 
 var _puzzle: SympathyPuzzle = null
 var _alar_holder: Object = null
+var _journal: Journal = null
 
 var _root: Control = null
 var _title: Label = null
@@ -153,8 +154,24 @@ func _on_confirm() -> void:
 	if _puzzle == null or _alar_holder == null:
 		return
 	var outcome := _puzzle.commit(_alar_holder)
+	_record_in_journal(outcome)
 	close()
 	resolved.emit(outcome)
+
+## Mirrors the bench behavior: every committed working lands in the journal.
+func _record_in_journal(outcome: Dictionary) -> void:
+	if _journal == null:
+		_journal = Journal.new()
+	_journal.add_entry(
+		str(outcome.get("source_id", "")),
+		str(outcome.get("link_id", "")),
+		str(outcome.get("target_id", "")),
+		str(outcome.get("effect_id", "")),
+		"success" if bool(outcome.get("success", false)) else str(outcome.get("failure_consequence", "failure"))
+	)
+
+func get_journal() -> Journal:
+	return _journal
 
 func _on_cancel() -> void:
 	close()

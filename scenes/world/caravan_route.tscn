@@ -1,9 +1,57 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scripts/world/world_scene.gd" id="1_world"]
+
+[sub_resource type="RectangleShape2D" id="boulder_shape"]
+size = Vector2(56, 48)
+
+[sub_resource type="RectangleShape2D" id="boulder_chunk_shape"]
+size = Vector2(30, 26)
 
 [node name="CaravanRoute" type="Node2D"]
 script = ExtResource("1_world")
 ldtk_path = "res://maps/caravan_route.ldtk"
 door_target_scene = "res://scenes/world/forest_campsite.tscn"
 ambience_events = Array[String](["AMB_FOREST_NIGHT", "AMB_WIND_LIGHT_LAYER"])
+extra_doors = Array[Dictionary]([{
+"position": Vector2(600, 300),
+"target_scene": "res://scenes/world/combat_tutorial.tscn"
+}])
+sympathy_targets = Array[Dictionary]([{
+"working_id": "working_split_boulder",
+"display_name": "Boulder on the track",
+"position": Vector2(272, 224),
+"obstacle_path": "../TrackBoulder",
+"move_offset": Vector2(64, -40)
+}])
+threat_triggers = Array[Dictionary]([{
+"threat_id": "threat_road_dogs",
+"display_name": "Something circling out there",
+"position": Vector2(520, 380)
+}])
+
+[node name="TrackBoulder" type="StaticBody2D" parent="."]
+position = Vector2(300, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrackBoulder"]
+shape = SubResource("boulder_shape")
+
+[node name="Sprite" type="ColorRect" parent="TrackBoulder"]
+offset_left = -28.0
+offset_top = -24.0
+offset_right = 28.0
+offset_bottom = 24.0
+color = Color(0.35, 0.34, 0.32, 1)
+
+[node name="SplitChunk" type="StaticBody2D" parent="."]
+position = Vector2(360, 160)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SplitChunk"]
+shape = SubResource("boulder_chunk_shape")
+
+[node name="Sprite" type="ColorRect" parent="SplitChunk"]
+offset_left = -15.0
+offset_top = -13.0
+offset_right = 15.0
+offset_bottom = 13.0
+color = Color(0.3, 0.29, 0.27, 1)

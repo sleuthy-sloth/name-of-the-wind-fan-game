@@ -25,19 +25,34 @@ var _player_in_range := false
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+	_setup_visuals()
 	_setup_prompt()
+
+## Soft blue-white marker so sympathy points read as interactables at a glance.
+func _setup_visuals() -> void:
+	var marker := ColorRect.new()
+	marker.name = "Marker"
+	marker.color = Color(0.55, 0.75, 0.95, 0.8)
+	marker.offset_left = -5.0
+	marker.offset_top = -5.0
+	marker.offset_right = 5.0
+	marker.offset_bottom = 5.0
+	add_child(marker)
 
 func _setup_prompt() -> void:
 	_prompt = Label.new()
 	_prompt.name = "InteractPrompt"
-	_prompt.text = "[E]"
+	var label_text := "[E]"
+	if not display_name.is_empty():
+		label_text = "[E] " + display_name
+	_prompt.text = label_text
 	_prompt.add_theme_font_size_override("font_size", 10)
 	_prompt.add_theme_color_override("font_color", Color(0.85, 0.92, 1.0))
 	_prompt.add_theme_color_override("font_outline_color", Color(0.05, 0.07, 0.12, 0.9))
 	_prompt.add_theme_constant_override("outline_size", 3)
 	_prompt.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_prompt.position = Vector2(-14, -40)
-	_prompt.size = Vector2(28, 14)
+	_prompt.position = Vector2(-48, -40)
+	_prompt.size = Vector2(96, 14)
 	_prompt.visible = false
 	add_child(_prompt)
 
