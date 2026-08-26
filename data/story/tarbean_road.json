@@ -1,0 +1,33 @@
+{
+  "id": "tarbean_road",
+  "beats": [
+    {
+      "id": "beat_leave_trees",
+      "narration": "You do not remember deciding to walk. Your feet simply choose the road over the trees, one after the other, until the camp is a smudge of grey behind you and there is nothing left of it to see.",
+      "effect": "dim",
+      "duration": 4.0
+    },
+    {
+      "id": "beat_three_days",
+      "narration": "Three days. Berries you cannot name. A hollow log to sleep in. You talk to yourself in your father's cadences so the silence does not settle into your bones, and when your voice gives out, you hum.",
+      "effect": "unease",
+      "duration": 4.2
+    },
+    {
+      "id": "beat_city_smoke",
+      "narration": "On the fourth morning there is smoke on the horizon — too much for a farmstead, too steady for a wildfire. Then walls. Then towers. Then the sound: a city, humming like a struck string that no one ever lets stop ringing.",
+      "effect": "calm",
+      "sfx": "SFX_UI_NOTIFICATION",
+      "duration": 4.2
+    },
+    {
+      "id": "beat_tarbean_gates",
+      "narration": "Tarbean. You have no money, no name anyone would know, and not one soul in it who loves you. It is the largest thing you have ever seen, and it does not care that you are still breathing.",
+      "effect": "darkness",
+      "set_flag": "flag_tarbean_road_seen",
+      "autosave": true,
+      "next_scene": "res://scenes/ui/end_card.tscn",
+      "duration": 4.0
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "post_slice_flow_act1",
+  "completion_flag": "act1_post_slice_completed",
+  "beats": [
+    {
+      "id": "beat_solo_survive",
+      "name": "Alone in the forest",
+      "step": 1,
+      "scene": "res://scenes/world/solo_forest.tscn",
+      "requires": [],
+      "sets_flag": "flag_post_slice_survival_done",
+      "system": "traversal"
+    },
+    {
+      "id": "beat_tarbean_road",
+      "name": "The road to Tarbean",
+      "step": 2,
+      "scene": "res://scenes/world/tarbean_road.tscn",
+      "requires": ["flag_post_slice_survival_done"],
+      "sets_flag": "flag_tarbean_road_seen",
+      "system": "narrative"
+    }
+  ]
+}

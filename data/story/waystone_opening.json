@@ -40,7 +40,7 @@
       "effect": "darkness",
       "set_flag": "waystone_opening_seen",
       "autosave": true,
-      "next_scene": "res://scenes/world/caravan_route.tscn",
+      "next_scene": "res://scenes/world/waystone_inn_interior.tscn",
       "duration": 3.6
     }
   ]

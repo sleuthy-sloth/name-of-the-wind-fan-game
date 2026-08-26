@@ -112,6 +112,13 @@ func apply_success(result: Dictionary) -> bool:
 					tween.tween_property(obstacle, "position", obstacle.position + move_offset, 0.6)
 				else:
 					obstacle.position += move_offset
+		"light_fire":
+			AudioLibrary.play("SFX_FIRE_CAMP", -6.0)
+			if obstacle != null:
+				obstacle.visible = true
+				var flame := obstacle.find_child("Flame", true, false) as CanvasItem
+				if flame != null:
+					flame.visible = true
 	return true
 
 static func _disable_collision(node: Node) -> void:

@@ -1,0 +1,64 @@
+{
+  "dialogue_id": "dialogue_frame_kote",
+  "root": "node_greeting",
+  "nodes": {
+    "node_greeting": {
+      "speaker": "Kote",
+      "text": "The innkeeper looks up as you approach the bar, and for half a heartbeat it is like looking at a man through the wrong end of a spyglass — someone younger, standing a long way off. \"Evening,\" he says. \"We're quiet tonight.\"",
+      "choices": [
+        {
+          "text": "Quiet suits this place. Like the whole room is holding its breath.",
+          "tag": "curious",
+          "next": "node_quiet",
+          "effects": [
+            {
+              "type": "relationship",
+              "target": "char_kote",
+              "delta": 2
+            },
+            {
+              "type": "set_flag",
+              "flag": "flag_frame_kote_spoken"
+            }
+          ]
+        },
+        {
+          "text": "A man polishing a clean counter has something on his mind.",
+          "tag": "perceptive",
+          "next": "node_counter",
+          "effects": [
+            {
+              "type": "relationship",
+              "target": "char_kote",
+              "delta": -1
+            },
+            {
+              "type": "set_flag",
+              "flag": "flag_frame_kote_spoken"
+            }
+          ]
+        }
+      ]
+    },
+    "node_quiet": {
+      "speaker": "Kote",
+      "text": "\"It does at that.\" He sets down the cloth. \"Some silences are empty. This one's just... waiting its turn.\"",
+      "next": "node_story"
+    },
+    "node_counter": {
+      "speaker": "Kote",
+      "text": "\"Old habit,\" he says, and keeps polishing. \"You can put a lot of things down on a counter. Some nights it's the only place they sit still.\"",
+      "next": "node_story"
+    },
+    "node_story": {
+      "speaker": "Kote",
+      "text": "He glances toward the road through the window, then back. \"If you're waiting on a story, you'll want to start further out. Stories never begin where people think they do. His began with wagons, and music, and people he loved.\" A pause. \"Begin there, if you like.\"",
+      "next": "node_end"
+    },
+    "node_end": {
+      "speaker": "",
+      "text": "",
+      "end": true
+    }
+  }
+}

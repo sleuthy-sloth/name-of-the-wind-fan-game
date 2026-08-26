@@ -55,26 +55,31 @@ All code, art, music, and writing are original. See [Legal](#legal--disclaimers)
 
 ## Current status
 
-🚧 **Phase 1 — Act I vertical slice in active development.** Phase 0's
-foundation is complete and covered by automated headless suites; the first
-Act I systems (caravan/campsite maps, inventory & economy HUD, lute rhythm
-stage, Sympathy bench + lighting, journal, NPC roster & tutorial dialogue)
-are merged, and an integrated slice check runs green.
+🚧 **Act I vertical slice playable end-to-end, in polish.** Phase 0
+(engine foundation), Phase 1 (Edema Ruh vertical slice, tasks 1.1–1.8) and
+Phase 2 (modular architecture: data-driven quests, schedules,
+relationships/reputation, minigame host, save migrations) are complete and
+covered by automated headless suites. The slice now opens with a scripted
+Waystone Inn prologue (frame story with Kote and Bast, plus a walkable inn
+interior), teaches threat resolution through a playable combat tutorial, and
+closes with a post-slice epilogue — surviving the ruined camp alone via a
+sympathy friction-fire working, then the road to Tarbean.
 
 | Phase | Goal | Status |
 |---|---|---|
 | 0 — Foundation | Engine shell: movement, scenes, save/load, dialogue, NPC interaction, LDtk pipeline | ✅ Complete |
-| 1 — Vertical slice | Act I: Edema Ruh — music, Sympathy, the attack | 🚧 In progress |
-| 2 — Architecture pass | Data-driven quests, schedules, reputation | ⏳ Planned |
+| 1 — Vertical slice | Act I: Edema Ruh — music, Sympathy, the attack | ✅ Complete (polish ongoing) |
+| 2 — Architecture pass | Data-driven quests, schedules, reputation | ✅ Complete |
 | 3 — Tarbean prototype | Survival loop: hunger, warmth, stealth | ⏳ Planned |
 | 4 — University core | Life-sim hub: classes, tuition, Fishery, Eolian | ⏳ Planned |
 | 5 — Full narrative | Complete scope, polish, accessibility, release build | ⏳ Planned |
 
-Automated verification: **13 Godot headless suites** (engine shell, LDtk
+Automated verification: **16 Godot headless suites** (engine shell, LDtk
 pipeline, save/load, dialogue, sympathy engine + lighting, lute stage,
 inventory/economy, roster, world traversal, Chandrian attack, phase-0 exit,
-integrated vertical slice) plus unit-tested asset pipelines for sprites and
-audio. Run instructions live in [`docs/development.md`](docs/development.md).
+integrated vertical slice, slice polish, phase-2 architecture, threat &
+puzzle layer) plus unit-tested asset pipelines for sprites and audio. Run
+instructions live in [`docs/development.md`](docs/development.md).
 
 ---
 
@@ -84,11 +89,17 @@ audio. Run instructions live in [`docs/development.md`](docs/development.md).
   cost one block; big commitments cost two.
 - **Sympathy** — a three-slot working bench (`SOURCE → LINK → TARGET`) with
   legible energy, risk, and slippage. Experimentation teaches even on failure.
+  The same rules work out in the world: split a rain-cracked boulder off the
+  track, open a swollen hatch, light a cold lamp, or kindle a fire to survive
+  the night — your choice of energy source sets the Alar cost and risk.
 - **Lute performance** — a rhythm minigame graded on timing, continuity,
   expression, and recovery. Results change payment, reputation, and fatigue.
 - **Reputation** — five bands per faction, moved by visible actions.
-- **Threat resolution, not combat** — flee, hide, talk, or spend a prepared
-  resource. Physical conflict is short, authored, and consequential.
+- **Threat resolution, not combat** — flee by route choice, hide by timing,
+  talk when your standing earns it, or resolve it with a sympathy working at
+  real Alar cost. Failed attempts escalate pressure until things go badly;
+  Abenthy's tutorial teaches all four doors, and threats appear out on the
+  road. Physical conflict is short, authored, and consequential.
 - **Alar** — mental stamina spent on magic, study, and composure; restored
   through sleep, food, and safe company.
 

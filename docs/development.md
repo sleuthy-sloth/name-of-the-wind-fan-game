@@ -34,7 +34,12 @@ All creative content must remain original; see
 Open the project in Godot (select `project.godot`), then press **F5** (Run
 Project). The main scene is `res://scenes/world/waystone_inn.tscn`, a scripted
 opening at the Waystone Inn (frame story: Kote and Bast) that sets
-`waystone_opening_seen` and routes into Act I on `caravan_route.tscn`.
+`waystone_opening_seen`, drops the player into the walkable inn interior
+(talk to Kote and Bast, light the cold lamp with sympathy), and exits onto
+`caravan_route.tscn` where Act I begins. After the slice's end card,
+Continue starts the post-slice epilogue: `solo_forest.tscn` (light a fire to
+survive the night) → `tarbean_road.tscn` (narration teaser) → end card with
+Act I closed (`act1_post_slice_completed`).
 
 From the command line:
 
@@ -180,13 +185,23 @@ Versioned JSON slots with stepwise migrations (`_migrations[1]` upgrades v1
 payloads) and a `save_contributors` group so subsystems persist their own
 state under `payload.managers`. Saves newer than `SAVE_VERSION` fail closed.
 
+### SliceDirector
+
+Data-driven story-flow runner. The default flow is
+`data/story/slice_flow.json` (10 beats, completion flag
+`vertical_slice_completed`); alternate flows are supported via
+`use_flow_path()` — quest-state keys and the completion flag derive from the
+loaded flow's `id`/`completion_flag`, so `data/story/post_slice_flow.json`
+tracks its own state (`post_slice_flow_act1_index`,
+`act1_post_slice_completed`) without touching slice saves.
+
 ### BeatCutscene
 
 Generic data-driven narration cutscene: `{ id, beats: [{narration, effect,
 duration, set_flag, sfx, next_scene, autosave}] }` from any JSON path. Drives
 the Waystone Inn opening (`scenes/world/waystone_inn.tscn`, the project main
-scene) and is reusable for future scripted scenes. Works headless — overlay
-and label nodes are optional.
+scene) and the Tarbean road teaser (`scenes/world/tarbean_road.tscn`). Works
+headless — overlay and label nodes are optional.
 
 ### ThreatEncounter
 

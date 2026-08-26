@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/solo_forest.gd" id="1_solo"]
+
+[sub_resource type="RectangleShape2D" id="fire_pit_shape"]
+size = Vector2(24, 24)
+
+[node name="SoloForest" type="Node2D"]
+script = ExtResource("1_solo")
+ldtk_path = "res://maps/forest_campsite.ldtk"
+door_target_scene = "res://scenes/world/tarbean_road.tscn"
+ambience_events = Array[String](["AMB_FOREST_NIGHT"])
+tint_enabled = false
+sympathy_targets = Array[Dictionary]([{
+"working_id": "working_friction_fire",
+"display_name": "The cold fire pit",
+"position": Vector2(328, 128),
+"obstacle_path": "../FirePit",
+"move_offset": Vector2(0, 0)
+}])
+
+[node name="NightTint" type="CanvasModulate" parent="."]
+color = Color(0.55, 0.6, 0.78, 1)
+
+[node name="FirePit" type="StaticBody2D" parent="."]
+position = Vector2(328, 112)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FirePit"]
+shape = SubResource("fire_pit_shape")
+
+[node name="Embers" type="ColorRect" parent="FirePit"]
+offset_left = -10.0
+offset_top = -6.0
+offset_right = 10.0
+offset_bottom = 6.0
+color = Color(0.25, 0.16, 0.12, 1)
+
+[node name="Flame" type="ColorRect" parent="FirePit"]
+visible = false
+offset_left = -7.0
+offset_top = -18.0
+offset_right = 7.0
+offset_bottom = 2.0
+color = Color(1.0, 0.62, 0.18, 0.95)

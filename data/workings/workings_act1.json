@@ -52,5 +52,41 @@
     "world_effect": "move_obstacle",
     "on_success_flag": "flag_road_boulder_cleared",
     "success_text": "The wedge glows, the crack hisses steam, and with a crack like a struck bell half the boulder sloughs away from the track."
+  },
+  {
+    "id": "working_light_the_lamp",
+    "title": "The Cold Lamp",
+    "prompt": "The lamp by the Waystone's door has gone cold, and the man behind the bar looks like he would rather not get up for it. The dying coals still remember fire. Bind that remembrance into the wick.",
+    "mastery": 0.35,
+    "composure": 0.5,
+    "difficulty": 0.9,
+    "sources": [
+      { "id": "src_dying_coals", "label": "The dying hearth coals", "domain": "thermal", "energy": 7.0 },
+      { "id": "src_body_heat", "label": "Your own body heat", "domain": "thermal", "energy": 3.0 }
+    ],
+    "link": { "id": "link_brass_handle", "label": "The lamp's brass handle — metal, like the poker left in the coals", "domains": ["thermal"], "quality": 0.75 },
+    "target": { "id": "target_cold_wick", "label": "The lamp's cold wick", "domain": "thermal", "tolerance": 3.0 },
+    "effect": { "id": "effect_kindle_wick", "label": "Kindle the wick", "domain": "thermal", "cost": 2.5, "payload": {} },
+    "world_effect": "light_fire",
+    "on_success_flag": "flag_inn_lamp_lit",
+    "success_text": "The wick takes without being asked, flame standing up straight and yellow. Nobody in the room notices. That is rather the point."
+  },
+  {
+    "id": "working_friction_fire",
+    "title": "A Fire to Stay Alive",
+    "prompt": "Night is coming and there is no one left to strike a flint for you. Your hands remember your father's lessons. Sympathy needs a source of heat — even the small heat you can make yourself.",
+    "mastery": 0.25,
+    "composure": 0.2,
+    "difficulty": 1.3,
+    "sources": [
+      { "id": "src_friction_hands", "label": "Friction from your own two hands", "domain": "thermal", "energy": 3.2 },
+      { "id": "src_dry_heartwood", "label": "Sun-warmed heartwood from the dead campfire's stack", "domain": "thermal", "energy": 6.5 }
+    ],
+    "link": { "id": "link_charred_twig", "label": "A charred twig from last night's fire", "domains": ["thermal"], "quality": 0.7 },
+    "target": { "id": "target_cold_fire_pit", "label": "The cold fire pit", "domain": "thermal", "tolerance": 4.0 },
+    "effect": { "id": "effect_kindle_pit", "label": "Kindle the pit", "domain": "thermal", "cost": 3.0, "payload": {} },
+    "world_effect": "light_fire",
+    "on_success_flag": "flag_post_slice_fire_lit",
+    "success_text": "Your palms burn with the effort and the pit takes anyway — a thread of orange in the gathering dark. You feed it like it is the only living thing left, because tonight, for you, it nearly is."
   }
 ]

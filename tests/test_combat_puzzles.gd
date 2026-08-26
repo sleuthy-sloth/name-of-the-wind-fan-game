@@ -40,6 +40,9 @@ func _run() -> void:
 	await _test_waystone_opening_data()
 	await _test_beat_cutscene_playback()
 	await _test_tutorial_content()
+	await _test_light_fire_effect()
+	await _test_post_slice_flow()
+	await _test_inn_interior_and_tarbean_data()
 	await _test_scene_wiring()
 
 	if _failures == 0:
@@ -74,7 +77,7 @@ func _seeded_rng(first_roll: float, want_at_or_above: bool) -> RandomNumberGener
 
 func _test_workings_data() -> void:
 	var defs := SympathyPuzzle.load_defs()
-	_check(defs.size() == 3, "workings_act1 has 3 defs")
+	_check(defs.size() == 5, "workings_act1 has 5 defs")
 	var ids := {}
 	for d in defs:
 		for error in SympathyPuzzle.validate_def(d):
@@ -83,6 +86,8 @@ func _test_workings_data() -> void:
 	_check(ids.has("working_jammed_wagon_gate"), "wagon gate working present")
 	_check(ids.has("working_swollen_hatch_latch"), "hatch working present")
 	_check(ids.has("working_split_boulder"), "boulder working present")
+	_check(ids.has("working_light_the_lamp"), "inn lamp working present")
+	_check(ids.has("working_friction_fire"), "friction fire working present")
 
 
 # --- sympathy puzzle model -------------------------------------------------------
@@ -380,6 +385,137 @@ func _test_threat_trigger_node() -> void:
 	trigger_holder.queue_free()
 
 
+# --- light_fire world effect -----------------------------------------------------
+
+func _test_light_fire_effect() -> void:
+	var holder_node := Node2D.new()
+	root.add_child(holder_node)
+
+	var flame_parent := Node2D.new()
+	flame_parent.name = "LampFlame"
+	flame_parent.visible = false
+	holder_node.add_child(flame_parent)
+	var flame := ColorRect.new()
+	flame.name = "Flame"
+	flame.visible = false
+	flame_parent.add_child(flame)
+
+	var target_script := load("res://scripts/world/sympathy_target.gd") as GDScript
+	_check(target_script != null, "sympathy_target.gd loads for light_fire")
+	if target_script == null:
+		holder_node.queue_free()
+		return
+	var target := Area2D.new()
+	target.set_script(target_script)
+	holder_node.add_child(target)
+	target.set("working_id", "working_light_the_lamp")
+	target.set("obstacle_path", NodePath("../LampFlame"))
+
+	var result := {
+		"success": true,
+		"world_effect": "light_fire",
+		"flag": "flag_inn_lamp_lit",
+	}
+	target.call("apply_success", result)
+	_check(bool(target.get("is_resolved")), "light_fire resolves target")
+	_check(flame_parent.visible, "light_fire reveals the flame node")
+
+	holder_node.queue_free()
+
+
+# --- post-slice flow -------------------------------------------------------------
+
+const POST_FLOW_PATH := "res://data/story/post_slice_flow.json"
+
+func _test_post_slice_flow() -> void:
+	# Provide a GameState node so SliceDirector can track quest state.
+	if root.get_node_or_null("GameState") == null:
+		var gs: Node = load("res://scripts/systems/game_state.gd").new()
+		gs.name = "GameState"
+		root.add_child(gs)
+	var gs := root.get_node_or_null("GameState")
+
+	var director := SliceDirector.new()
+	director.use_flow_path(POST_FLOW_PATH)
+	root.add_child(director)
+	await process_frame
+
+	_check(director.get_current_beat().get("id", "") == "beat_solo_survive",
+		"post-slice flow starts at solo survive beat")
+	_check(str(director.get_current_beat().get("scene", "")) == "res://scenes/world/solo_forest.tscn",
+		"solo beat points at solo_forest scene")
+	_check(director.can_advance(), "post-slice first beat needs no flags")
+	_check(director.advance_beat(), "post-slice advances into tarbean beat")
+	_check(director.get_current_beat().get("id", "") == "beat_tarbean_road",
+		"second beat is tarbean road")
+	_check(gs.has_flag("flag_post_slice_survival_done"),
+		"advancing past solo beat sets its completion flag")
+
+	_check(director.can_advance(), "survival flag satisfies tarbean beat")
+	_check(director.advance_beat(), "post-slice completes after final advance")
+	_check(director.is_slice_complete(), "post-slice completion flag set")
+	_check(gs.has_flag("act1_post_slice_completed"), "act1_post_slice_completed lands in GameState")
+
+	# Derived keys keep the default flow's historical keys intact.
+	var fresh_gs: Node = load("res://scripts/systems/game_state.gd").new()
+	gs.from_dict(fresh_gs.to_dict())
+	fresh_gs.queue_free()
+	var main_director := SliceDirector.new()
+	root.add_child(main_director)
+	await process_frame
+	main_director.reset_progress()
+	_check(gs.quest_states.has("slice_flow_act1_index"),
+		"default flow keeps slice_flow_act1 keys")
+	_check(main_director.get_current_beat().get("id", "") == "beat_caravan",
+		"default flow still starts at caravan")
+
+	director.queue_free()
+	main_director.queue_free()
+
+
+# --- inn interior + tarbean data ---------------------------------------------------
+
+func _test_inn_interior_and_tarbean_data() -> void:
+	# The inn interior LDtk map parses with spawn + door metas.
+	var project := LdtkLoader.load_project("res://maps/waystone_inn_interior.ldtk")
+	_check(not project.is_empty(), "inn interior ldtk parses")
+	if not project.is_empty():
+		var level := LdtkLoader.build_level_node(project)
+		var spawn: Variant = level.get_meta("spawn_position", Vector2.ZERO)
+		_check(spawn is Vector2 and (spawn as Vector2) != Vector2.ZERO, "inn interior has spawn")
+		var doors: Variant = level.get_meta("doors", [])
+		_check(doors is Array and (doors as Array).size() == 1, "inn interior has one door")
+
+	var inn_text := FileAccess.get_file_as_string("res://scenes/world/waystone_inn_interior.tscn")
+	_check(inn_text.contains("dialogue_frame_kote.json"), "Kote NPC wired in inn")
+	_check(inn_text.contains("dialogue_frame_bast.json"), "Bast NPC wired in inn")
+	_check(inn_text.contains("working_light_the_lamp"), "lamp puzzle wired in inn")
+	_check(inn_text.contains("caravan_route.tscn"), "inn door exits to caravan route")
+
+	for path in ["res://data/dialogue/dialogue_frame_kote.json", "res://data/dialogue/dialogue_frame_bast.json"]:
+		var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+		_check(parsed is Dictionary, path + " parses")
+		if parsed is Dictionary:
+			_check(DialogueRunner.validate(parsed).is_empty(), path + " validates clean")
+
+	# Tarbean road teaser beats mirror the opening cutscene contract.
+	var parsed_tarbean: Variant = JSON.parse_string(
+		FileAccess.get_file_as_string("res://data/story/tarbean_road.json"))
+	_check(parsed_tarbean is Dictionary, "tarbean_road.json parses")
+	if parsed_tarbean is Dictionary:
+		var beats: Variant = (parsed_tarbean as Dictionary).get("beats")
+		_check(beats is Array and (beats as Array).size() >= 3, "tarbean road has beats")
+		if beats is Array:
+			var last := (beats as Array)[(beats as Array).size() - 1] as Dictionary
+			_check(str(last.get("set_flag", "")) == "flag_tarbean_road_seen", "final tarbean beat sets flag")
+			_check(str(last.get("next_scene", "")) == "res://scenes/ui/end_card.tscn",
+				"tarbean teaser routes to end card")
+
+	var end_card_text := FileAccess.get_file_as_string("res://scripts/ui/end_card.gd")
+	_check(end_card_text.contains("solo_forest.tscn"), "end card continues into post-slice epilogue")
+	_check(end_card_text.contains("act1_post_slice_completed"), "end card checks epilogue completion")
+
+
 # --- waystone opening ------------------------------------------------------------
 
 const KNOWN_EFFECTS := ["calm", "unease", "dim", "warm", "darkness"]
@@ -407,7 +543,10 @@ func _test_waystone_opening_data() -> void:
 		_check(KNOWN_EFFECTS.has(str(beat.get("effect", "calm"))), "beat %d uses known effect" % i)
 	var last := (beats as Array)[(beats as Array).size() - 1] as Dictionary
 	_check(str(last.get("set_flag", "")) == "waystone_opening_seen", "final beat sets opening flag")
-	_check(str(last.get("next_scene", "")) == "res://scenes/world/caravan_route.tscn", "final beat routes to caravan")
+	_check(
+		str(last.get("next_scene", "")) == "res://scenes/world/waystone_inn_interior.tscn",
+		"final beat routes into walkable inn interior"
+	)
 	var sfx_ok := true
 	for beat_v: Variant in beats as Array:
 		var sfx := str((beat_v as Dictionary).get("sfx", ""))

@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/world_scene.gd" id="1_world"]
+[ext_resource type="PackedScene" path="res://scenes/npcs/npc.tscn" id="2_npc"]
+
+[node name="WaystoneInnInterior" type="Node2D"]
+script = ExtResource("1_world")
+ldtk_path = "res://maps/waystone_inn_interior.ldtk"
+door_target_scene = "res://scenes/world/caravan_route.tscn"
+ambience_events = Array[String](["AMB_FIRE_SMALL"])
+tint_enabled = false
+sympathy_targets = Array[Dictionary]([{
+"working_id": "working_light_the_lamp",
+"display_name": "The cold lamp",
+"position": Vector2(304, 296),
+"obstacle_path": "../LampFlame",
+"move_offset": Vector2(0, 0)
+}])
+
+[node name="Kote" parent="." instance=ExtResource("2_npc")]
+position = Vector2(150, 82)
+npc_id = "char_kote"
+display_name = "Kote"
+dialogue_path = "res://data/dialogue/dialogue_frame_kote.json"
+idle_facing = "down"
+
+[node name="Bast" parent="." instance=ExtResource("2_npc")]
+position = Vector2(322, 300)
+npc_id = "char_bast"
+display_name = "Bast"
+dialogue_path = "res://data/dialogue/dialogue_frame_bast.json"
+idle_facing = "left"
+
+[node name="LampFlame" type="Node2D" parent="."]
+position = Vector2(310, 288)
+visible = false
+
+[node name="Flame" type="ColorRect" parent="LampFlame"]
+offset_left = -4.0
+offset_top = -10.0
+offset_right = 4.0
+offset_bottom = 2.0
+color = Color(1.0, 0.72, 0.25, 0.95)

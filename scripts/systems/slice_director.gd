@@ -12,8 +12,14 @@ const QUEST_STATE_INDEX_KEY := "slice_flow_act1_index"
 const QUEST_STATE_BEAT_ID_KEY := "slice_flow_act1_beat_id"
 const COMPLETION_FLAG := "vertical_slice_completed"
 
+## Instance overrides for alternate flows (e.g. the post-slice epilogue).
+## Quest-state keys derive from the loaded flow id, so the default flow keeps
+## its historical "slice_flow_act1_index"/"slice_flow_act1_beat_id" keys.
+var flow_path: String = FLOW_PATH
+
 var _beats: Array[Dictionary] = []
 var _flow_id: String = ""
+var _completion_flag: String = COMPLETION_FLAG
 
 func _init() -> void:
 	_load_flow()
@@ -25,10 +31,12 @@ func _ready() -> void:
 
 func _load_flow() -> void:
 	_beats.clear()
+	_flow_id = ""
+	_completion_flag = COMPLETION_FLAG
 
-	var file := FileAccess.open(FLOW_PATH, FileAccess.READ)
+	var file := FileAccess.open(flow_path, FileAccess.READ)
 	if file == null:
-		push_error("SliceDirector: failed to open '%s'" % FLOW_PATH)
+		push_error("SliceDirector: failed to open '%s'" % flow_path)
 		return
 
 	var raw := file.get_as_text()
@@ -36,20 +44,33 @@ func _load_flow() -> void:
 
 	var parsed: Variant = JSON.parse_string(raw)
 	if parsed == null or not parsed is Dictionary:
-		push_error("SliceDirector: '%s' is not valid JSON" % FLOW_PATH)
+		push_error("SliceDirector: '%s' is not valid JSON" % flow_path)
 		return
 
 	var data: Dictionary = parsed as Dictionary
 	_flow_id = data.get("id", "")
+	_completion_flag = str(data.get("completion_flag", COMPLETION_FLAG))
 
 	var raw_beats: Variant = data.get("beats")
 	if raw_beats == null or not raw_beats is Array:
-		push_error("SliceDirector: '%s' missing 'beats' array" % FLOW_PATH)
+		push_error("SliceDirector: '%s' missing 'beats' array" % flow_path)
 		return
 
 	for entry: Variant in raw_beats:
 		if entry is Dictionary:
 			_beats.append(entry as Dictionary)
+
+## Points this director at an alternate flow and reloads it immediately
+## (construction already loaded the default flow).
+func use_flow_path(path: String) -> void:
+	flow_path = path
+	_load_flow()
+
+func _index_key() -> String:
+	return _flow_id + "_index"
+
+func _beat_key() -> String:
+	return _flow_id + "_beat_id"
 
 ## Returns the beat that is currently active, or an empty dictionary if none.
 func get_current_beat() -> Dictionary:
@@ -100,14 +121,14 @@ func advance_beat() -> bool:
 		gs.set_flag(sets_flag)
 
 	var next_index := start_index + 1
-	gs.quest_states[QUEST_STATE_INDEX_KEY] = next_index
-	gs.quest_states[QUEST_STATE_BEAT_ID_KEY] = _beat_id_at(next_index)
+	gs.quest_states[_index_key()] = next_index
+	gs.quest_states[_beat_key()] = _beat_id_at(next_index)
 
 	if beat.get("autosave", false) == true:
 		_autosave()
 
 	if next_index >= _beats.size():
-		gs.set_flag(COMPLETION_FLAG)
+		gs.set_flag(_completion_flag)
 
 	return true
 
@@ -116,21 +137,21 @@ func is_slice_complete() -> bool:
 	var gs := _game_state()
 	if gs == null:
 		return false
-	return gs.has_flag(COMPLETION_FLAG)
+	return gs.has_flag(_completion_flag)
 
 ## Resets the tracked beat index to the start. Useful for clean-save tests.
 func reset_progress() -> void:
 	var gs := _game_state()
 	if gs == null:
 		return
-	gs.quest_states[QUEST_STATE_INDEX_KEY] = 0
-	gs.quest_states[QUEST_STATE_BEAT_ID_KEY] = _beat_id_at(0)
+	gs.quest_states[_index_key()] = 0
+	gs.quest_states[_beat_key()] = _beat_id_at(0)
 
 func _current_index() -> int:
 	var gs := _game_state()
 	if gs == null:
 		return 0
-	var stored: Variant = gs.quest_states.get(QUEST_STATE_INDEX_KEY)
+	var stored: Variant = gs.quest_states.get(_index_key())
 	if stored == null or not stored is int:
 		return 0
 	var index: int = stored as int

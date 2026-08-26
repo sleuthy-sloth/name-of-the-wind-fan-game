@@ -1,0 +1,59 @@
+{
+  "dialogue_id": "dialogue_frame_bast",
+  "root": "node_greeting",
+  "nodes": {
+    "node_greeting": {
+      "speaker": "Bast",
+      "text": "The young man by the door watches you come closer without seeming to move at all. \"You're new,\" he says pleasantly. It is not quite a greeting. \"Everyone's new, first time through a story.\"",
+      "choices": [
+        {
+          "text": "And whose story is this one?",
+          "tag": "curious",
+          "next": "node_whose",
+          "effects": [
+            {
+              "type": "relationship",
+              "target": "char_bast",
+              "delta": 2
+            },
+            {
+              "type": "set_flag",
+              "flag": "flag_frame_bast_spoken"
+            }
+          ]
+        },
+        {
+          "text": "You talk about him like he's already gone.",
+          "tag": "perceptive",
+          "next": "node_gone",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "flag_frame_bast_spoken"
+            }
+          ]
+        }
+      ]
+    },
+    "node_whose": {
+      "speaker": "Bast",
+      "text": "\"His.\" A nod toward the bar, gentle as anything. \"But not the man you see. The man the road made first — red hair, temper like a lute string, always one lesson away from disaster or brilliance. Usually both.\" He smiles. \"Watch closely.\"",
+      "next": "node_road"
+    },
+    "node_gone": {
+      "speaker": "Bast",
+      "text": "\"Gone? No.\" The pleasantness thins, just slightly. \"Buried is not gone. It's merely... waiting for someone stubborn enough to dig. Which is why we keep the stories alive, reshi — even the ones that cost him everything.\"",
+      "next": "node_road"
+    },
+    "node_road": {
+      "speaker": "Bast",
+      "text": "\"Go on, then. The door's behind you, and the road's beyond that.\" His eyes catch the firelight. \"Start where all his roads started: a caravan rolling out at first light, and a boy who had no idea what it would cost him.\"",
+      "next": "node_end"
+    },
+    "node_end": {
+      "speaker": "",
+      "text": "",
+      "end": true
+    }
+  }
+}
