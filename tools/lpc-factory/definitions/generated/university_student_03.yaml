@@ -1,0 +1,14 @@
+name: university_student_03
+bodyType: male
+animations:
+  - idle
+  - walk
+layers:
+  - item: hair.curly_short
+    color: black
+  - item: clothes.collared_formal_longsleeve
+    palette: university-cloth
+  - item: legs.pants
+    color: navy
+  - item: shoes.basic_shoes
+    color: black

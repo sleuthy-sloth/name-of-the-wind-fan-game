@@ -1,0 +1,22 @@
+# abenthy.yaml — the arcanist tinker, Kvothe's first teacher
+name: abenthy
+bodyType: male
+animations:
+  - idle
+  - walk
+layers:
+  - item: body.body_color
+    color: sun_touched
+    palette: notw-body
+  - item: legs.pants
+    color: walnut
+  - item: shoes.basic_boots
+    color: brown
+  - item: clothes.longsleeve
+    color: tan
+  - item: beard.trimmed_beard
+    color: gray
+  - item: hair.balding
+    color: gray
+  - item: hat.wizard_hat_base
+    variant: blue

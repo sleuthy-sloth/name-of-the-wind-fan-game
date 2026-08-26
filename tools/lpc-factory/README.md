@@ -1,77 +1,98 @@
 # LPC Sprite Factory
 
-Automated LPC (Liberated Pixel Cup) sprite pipeline for the Name of the Wind
-fan game. Assembles game-ready character and weapon sheets from the official
-[Universal LPC Spritesheet Character Generator](https://github.com/sanderfrenken/Universal-LPC-Spritesheet-Character-Generator)
-assets, with declarative YAML definitions, deterministic palette recoloring,
-and full licensing/attribution tracking.
+Automated LPC sprite-sheet pipeline for NOTW characters, weapons, and NPC
+crowds. Pure Node (`pngjs`) composition and recoloring — no Aseprite CLI
+dependency. See `AGENTS.md` for environment quirks.
 
-## Layout
+## Setup
 
-- `definitions/characters/*.yaml` — declarative character recipes
-- `definitions/weapons/*.yaml` — weapon recipes (variant + animations)
-- `palettes/notw-*.json` — custom NOTW color ramps (body/hair/cloth)
-- `scripts/lib/` — Node pipeline libraries
-  - `png-compositor.mjs` — pngjs-based recolor + alpha compositing + sheet assembly
-  - `resolver.mjs` — upstream asset path resolution (flat / full-sheet / variant layouts)
-  - `palettes.mjs` — palette loading + native-ramp detection
-  - `composer.mjs` — manifest builder (definition -> resolved images + recolor specs)
-  - `credits.mjs` / `report.mjs` — attribution + build reports
-- `upstream/universal-lpc/` — cloned upstream repo (gitignored; pin: commit pinned in metadata indexes)
-- `metadata/` — generated asset/animation/license indexes from upstream
-- `build/<name>/` — per-build output (sheet PNG, frame JSON, CREDITS.md, report)
-
-## Usage
-
-```bash
+```sh
 cd tools/lpc-factory
-npm install                # js-yaml + pngjs
-node scripts/inspect-lpc.mjs            # regenerate metadata indexes (after upstream update)
-node scripts/build-character.mjs definitions/characters/factory_test.yaml --publish
-node scripts/build-weapon.mjs definitions/weapons/lpc_sword_test.yaml --publish
+npm install            # js-yaml + pngjs
+node scripts/update-lpc.mjs          # clone/fetch upstream at the pinned commit
+node scripts/inspect-lpc.mjs         # (re)generate metadata/*-index.json
 ```
 
-`--publish` copies the sheet PNG + JSON + credits into `art/sprites/lpc/`.
+## CLI reference
 
-## Definition format (character)
+| Command | Purpose |
+| --- | --- |
+| `node scripts/update-lpc.mjs [--check] [--pin <ref>] [--main]` | Sync `upstream/universal-lpc` to the pinned commit recorded in `metadata/asset-index.json`. Rerun `inspect-lpc` after changing pins. |
+| `node scripts/build-character.mjs <char.yaml> [--animations idle,walk] [--publish]` | Build one character: definition → validation → manifest → compose/recolor → sheet PNG+JSON → CREDITS.md → build-report.json |
+| `node scripts/build-weapon.mjs <weapon.yaml> [--publish]` | Same pipeline for single-item weapon sheets. |
+| `node scripts/generate-npcs.mjs <archetype\|name> [--count N] [--seed S] [--build] [--publish]` | Deterministic pool-based NPC generation from `definitions/npc-archetypes/*.yaml` into `definitions/generated/`; `--list` shows archetypes. |
+| `node scripts/build-group.mjs <group.yaml\|name> [--publish]` | Build every member of a `definitions/groups/*.yaml` batch; writes `build/groups/<name>/group-report.json` + merged CREDITS.md. |
+| `node scripts/build-all.mjs [--only <substr>] [--check] [--publish]` | Build all characters/weapons/generated defs; aggregate report at `build/build-all-report.json`. Fails non-zero if any build fails. |
+| `node scripts/validate-build.mjs <name>\|--all [--quiet]` | Verify a build dir: manifest parses, sheet PNG matches JSON meta.size, frame rects in bounds, every resolved animation present, opaque pixels > 0, credits exist. |
+| `node scripts/generate-credits.mjs [--check]` | Aggregate attribution for ALL definitions into repo-root `CREDITS/LPC-CREDITS.txt` + `.csv`. CI-friendly with `--check`. |
+
+Typical full run:
+
+```sh
+npm test                                   # unit tests (no upstream needed)
+node scripts/generate-npcs.mjs ruh_crew --build
+node scripts/build-all.mjs
+node scripts/validate-build.mjs --all
+node scripts/generate-credits.mjs --check
+```
+
+## Definition formats
+
+Character (`definitions/characters/*.yaml`):
 
 ```yaml
-name: kvothe
-bodyType: male            # male|female|teen|child|muscular|pregnant
+name: factory_test
+bodyType: male              # male|female|teen|child|muscular|pregnant
 animations: [idle, walk]
 layers:
-  - { item: body.body_color,     color: swarthy,     palette: notw-body }
-  - { item: hair.long_messy,     color: kvothe_rust, palette: notw-hair }
-  - { item: clothes.longsleeve,  color: ruh_green,   palette: notw-cloth }
-  - { item: legs.pants,          color: tarbean_brown }
-  - { item: shoes.basic_boots }                       # default upstream ramp
+  - item: body.body_color   # catalog id from metadata/asset-index.json
+    color: light            # recolor-capable items: upstream or custom palette name
+  - item: clothes.longsleeve
+    color: ruh_green
+    palette: notw-cloth     # custom target palette in palettes/notw-cloth.json
+  - item: clothes.tunic
+    variant: gray           # variant-dir items use variants instead of colors
 ```
 
-- `item` must be an id from `metadata/asset-index.json` (657 items indexed).
-- `color` is a named ramp in the material palette; the compositor detects which
-  native upstream ramp the sprite pixels actually use and remaps shade-by-shade.
-- `palette` optionally selects a factory palette from `palettes/`
-  (`notw-cloth.json` etc.); otherwise the upstream material palette is used.
-- `variant` selects weapon/material variants (e.g. `iron`, `steel`).
+Weapon (`definitions/weapons/*.yaml`): `{ name, item, bodyType, variant,
+color?, animations }`.
 
-## Recoloring model
+NPC archetype (`definitions/npc-archetypes/*.yaml`):
 
-LPC sprites are painted with one named 6-shade ramp per material
-(dark→light). Detection scores every named ramp in the source palette by how
-many of its shades appear as pixels; the best match becomes the mapping
-source. Target ramps come from the same file or a NOTW factory palette.
-This means sprites can be recolored to any named ramp without hand-painting.
+```yaml
+name: ruh_crew
+count: 4
+seed: 20260825              # any value; drives deterministic picks
+bodyTypes: [male, female]
+animations: [idle, walk]
+slots:                      # ordered; exactly one layer per slot per NPC
+  - slotName: hair
+    pool:
+      - item: hair.page
+        colors: [black, brown]      # recolor item -> color; variant item -> variant
+      - item: hair.balding
+```
 
-## Output JSON
+Group (`definitions/groups/*.yaml`):
 
-`<name>.json` contains a TexturePacker-style `frames` map keyed
-`<animation>_<dir>_<frame>` plus `meta.animations` summarizing row offsets,
-frames/directions/frameSize per animation. Directions are rows ordered
-up/left/down/right (LPC standard).
+```yaml
+name: smoke_group
+members:
+  - definitions/characters/factory_test.yaml
+  - definitions/generated/ruh_crew_00.yaml
+```
 
-## Licensing
+## Output layout
 
-Every build emits `CREDITS.md` aggregating authors/licenses/URLs from the
-upstream `sheet_definitions` credit blocks for exactly the items used.
-License families present upstream: OGA-BY, CC-BY, CC-BY-SA, CC0, GPL-2/3.
-Respect them when distributing; see repo CONTRIBUTING.md.
+- `build/<name>/<name>.png|.json` — game-ready sheet + texture-atlas JSON
+  (`frames["<anim>_<dir>_<f>"]`, `meta.animations[<anim>] = {row,y,frames,
+  directions,frameSize}`)
+- `build/<name>/manifest.json`, `CREDITS.md`, `build-report.json`
+- `build/groups/<name>/group-report.json`, `CREDITS.md`
+- `../../art/sprites/lpc/` — published sheets when `--publish` is passed
+
+## Testing
+
+`npm test` runs `node --test tests/` (definition parsing, validator rules,
+palette math, NPC determinism, credit aggregation). Tests are hermetic —
+they read `metadata/asset-index.json` but never touch upstream PNGs.

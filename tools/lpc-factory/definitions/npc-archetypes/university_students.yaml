@@ -1,0 +1,36 @@
+# university_students.yaml — Arcanum background students
+name: university_student
+count: 5
+seed: 1850
+bodyTypes: [male, female]
+animations:
+  - idle
+  - walk
+slots:
+  - slotName: hair
+    pool:
+      - item: hair.parted
+        colors: [dark_brown, chestnut, blonde]
+      - item: hair.braid
+        colors: [dark_brown, black, chestnut]
+      - item: hair.curly_short
+        colors: [black, dark_brown]
+      - item: hair.ponytail
+        colors: [black, chestnut]
+  - slotName: shirt
+    pool:
+      - item: clothes.collared_formal_longsleeve
+        colors: [university_blue, master_grey, arcanist_teal]
+        palette: university-cloth
+      - item: clothes.longsleeve
+        colors: [navy, slate, white, bluegray]
+      - item: clothes.longsleeve_polo
+        colors: [blue, gray]
+  - slotName: legs
+    pool:
+      - item: legs.pants
+        colors: [charcoal, navy, slate, black]
+  - slotName: shoes
+    pool:
+      - item: shoes.basic_shoes
+        colors: [brown, black]

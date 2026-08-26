@@ -1,0 +1,21 @@
+# haliax.yaml — leader of the Chandrian; "his face was shadowed like a cave"
+# NOTE: pending custom assets — upstream has no shadowed-face overlay.
+name: haliax
+bodyType: male
+animations:
+  - idle
+  - walk
+layers:
+  - item: body.body_color
+    color: corpse_pale
+    palette: chandrian-body
+  - item: legs.pants
+    color: chandrian_black
+    palette: chandrian-cloth
+  - item: shoes.basic_boots
+    color: black
+  - item: clothes.longsleeve
+    color: chandrian_black
+    palette: chandrian-cloth
+  - item: hat.hood
+    color: charcoal

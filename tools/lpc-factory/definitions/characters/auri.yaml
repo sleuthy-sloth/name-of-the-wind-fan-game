@@ -1,0 +1,17 @@
+# auri.yaml — the fae girl who lives Underthing; "Auri has names for things"
+# teen body lacks female-only torso paths upstream, so we build her on the
+# female base with a slight frame.
+name: auri
+bodyType: female
+animations:
+  - idle
+  - walk
+layers:
+  - item: body.body_color
+    color: pale
+    palette: notw-body
+  - item: clothes.tunic
+    variant: forest
+  - item: hair.xlong
+    color: moon_white
+    palette: notw-hair

@@ -1,0 +1,10 @@
+# smoke_group.yaml — Factory smoke group: exercises build-group across
+# character, weapon, and generated NPC definitions.
+# Run: node scripts/build-group.mjs smoke_group
+
+name: smoke_group
+description: Cross-kind pipeline verification (character + weapon + generated NPC)
+members:
+  - definitions/characters/factory_test.yaml
+  - definitions/weapons/lpc_sword_test.yaml
+  - definitions/generated/ruh_crew_00.yaml

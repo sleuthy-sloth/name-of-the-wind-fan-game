@@ -1,0 +1,14 @@
+name: ruh_crew_02
+bodyType: female
+animations:
+  - idle
+  - walk
+layers:
+  - item: hair.ponytail
+    color: red
+  - item: clothes.longsleeve
+    color: maroon
+  - item: legs.pants
+    color: walnut
+  - item: shoes.basic_boots
+    color: black

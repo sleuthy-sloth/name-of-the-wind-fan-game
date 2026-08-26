@@ -1,0 +1,14 @@
+name: inn_patron_05
+bodyType: male
+animations:
+  - idle
+  - walk
+layers:
+  - item: hair.ponytail
+    color: redhead
+  - item: clothes.tunic
+    variant: brown
+  - item: legs.pants
+    color: brown
+  - item: shoes.basic_boots
+    color: black

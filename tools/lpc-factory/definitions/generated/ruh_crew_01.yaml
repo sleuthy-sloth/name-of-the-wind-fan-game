@@ -1,0 +1,14 @@
+name: ruh_crew_01
+bodyType: female
+animations:
+  - idle
+  - walk
+layers:
+  - item: hair.curtains
+    color: black
+  - item: clothes.tunic
+    variant: brown
+  - item: legs.pants
+    color: brown
+  - item: shoes.basic_boots
+    color: brown

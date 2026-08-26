@@ -1,0 +1,22 @@
+# vertical_slice_cast.yaml — named cast used by Phase 1 scenes.
+# Run: node scripts/build-group.mjs vertical_slice_cast
+
+name: vertical_slice_cast
+description: >
+  Named characters for the Edema Ruh vertical slice and early Act 2 scenes:
+  caravan era, camp cast, University core, and Chandrian antagonists.
+members:
+  - definitions/characters/kvothe_caravan.yaml
+  - definitions/characters/kvothe_university.yaml
+  - definitions/characters/abenthy.yaml
+  - definitions/characters/arliden.yaml
+  - definitions/characters/laurian.yaml
+  - definitions/characters/denna.yaml
+  - definitions/characters/auri.yaml
+  - definitions/characters/simmon.yaml
+  - definitions/characters/wilem.yaml
+  - definitions/characters/ambrose.yaml
+  - definitions/characters/elodin.yaml
+  - definitions/characters/trapis.yaml
+  - definitions/characters/haliax.yaml
+  - definitions/characters/cinder.yaml

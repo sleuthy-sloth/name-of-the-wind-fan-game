@@ -1,0 +1,14 @@
+name: ruh_crew_03
+bodyType: female
+animations:
+  - idle
+  - walk
+layers:
+  - item: hair.bedhead
+    color: black
+  - item: clothes.longsleeve
+    palette: notw-cloth
+  - item: legs.pants
+    color: brown
+  - item: shoes.basic_boots
+    color: brown

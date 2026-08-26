@@ -1,0 +1,13 @@
+# cinder_sword.yaml — Cinder's cold-blue blade
+name: cinder_sword
+item: weapon.glowsword
+bodyType: male
+variant: blue
+animations:
+  - walk
+  - idle
+  - combat_idle
+  - hurt
+  - slash_128
+  - backslash_128
+  - halfslash_128

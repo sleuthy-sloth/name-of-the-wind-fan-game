@@ -1,0 +1,13 @@
+name: inn_patron_04
+bodyType: female
+animations:
+  - idle
+  - walk
+layers:
+  - item: hair.balding
+  - item: clothes.longsleeve
+    color: maroon
+  - item: legs.pants
+    color: slate
+  - item: shoes.basic_boots
+    color: brown

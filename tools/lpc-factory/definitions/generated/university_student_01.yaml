@@ -1,0 +1,14 @@
+name: university_student_01
+bodyType: male
+animations:
+  - idle
+  - walk
+layers:
+  - item: hair.parted
+    color: dark_brown
+  - item: clothes.longsleeve
+    color: navy
+  - item: legs.pants
+    color: charcoal
+  - item: shoes.basic_shoes
+    color: brown

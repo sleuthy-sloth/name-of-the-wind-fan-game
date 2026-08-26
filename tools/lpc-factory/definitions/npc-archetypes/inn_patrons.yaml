@@ -1,0 +1,43 @@
+# inn_patrons.yaml — Waystone Inn / general tavern background crowd
+name: inn_patron
+count: 6
+seed: 7331
+bodyTypes: [male, female]
+animations:
+  - idle
+  - walk
+slots:
+  - slotName: hair
+    pool:
+      - item: hair.parted
+        colors: [dark_brown, black, chestnut]
+      - item: hair.bob
+        colors: [chestnut, dark_brown]
+      - item: hair.balding
+        color: gray
+      - item: hair.ponytail
+        colors: [dark_brown, redhead]
+  - slotName: beard
+    bodyTypes: [male]
+    optional: true
+    pool:
+      - item: beard.trimmed_beard
+        colors: [gray, dark_brown]
+      - item: beard.5_o_clock_shadow
+        colors: [black, dark_brown]
+  - slotName: shirt
+    pool:
+      - item: clothes.longsleeve
+        colors: [brown, forest, maroon, slate, tan]
+      - item: clothes.shortsleeve
+        colors: [white, sky, rose]
+      - item: clothes.tunic
+        colors: [tan, brown, walnut, gray]
+  - slotName: legs
+    pool:
+      - item: legs.pants
+        colors: [brown, charcoal, walnut, slate]
+  - slotName: shoes
+    pool:
+      - item: shoes.basic_boots
+        colors: [brown, black]

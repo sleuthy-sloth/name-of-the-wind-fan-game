@@ -46,7 +46,7 @@ async function buildWeapon(definitionPath, options = {}) {
   const validation = validateCharacterDef(charDef, assetIndex);
   if (!validation.valid) {
     validation.errors.forEach(e => console.error("  ERROR: " + e));
-    process.exit(1);
+    throw new Error("weapon definition failed validation: " + weaponDef.name);
   }
   validation.warnings.forEach(w => console.warn("  warn: " + w));
 
@@ -56,9 +56,8 @@ async function buildWeapon(definitionPath, options = {}) {
 
   // A weapon must resolve at least one image overall
   if (summary.totalImages === 0) {
-    console.error("FATAL: no images resolved for weapon " + weaponDef.item +
+    throw new Error("no images resolved for weapon " + weaponDef.item +
       " (check bodyType/variant/animations)");
-    process.exit(1);
   }
 
   const outputDir = options.output || path.join(factoryRoot, "build", weaponDef.name);
@@ -85,8 +84,7 @@ async function buildWeapon(definitionPath, options = {}) {
 
   const opaque = countOpaque(loadPngRgba(sheetPng).data);
   if (opaque === 0) {
-    console.error("FATAL: sheet is fully transparent");
-    process.exit(1);
+    throw new Error("sheet is fully transparent");
   }
   console.log("Verification: " + opaque + " opaque pixels");
 
@@ -147,8 +145,16 @@ function parseArgs(argv) {
   return { definitionPath, options };
 }
 
-const { definitionPath, options } = parseArgs(process.argv);
-buildWeapon(definitionPath, options).catch(err => {
-  console.error("Fatal error:", err.message);
-  process.exit(1);
-});
+function main() {
+  const { definitionPath, options } = parseArgs(process.argv);
+  buildWeapon(definitionPath, options).catch(err => {
+    console.error("Fatal error:", err.message);
+    process.exit(1);
+  });
+}
+
+const isDirectRun = process.argv[1] &&
+  path.resolve(process.argv[1]) === __filename;
+if (isDirectRun) main();
+
+export { buildWeapon };

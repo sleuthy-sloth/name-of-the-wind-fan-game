@@ -1,0 +1,14 @@
+name: university_student_04
+bodyType: female
+animations:
+  - idle
+  - walk
+layers:
+  - item: hair.parted
+    color: chestnut
+  - item: clothes.longsleeve
+    color: slate
+  - item: legs.pants
+    color: slate
+  - item: shoes.basic_shoes
+    color: black

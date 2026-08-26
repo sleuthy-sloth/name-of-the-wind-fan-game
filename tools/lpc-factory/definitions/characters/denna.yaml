@@ -1,0 +1,16 @@
+# denna.yaml — the girl in Tarbean and beyond, always just out of reach
+name: denna
+bodyType: female
+animations:
+  - idle
+  - walk
+layers:
+  - item: body.body_color
+    color: pale
+    palette: notw-body
+  - item: clothes.robe
+    variant: blue
+  - item: belt.leather_belt
+    variant: brown
+  - item: hair.wavy
+    color: black

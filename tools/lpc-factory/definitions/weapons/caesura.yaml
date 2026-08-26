@@ -1,0 +1,14 @@
+# caesura.yaml — "Sword Tree" gift; elegant saber with a broken-angel guard
+# NOTE: pending custom assets — upstream saber lacks Caesura's notched guard.
+name: caesura
+item: weapon.saber
+bodyType: male
+variant: saber
+animations:
+  - walk
+  - idle
+  - combat_idle
+  - hurt
+  - slash_128
+  - backslash_128
+  - halfslash_128

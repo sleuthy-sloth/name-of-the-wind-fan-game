@@ -1,0 +1,19 @@
+# simmon.yaml — Sim, University student, a baron's son with a poet's heart
+name: simmon
+bodyType: male
+animations:
+  - idle
+  - walk
+layers:
+  - item: body.body_color
+    color: pale
+    palette: notw-body
+  - item: legs.pants
+    color: white
+  - item: shoes.basic_shoes
+    color: brown
+  - item: clothes.longsleeve
+    color: midnight_blue
+    palette: nobility-cloth
+  - item: hair.parted
+    color: blonde

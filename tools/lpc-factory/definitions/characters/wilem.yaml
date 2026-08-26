@@ -1,0 +1,18 @@
+# wilem.yaml — Wilem, Cealdish University student and friend
+name: wilem
+bodyType: male
+animations:
+  - idle
+  - walk
+layers:
+  - item: body.body_color
+    color: dark
+    palette: notw-body
+  - item: legs.pants
+    color: slate
+  - item: shoes.basic_boots
+    color: black
+  - item: clothes.longsleeve
+    color: bluegray
+  - item: hair.short_topknot
+    color: black

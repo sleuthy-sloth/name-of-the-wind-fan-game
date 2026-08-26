@@ -1,0 +1,13 @@
+# adem_sword.yaml — Adem mercenary longsword (Tempi/Shehyn archetype prop)
+name: adem_sword
+item: weapon.longsword
+bodyType: male
+variant: longsword
+animations:
+  - walk
+  - idle
+  - combat_idle
+  - hurt
+  - slash_128
+  - backslash_128
+  - halfslash_128

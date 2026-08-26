@@ -1,0 +1,13 @@
+name: inn_patron_03
+bodyType: male
+animations:
+  - idle
+  - walk
+layers:
+  - item: hair.balding
+  - item: clothes.longsleeve
+    color: tan
+  - item: legs.pants
+    color: walnut
+  - item: shoes.basic_boots
+    color: brown

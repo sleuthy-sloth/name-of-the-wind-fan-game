@@ -1,6 +1,7 @@
 // build-character.mjs — Main CLI entry point for building LPC characters
 // Pipeline: definition -> catalog validation -> composition manifest ->
 // Node/pngjs compositing + recoloring -> game-ready sheet + JSON + credits.
+// Also importable: exports buildCharacter() for build-all/build-group.
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -80,7 +81,7 @@ async function buildCharacter(definitionPath, options = {}) {
   if (!validation.valid) {
     console.error("Validation errors:");
     validation.errors.forEach(e => console.error("  - " + e));
-    process.exit(1);
+    throw new Error("character definition failed validation: " + def.name);
   }
   if (validation.warnings.length > 0) {
     console.warn("Validation warnings:");
@@ -128,8 +129,7 @@ async function buildCharacter(definitionPath, options = {}) {
   const sheetPngLoaded = await import("./lib/png-compositor.mjs").then(m => m.loadPngRgba(sheetPng));
   const opaquePixels = countOpaque(sheetPngLoaded.data);
   if (opaquePixels === 0) {
-    console.error("FATAL: composed sheet is fully transparent — nothing was composited");
-    process.exit(1);
+    throw new Error("composed sheet is fully transparent — nothing was composited");
   }
   console.log("Verification: " + opaquePixels + " opaque pixels in final sheet");
 
@@ -198,8 +198,16 @@ function parseArgs(argv) {
   return { definitionPath, options };
 }
 
-const { definitionPath, options } = parseArgs(process.argv);
-buildCharacter(definitionPath, options).catch(err => {
-  console.error("Fatal error:", err.message);
-  process.exit(1);
-});
+function main() {
+  const { definitionPath, options } = parseArgs(process.argv);
+  buildCharacter(definitionPath, options).catch(err => {
+    console.error("Fatal error:", err.message);
+    process.exit(1);
+  });
+}
+
+const isDirectRun = process.argv[1] &&
+  path.resolve(process.argv[1]) === __filename;
+if (isDirectRun) main();
+
+export { buildCharacter };

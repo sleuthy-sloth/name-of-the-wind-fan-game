@@ -1,0 +1,14 @@
+name: university_student_00
+bodyType: female
+animations:
+  - idle
+  - walk
+layers:
+  - item: hair.curly_short
+    color: dark_brown
+  - item: clothes.longsleeve_polo
+    color: gray
+  - item: legs.pants
+    color: navy
+  - item: shoes.basic_shoes
+    color: brown

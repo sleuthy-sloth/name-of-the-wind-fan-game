@@ -1,0 +1,14 @@
+name: university_student_02
+bodyType: female
+animations:
+  - idle
+  - walk
+layers:
+  - item: hair.braid
+    color: dark_brown
+  - item: clothes.collared_formal_longsleeve
+    palette: university-cloth
+  - item: legs.pants
+    color: black
+  - item: shoes.basic_shoes
+    color: black

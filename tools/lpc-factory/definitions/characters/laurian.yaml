@@ -1,0 +1,14 @@
+# laurian.yaml — Kvothe's mother, a baron's daughter in exile
+name: laurian
+bodyType: female
+animations:
+  - idle
+  - walk
+layers:
+  - item: body.body_color
+    color: pale
+    palette: notw-body
+  - item: clothes.robe
+    variant: purple
+  - item: hair.braid
+    color: dark_brown

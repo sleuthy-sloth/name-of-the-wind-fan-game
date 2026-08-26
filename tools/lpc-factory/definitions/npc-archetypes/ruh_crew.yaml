@@ -1,0 +1,40 @@
+# ruh_crew.yaml — Edema Ruh troupe member archetype
+# Generates deterministic background troupe NPCs for the caravan/camp scenes.
+# Colors without a `palette` key use upstream LPC cloth/hair/body palettes;
+# `notw-cloth` entries come from tools/lpc-factory/palettes/notw-cloth.json.
+
+name: ruh_crew
+count: 4
+seed: 20260825
+bodyTypes: [male, female]
+animations:
+  - idle
+  - walk
+slots:
+  - slotName: hair
+    pool:
+      - item: hair.page
+        colors: [black, dark_brown, chestnut]
+      - item: hair.ponytail
+        colors: [dark_brown, redhead]
+      - item: hair.bedhead
+        colors: [dark_brown, black]
+      - item: hair.curtains
+        colors: [black, dark_brown]
+  - slotName: shirt
+    pool:
+      - item: clothes.longsleeve
+        color: ruh_green
+        palette: notw-cloth
+      - item: clothes.longsleeve
+        colors: [brown, forest, maroon]
+      - item: clothes.tunic
+        colors: [tan, brown, gray]
+  - slotName: legs
+    pool:
+      - item: legs.pants
+        colors: [brown, charcoal, walnut]
+  - slotName: shoes
+    pool:
+      - item: shoes.basic_boots
+        colors: [brown, black]

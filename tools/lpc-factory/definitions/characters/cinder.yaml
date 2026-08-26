@@ -1,0 +1,21 @@
+# cinder.yaml — Chandrian; "pale as bone, with hair white as snow and eyes of ice"
+name: cinder
+bodyType: male
+animations:
+  - idle
+  - walk
+layers:
+  - item: body.body_color
+    color: corpse_pale
+    palette: chandrian-body
+  - item: legs.pants
+    color: cinder_ice_blue
+    palette: chandrian-cloth
+  - item: shoes.basic_boots
+    color: black
+  - item: clothes.longsleeve
+    color: hail_white
+    palette: chandrian-cloth
+  - item: hair.long_straight
+    color: cinder_white
+    palette: chandrian-hair
