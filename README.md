@@ -232,7 +232,7 @@ command line — controls, suite commands, and architecture notes are in
 ├── audio/         # event-organized production audio + audio-manifest.json
 ├── maps/          # LDtk projects
 ├── docs/          # design documents (GDD lives here)
-├── tests/         # 13 headless Godot test suites
+├── tests/         # 16 headless Godot test suites
 ├── CREDITS/       # generated audio credits (AUDIO-CREDITS.txt/.csv)
 ├── addons/        # editor plugins (e.g. LDtk importer)
 └── tools/         # build tooling — lpc-factory sprites, audio-pipeline sound

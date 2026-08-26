@@ -145,6 +145,27 @@ func _apply_effect(effect: String) -> void:
 		_:
 			_tween.tween_property(_overlay, "color", Color(0.0, 0.0, 0.0, 0.0), 0.5)
 
+## Skip past remaining beats, applying each so set_flag/autosave side effects
+## still fire. The final beat's next_scene routes immediately afterward.
+func skip_to_end() -> void:
+	if _complete:
+		return
+	while _current_beat_index + 1 < _beats.size():
+		_current_beat_index += 1
+		var beat: Variant = _beats[_current_beat_index]
+		if beat is Dictionary:
+			_apply_beat(beat as Dictionary)
+	_complete = true
+	sequence_finished.emit(_cutscene_id)
+	_route_next()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if _complete:
+		return
+	if event.is_action_pressed("ui_cancel") or (event is InputEventKey and (event as InputEventKey).pressed and (event as InputEventKey).keycode == KEY_ENTER):
+		skip_to_end()
+		get_viewport().set_input_as_handled()
+
 func _route_next() -> void:
 	var next_scene := ""
 	if _beats.size() > 0:

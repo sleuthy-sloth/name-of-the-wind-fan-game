@@ -10,7 +10,7 @@ config/name="The Name of the Wind: The Kingkiller Chronicle"
 config/description="An unofficial, non-commercial fan game based on The Kingkiller Chronicle by Patrick Rothfuss. A 2D top-down narrative RPG / life sim built in Godot 4."
 config/version="0.1.0"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-run/main_scene="res://scenes/world/waystone_inn.tscn"
+run/main_scene="res://scenes/ui/title_menu.tscn"
 
 [autoload]
 

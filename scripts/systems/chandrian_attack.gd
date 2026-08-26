@@ -20,6 +20,25 @@ func _ready() -> void:
 	_setup_ambience()
 	call_deferred("start_sequence")
 
+func _unhandled_input(event: InputEvent) -> void:
+	if _complete:
+		return
+	if event.is_action_pressed("ui_cancel"):
+		skip_to_end()
+		get_viewport().set_input_as_handled()
+
+## Advance through remaining beats immediately, applying their side effects.
+func skip_to_end() -> void:
+	if _complete:
+		return
+	while _current_beat_index + 1 < _beats.size():
+		_current_beat_index += 1
+		var beat: Variant = _beats[_current_beat_index]
+		if beat is Dictionary:
+			_apply_beat(beat as Dictionary)
+	_complete = true
+	_trigger_final_transition()
+
 ## Moody wind bed per phase; a thunder crack opens the attack itself.
 func _setup_ambience() -> void:
 	var bed_event := "AMB_WIND_LIGHT_LAYER"

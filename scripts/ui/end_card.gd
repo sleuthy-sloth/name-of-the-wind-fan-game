@@ -24,6 +24,16 @@ func _ready() -> void:
 	if _continue_button != null:
 		_continue_button.pressed.connect(_on_continue_pressed)
 	AudioLibrary.play("MUS_STING_ENDCARD", -6.0)
+	_play_fade_in()
+
+func _play_fade_in() -> void:
+	var fade := get_node_or_null("ColorRect") as ColorRect
+	if fade == null:
+		return
+	fade.modulate.a = 1.0
+	var tween := create_tween()
+	if tween != null:
+		tween.tween_property(fade, "modulate:a", 0.0, 0.6)
 
 func _set_flag(flag_id: String) -> void:
 	var gs := get_node_or_null("/root/GameState")

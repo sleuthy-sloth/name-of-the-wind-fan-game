@@ -43,6 +43,7 @@ func _run() -> void:
 	await _test_light_fire_effect()
 	await _test_post_slice_flow()
 	await _test_inn_interior_and_tarbean_data()
+	await _test_title_menu_and_skip()
 	await _test_scene_wiring()
 
 	if _failures == 0:
@@ -516,6 +517,74 @@ func _test_inn_interior_and_tarbean_data() -> void:
 	_check(end_card_text.contains("act1_post_slice_completed"), "end card checks epilogue completion")
 
 
+# --- title menu + cutscene skip -------------------------------------------------
+
+func _test_title_menu_and_skip() -> void:
+	# Title menu scene + script load cleanly.
+	_check(load("res://scenes/ui/title_menu.tscn") != null, "title_menu.tscn loads")
+	_check(load("res://scripts/ui/title_menu.gd") != null, "title_menu.gd loads")
+
+	var menu_text := FileAccess.get_file_as_string("res://scenes/ui/title_menu.tscn")
+	_check(menu_text.contains("NewGameButton"), "menu has New Game button")
+	_check(menu_text.contains("ContinueButton"), "menu has Continue button")
+	_check(menu_text.contains("QuitButton"), "menu has Quit button")
+	_check(menu_text.contains("TitleLabel"), "menu has a title label")
+
+	var script_text := FileAccess.get_file_as_string("res://scripts/ui/title_menu.gd")
+	_check(script_text.contains("has_continue_save"), "menu exposes continue-state API")
+	_check(script_text.contains("_reset_world"), "menu can reset world state")
+	_check(script_text.contains("waystone_inn.tscn"), "New Game routes to Waystone opening")
+
+	# Cutscene skip method exists and accelerates playback.
+	var beat_text := FileAccess.get_file_as_string("res://scripts/systems/beat_cutscene.gd")
+	_check(beat_text.contains("skip_to_end"), "BeatCutscene exposes skip_to_end")
+	_check(beat_text.contains("ui_cancel"), "BeatCutscene listens for skip input")
+
+	var attack_text := FileAccess.get_file_as_string("res://scripts/systems/chandrian_attack.gd")
+	_check(attack_text.contains("skip_to_end"), "ChandrianAttack exposes skip_to_end")
+	_check(attack_text.contains("ui_cancel"), "ChandrianAttack listens for skip input")
+
+	# Functional cutscene skip — short-duration beats end at the right beat
+	# when skip_to_end is called without waiting for timers.
+	var skip_beats := {
+		"id": "skip_test",
+		"beats": [
+			{"narration": "One.", "effect": "warm", "duration": 0.05, "set_flag": "flag_skip_one"},
+			{"narration": "Two.", "effect": "dim", "duration": 0.05, "set_flag": "flag_skip_two"},
+			{"narration": "Three.", "effect": "darkness", "duration": 0.05, "set_flag": "flag_skip_three"},
+		],
+	}
+	var path := "user://test_skip_cutscene.json"
+	var writer := FileAccess.open(path, FileAccess.WRITE)
+	writer.store_string(JSON.stringify(skip_beats))
+	writer.close()
+
+	if root.get_node_or_null("GameState") == null:
+		var gs_init: Node = load("res://scripts/systems/game_state.gd").new()
+		gs_init.name = "GameState"
+		root.add_child(gs_init)
+
+	var cutscene := BeatCutscene.new()
+	cutscene.auto_start = false
+	cutscene.beats_path = path
+	root.add_child(cutscene)
+	var finished_ids := []
+	cutscene.sequence_finished.connect(func(id: String) -> void: finished_ids.append(id))
+	cutscene.start_sequence()
+	_check(not cutscene.is_sequence_complete(), "cutscene not complete mid-play")
+	cutscene.skip_to_end()
+	_check(cutscene.is_sequence_complete(), "skip_to_end completes cutscene")
+	_check(finished_ids.size() == 1 and finished_ids[0] == "skip_test", "sequence_finished fired on skip")
+	var gs := root.get_node_or_null("GameState")
+	_check(gs.has_flag("flag_skip_one"), "skip applies first beat flag")
+	_check(gs.has_flag("flag_skip_three"), "skip applies last beat flag")
+	cutscene.queue_free()
+
+	# Main scene now points at the title menu.
+	var project_text := FileAccess.get_file_as_string("res://project.godot")
+	_check(project_text.contains("title_menu.tscn"), "main scene is title menu")
+
+
 # --- waystone opening ------------------------------------------------------------
 
 const KNOWN_EFFECTS := ["calm", "unease", "dim", "warm", "darkness"]
@@ -620,6 +689,3 @@ func _test_scene_wiring() -> void:
 	_check(ResourceLoader.exists("res://scripts/ui/threat_panel.gd"), "ThreatPanel script exists")
 	_check(ResourceLoader.exists("res://scripts/ui/sympathy_puzzle_panel.gd"), "SympathyPuzzlePanel script exists")
 	_check(load("res://scenes/world/combat_tutorial.tscn") != null, "combat tutorial scene loads")
-
-	var project_text := FileAccess.get_file_as_string("res://project.godot")
-	_check(project_text.contains("waystone_inn.tscn"), "main scene points at Waystone Inn opening")

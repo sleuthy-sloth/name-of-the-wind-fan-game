@@ -32,14 +32,12 @@ All creative content must remain original; see
 ## Running the game
 
 Open the project in Godot (select `project.godot`), then press **F5** (Run
-Project). The main scene is `res://scenes/world/waystone_inn.tscn`, a scripted
-opening at the Waystone Inn (frame story: Kote and Bast) that sets
-`waystone_opening_seen`, drops the player into the walkable inn interior
-(talk to Kote and Bast, light the cold lamp with sympathy), and exits onto
-`caravan_route.tscn` where Act I begins. After the slice's end card,
-Continue starts the post-slice epilogue: `solo_forest.tscn` (light a fire to
-survive the night) → `tarbean_road.tscn` (narration teaser) → end card with
-Act I closed (`act1_post_slice_completed`).
+Project). The main scene is `res://scenes/ui/title_menu.tscn` — the front
+door of the slice, with New Game / Continue / Quit. New Game resets
+GameState, clears the save slot, and routes to the Waystone Inn opening
+(`res://scenes/world/waystone_inn.tscn`). Continue loads slot 0 and drops
+the player into the saved scene. Press **Esc** during any cutscene to skip
+to its final beat.
 
 From the command line:
 
