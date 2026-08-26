@@ -17,6 +17,9 @@ func _ready() -> void:
 	cutscene.start_sequence()
 
 func _on_cutscene_finished(_id: String) -> void:
+	var journal := get_node_or_null("/root/ChroniclerJournal")
+	if journal != null:
+		(journal as ChroniclerJournal).add_event("beat_tarbean_road")
 	var gs := get_node_or_null("/root/GameState")
 	if gs != null and gs.has_method("set_flag"):
 		gs.call("set_flag", "flag_tarbean_road_seen")

@@ -21,6 +21,10 @@ QuestManager="*res://scripts/systems/quest_manager.gd"
 RelationshipManager="*res://scripts/systems/relationship_manager.gd"
 ScheduleSystem="*res://scripts/systems/schedule_system.gd"
 DebugOverlay="*res://scripts/systems/debug_overlay.gd"
+Settings="*res://scripts/systems/settings.gd"
+ChroniclerJournal="*res://scripts/systems/chronicler_journal.gd"
+ExplorationMap="*res://scripts/systems/exploration_map.gd"
+JournalOverlay="*res://scripts/ui/journal_overlay.gd"
 
 [display]
 
@@ -69,6 +73,11 @@ pause={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194305,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":true,"script":null)
+]
+}
+journal={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":74,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 

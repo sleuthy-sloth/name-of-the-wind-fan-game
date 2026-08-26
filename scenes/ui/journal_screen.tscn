@@ -1,0 +1,117 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/journal_screen.gd" id="journal_screen_gd"]
+[ext_resource type="Script" path="res://scripts/ui/map_renderer.gd" id="map_renderer_gd"]
+
+[node name="JournalScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("journal_screen_gd")
+visible = false
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.05, 0.04, 0.06, 0.92)
+
+[node name="BackgroundVignette" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.16, 0.11, 0.08, 0.55)
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 24.0
+offset_bottom = 64.0
+horizontal_alignment = 1
+text = "The Chronicler's Journal"
+
+[node name="TabRow" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 76.0
+offset_bottom = 116.0
+
+[node name="StoryTabButton" type="Button" parent="TabRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Story"
+
+[node name="MapTabButton" type="Button" parent="TabRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Map"
+
+[node name="ItemsTabButton" type="Button" parent="TabRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Items"
+
+[node name="SummaryLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 120.0
+offset_bottom = 140.0
+horizontal_alignment = 1
+text = ""
+
+[node name="StoryLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 148.0
+offset_right = -32.0
+offset_bottom = -72.0
+bbcode_enabled = true
+fit_content = true
+scroll_active = true
+
+[node name="MapCanvas" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 148.0
+offset_right = -32.0
+offset_bottom = -72.0
+script = ExtResource("map_renderer_gd")
+visible = false
+
+[node name="ItemsLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 148.0
+offset_right = -32.0
+offset_bottom = -72.0
+bbcode_enabled = true
+fit_content = true
+scroll_active = true
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -56.0
+offset_right = 60.0
+offset_bottom = -24.0
+text = "Close  (J / Esc)"

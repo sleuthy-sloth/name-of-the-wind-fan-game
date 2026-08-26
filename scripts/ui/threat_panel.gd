@@ -173,8 +173,17 @@ func _on_continue() -> void:
 	if _threat == null or not _threat.is_resolved():
 		return
 	var outcome := _last_outcome
+	_record_journal(outcome)
 	close()
 	encounter_finished.emit(outcome)
+
+func _record_journal(outcome: Dictionary) -> void:
+	if _threat == null:
+		return
+	var journal := get_node_or_null("/root/ChroniclerJournal")
+	if journal == null:
+		return
+	(journal as ChroniclerJournal).note_threat(_threat, outcome)
 
 # --- UI construction ----------------------------------------------------------
 

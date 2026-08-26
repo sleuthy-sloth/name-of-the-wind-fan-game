@@ -77,9 +77,10 @@ sympathy friction-fire working, then the road to Tarbean.
 Automated verification: **16 Godot headless suites** (engine shell, LDtk
 pipeline, save/load, dialogue, sympathy engine + lighting, lute stage,
 inventory/economy, roster, world traversal, Chandrian attack, phase-0 exit,
-integrated vertical slice, slice polish, phase-2 architecture, threat &
-puzzle layer) plus unit-tested asset pipelines for sprites and audio. Run
-instructions live in [`docs/development.md`](docs/development.md).
+integrated vertical slice, slice polish, phase-2 architecture, threat,
+puzzles, settings, credits & chronicler's journal) plus unit-tested asset
+pipelines for sprites and audio. Run instructions live in
+[`docs/development.md`](docs/development.md).
 
 ---
 
@@ -100,6 +101,12 @@ instructions live in [`docs/development.md`](docs/development.md).
   real Alar cost. Failed attempts escalate pressure until things go badly;
   Abenthy's tutorial teaches all four doors, and threats appear out on the
   road. Physical conflict is short, authored, and consequential.
+- **Chronicler's Journal** — auto-recorded in Chronicler's voice the moment
+  things happen: a story tab for each event, a map tab with fog of war that
+  lights as you wander, and an items tab. Press **J** from anywhere.
+- **Accessibility** — per-category volume (Master / Music / Ambience / SFX),
+  font scale, reduce motion, colorblind-safe threat palette. Open from the
+  title menu or the end card.
 - **Alar** — mental stamina spent on magic, study, and composure; restored
   through sleep, food, and safe company.
 
@@ -225,9 +232,13 @@ command line — controls, suite commands, and architecture notes are in
 ### Project layout
 
 ```
-├── scenes/        # core, player, npcs, ui, minigames, locations
-├── scripts/       # systems (incl. AudioLibrary), dialogue, quests, minigames
-├── data/          # characters, items, recipes, workings, schedules, dialogue
+├── scenes/        # core, player, npcs, ui (incl. title menu, settings, credits,
+│                  #   journal), minigames, locations, world
+├── scripts/       # systems (incl. AudioLibrary, SliceDirector, ThreatEncounter,
+│                  #   SympathyEngine, SympathyPuzzle, ChroniclerJournal,
+│                  #   ExplorationMap, Settings), dialogue, quests, minigames
+├── data/          # characters, items, recipes, workings, schedules, dialogue,
+│                  #   journal (scene registry), threats, stories, items, charts
 ├── art/           # Aseprite sources & exported sheets (incl. generated lpc/)
 ├── audio/         # event-organized production audio + audio-manifest.json
 ├── maps/          # LDtk projects

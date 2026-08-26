@@ -70,7 +70,14 @@ func start_lesson() -> void:
 	_runner.start(data)
 
 func _on_lesson_finished(_dialogue_id: String) -> void:
+	_note_lesson()
 	start_encounter()
+
+func _note_lesson() -> void:
+	var journal := get_node_or_null("/root/ChroniclerJournal")
+	if journal == null:
+		return
+	(journal as ChroniclerJournal).add_event("abenthy_lesson")
 
 # --- phase 2: encounter -------------------------------------------------------
 

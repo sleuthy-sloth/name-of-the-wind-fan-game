@@ -32,6 +32,26 @@ const DOOR_SCENE_SCRIPT := "res://scripts/systems/scene_door.gd"
 const SYMPATHY_TARGET_SCRIPT := "res://scripts/world/sympathy_target.gd"
 const THREAT_TRIGGER_SCRIPT := "res://scripts/world/threat_trigger.gd"
 
+func _scene_id_from_path() -> String:
+	if scene_file_path.is_empty():
+		return ""
+	var idx: int = scene_file_path.rfind("/")
+	if idx == -1:
+		return scene_file_path.trim_suffix(".tscn")
+	var tail := scene_file_path.substr(idx + 1)
+	return tail.trim_suffix(".tscn")
+
+func _note_scene_visited() -> void:
+	var scene_id := _scene_id_from_path()
+	if scene_id.is_empty():
+		return
+	var map := get_node_or_null("/root/ExplorationMap")
+	var journal := get_node_or_null("/root/ChroniclerJournal")
+	if map != null:
+		var was_first := (map as ExplorationMap).visit(scene_id)
+	if journal != null:
+		(journal as ChroniclerJournal).note_visit(scene_id)
+
 const TINT_BY_BLOCK := {
 	"morning": Color(1.0, 0.96, 0.88),
 	"afternoon": Color(1.0, 1.0, 1.0),
@@ -43,6 +63,9 @@ func _ready() -> void:
 	if ldtk_path.is_empty():
 		push_error("WorldScene: ldtk_path is empty on %s" % name)
 		return
+
+	_note_scene_visited()
+
 	var project := LdtkLoader.load_project(ldtk_path)
 	if project.is_empty():
 		push_error("WorldScene: failed to load %s" % ldtk_path)

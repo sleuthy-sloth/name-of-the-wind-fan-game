@@ -1,0 +1,59 @@
+{
+  "scenes": [
+    {
+      "id": "waystone_inn",
+      "display_name": "Waystone Inn — prologue",
+      "position": [500, 520],
+      "neighbors": [
+        { "to": "waystone_inn_interior", "via": "narrative end" }
+      ]
+    },
+    {
+      "id": "waystone_inn_interior",
+      "display_name": "Waystone Inn — common room",
+      "position": [500, 520],
+      "neighbors": [
+        { "to": "caravan_route", "via": "front door" }
+      ]
+    },
+    {
+      "id": "caravan_route",
+      "display_name": "The caravan road",
+      "position": [200, 420],
+      "neighbors": [
+        { "to": "forest_campsite", "via": "trail" },
+        { "to": "combat_tutorial", "via": "east door" }
+      ]
+    },
+    {
+      "id": "forest_campsite",
+      "display_name": "The forest campsite",
+      "position": [300, 300],
+      "neighbors": [
+        { "to": "combat_tutorial", "via": "east door" }
+      ]
+    },
+    {
+      "id": "combat_tutorial",
+      "display_name": "Trouble at the ford",
+      "position": [460, 280],
+      "neighbors": [
+        { "to": "solo_forest", "via": "after the attack" }
+      ]
+    },
+    {
+      "id": "solo_forest",
+      "display_name": "Ruined camp — alone",
+      "position": [300, 300],
+      "neighbors": [
+        { "to": "tarbean_road", "via": "dawn" }
+      ]
+    },
+    {
+      "id": "tarbean_road",
+      "display_name": "On the road to Tarbean",
+      "position": [180, 140],
+      "neighbors": []
+    }
+  ]
+}

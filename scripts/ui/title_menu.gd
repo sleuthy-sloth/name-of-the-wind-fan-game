@@ -16,6 +16,8 @@ const HOLD_AGE_MS := 600
 @onready var _byline_label: Label = get_node_or_null("BylineLabel")
 @onready var _new_button: Button = get_node_or_null("Buttons/NewGameButton")
 @onready var _continue_button: Button = get_node_or_null("Buttons/ContinueButton")
+@onready var _settings_button: Button = get_node_or_null("Buttons/SettingsButton")
+@onready var _credits_button: Button = get_node_or_null("Buttons/CreditsButton")
 @onready var _quit_button: Button = get_node_or_null("Buttons/QuitButton")
 @onready var _fade_rect: ColorRect = get_node_or_null("FadeRect")
 
@@ -71,6 +73,10 @@ func _wire_buttons() -> void:
 		_new_button.pressed.connect(_on_new_game)
 	if _continue_button != null:
 		_continue_button.pressed.connect(_on_continue)
+	if _settings_button != null:
+		_settings_button.pressed.connect(_on_settings)
+	if _credits_button != null:
+		_credits_button.pressed.connect(_on_credits)
 	if _quit_button != null:
 		_quit_button.pressed.connect(_on_quit)
 
@@ -114,6 +120,16 @@ func _on_continue() -> void:
 		return
 	_route_to(_scene_from_save())
 
+func _on_settings() -> void:
+	AudioLibrary.play("SFX_UI_OPEN", -8.0)
+	get_tree().root.set_meta("settings_return_scene", "res://scenes/ui/title_menu.tscn")
+	_route_to("res://scenes/ui/settings_menu.tscn")
+
+func _on_credits() -> void:
+	AudioLibrary.play("SFX_UI_OPEN", -8.0)
+	get_tree().root.set_meta("credits_return_scene", "res://scenes/ui/title_menu.tscn")
+	_route_to("res://scenes/ui/credits_screen.tscn")
+
 func _on_quit() -> void:
 	AudioLibrary.play("SFX_UI_CONFIRM", -4.0)
 	get_tree().quit()
@@ -122,11 +138,18 @@ func _on_quit() -> void:
 ## game truly begins fresh.
 func _reset_world() -> void:
 	var gs := get_node_or_null("/root/GameState")
-	if gs == null:
-		return
-	var fresh_gs: Node = load("res://scripts/systems/game_state.gd").new()
-	gs.from_dict(fresh_gs.to_dict())
-	fresh_gs.queue_free()
+	if gs != null:
+		var fresh_gs: Node = load("res://scripts/systems/game_state.gd").new()
+		gs.from_dict(fresh_gs.to_dict())
+		fresh_gs.queue_free()
+	# Reset subsystems that keep their own lists.
+	var journal := get_node_or_null("/root/ChroniclerJournal")
+	if journal != null and "clear" in journal:
+		journal.clear()
+	var map := get_node_or_null("/root/ExplorationMap")
+	if map != null:
+		map._visited.clear()
+		map._edges.clear()
 	var save_manager := get_node_or_null("/root/SaveManager")
 	if save_manager != null and save_manager.has_method("delete_save"):
 		save_manager.call("delete_save", SAVE_SLOT)

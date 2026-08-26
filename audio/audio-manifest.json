@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-26T01:45:44.347Z",
+  "generatedAt": "2026-08-26T17:39:30.776Z",
   "events": {
     "SFX_FOOT_STONE": {
       "category": "sfx",
@@ -949,6 +949,15 @@
         "sfx/objects/chain_03.ogg"
       ]
     },
+    "MUS_TARBEAN": {
+      "category": "music",
+      "asset": "oga_dark_ambient_loop_13",
+      "loop": false,
+      "review": "approval",
+      "files": [
+        "music/tarbean/tarbean_01.ogg"
+      ]
+    },
     "SFX_FOOT_MUD": {
       "category": "sfx",
       "asset": "oga_different_steps",
@@ -956,6 +965,15 @@
       "review": "standard",
       "files": [
         "sfx/footsteps/foot_mud_01.ogg"
+      ]
+    },
+    "MUS_RUH_CAMP": {
+      "category": "music",
+      "asset": "oga_old_tower_inn",
+      "loop": false,
+      "review": "approval",
+      "files": [
+        "music/ruh/ruh_camp_01.ogg"
       ]
     },
     "SFX_SWORD_SWING_LIGHT": {

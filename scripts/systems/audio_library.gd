@@ -82,7 +82,22 @@ static func play(id: String, volume_db: float = 0.0) -> AudioStreamPlayer:
 	var player := AudioStreamPlayer.new()
 	player.stream = stream
 	player.volume_db = volume_db
+	player.bus = _safe_bus_name(_bus_for(id))
 	tree.current_scene.add_child(player)
 	player.play()
 	player.finished.connect(player.queue_free)
 	return player
+
+static func _bus_for(event_id: String) -> String:
+	if event_id.begins_with("MUS_"):
+		return "Music"
+	if event_id.begins_with("AMB_"):
+		return "Ambience"
+	if event_id.begins_with("SFX_") or event_id.begins_with("INSTR_"):
+		return "SFX"
+	return "Master"
+
+static func _safe_bus_name(name: String) -> String:
+	if AudioServer.get_bus_index(name) == -1:
+		return "Master"
+	return name

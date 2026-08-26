@@ -155,8 +155,19 @@ func _on_confirm() -> void:
 		return
 	var outcome := _puzzle.commit(_alar_holder)
 	_record_in_journal(outcome)
+	_record_chronicler(outcome)
 	close()
 	resolved.emit(outcome)
+
+func _record_chronicler(outcome: Dictionary) -> void:
+	if _puzzle == null:
+		return
+	var journal := get_node_or_null("/root/ChroniclerJournal")
+	if journal == null:
+		return
+	var working_id := str(outcome.get("working_id", ""))
+	var working_title := str(_puzzle.def.get("title", working_id))
+	journal.note_puzzle(working_id, working_title, bool(outcome.get("success", false)))
 
 ## Mirrors the bench behavior: every committed working lands in the journal.
 func _record_in_journal(outcome: Dictionary) -> void:

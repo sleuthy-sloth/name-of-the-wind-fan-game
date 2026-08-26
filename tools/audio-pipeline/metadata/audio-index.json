@@ -3132,8 +3132,8 @@
         "attributionRequired": true
       },
       "review": {
-        "status": "pending",
-        "reviewer": null
+        "status": "approved",
+        "reviewer": "user-approved-2026-08-26"
       },
       "events": {
         "MUS_TARBEAN": {
@@ -3233,8 +3233,8 @@
         "attributionRequired": false
       },
       "review": {
-        "status": "pending",
-        "reviewer": null
+        "status": "approved",
+        "reviewer": "user-approved-2026-08-26"
       },
       "events": {
         "MUS_RUH_CAMP": {

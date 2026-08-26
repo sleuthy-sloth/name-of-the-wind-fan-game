@@ -1,0 +1,156 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/settings_menu.gd" id="settings_menu_gd"]
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("settings_menu_gd")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.05, 0.05, 0.08, 1)
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 32.0
+offset_bottom = 84.0
+horizontal_alignment = 1
+text = "Settings"
+
+[node name="Volume" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -260.0
+offset_top = 110.0
+offset_right = 260.0
+offset_bottom = 360.0
+
+[node name="MasterRow" type="HBoxContainer" parent="Volume"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Volume/MasterRow"]
+custom_minimum_size = Vector2(120, 0)
+text = "Master"
+
+[node name="Slider" type="HSlider" parent="Volume/MasterRow"]
+custom_minimum_size = Vector2(280, 0)
+max_value = 1.0
+step = 0.01
+
+[node name="Value" type="Label" parent="Volume/MasterRow"]
+custom_minimum_size = Vector2(80, 0)
+text = "0 dB"
+
+[node name="MusicRow" type="HBoxContainer" parent="Volume"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Volume/MusicRow"]
+custom_minimum_size = Vector2(120, 0)
+text = "Music"
+
+[node name="Slider" type="HSlider" parent="Volume/MusicRow"]
+custom_minimum_size = Vector2(280, 0)
+max_value = 1.0
+step = 0.01
+
+[node name="Value" type="Label" parent="Volume/MusicRow"]
+custom_minimum_size = Vector2(80, 0)
+text = "0 dB"
+
+[node name="AmbienceRow" type="HBoxContainer" parent="Volume"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Volume/AmbienceRow"]
+custom_minimum_size = Vector2(120, 0)
+text = "Ambience"
+
+[node name="Slider" type="HSlider" parent="Volume/AmbienceRow"]
+custom_minimum_size = Vector2(280, 0)
+max_value = 1.0
+step = 0.01
+
+[node name="Value" type="Label" parent="Volume/AmbienceRow"]
+custom_minimum_size = Vector2(80, 0)
+text = "0 dB"
+
+[node name="SFXRow" type="HBoxContainer" parent="Volume"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Volume/SFXRow"]
+custom_minimum_size = Vector2(120, 0)
+text = "SFX"
+
+[node name="Slider" type="HSlider" parent="Volume/SFXRow"]
+custom_minimum_size = Vector2(280, 0)
+max_value = 1.0
+step = 0.01
+
+[node name="Value" type="Label" parent="Volume/SFXRow"]
+custom_minimum_size = Vector2(80, 0)
+text = "0 dB"
+
+[node name="Accessibility" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -60.0
+offset_right = 260.0
+offset_bottom = 180.0
+
+[node name="Header" type="Label" parent="Accessibility"]
+text = "Accessibility"
+
+[node name="ColorblindToggle" type="CheckButton" parent="Accessibility"]
+text = "Colorblind-safe threat palette"
+
+[node name="ReduceMotionToggle" type="CheckButton" parent="Accessibility"]
+text = "Reduce motion (skip fade animations)"
+
+[node name="FontScaleRow" type="HBoxContainer" parent="Accessibility"]
+
+[node name="Label" type="Label" parent="Accessibility/FontScaleRow"]
+custom_minimum_size = Vector2(160, 0)
+text = "Text size"
+
+[node name="Smaller" type="Button" parent="Accessibility/FontScaleRow"]
+custom_minimum_size = Vector2(40, 32)
+text = "A-"
+
+[node name="Larger" type="Button" parent="Accessibility/FontScaleRow"]
+custom_minimum_size = Vector2(40, 32)
+text = "A+"
+
+[node name="Value" type="Label" parent="Accessibility/FontScaleRow"]
+custom_minimum_size = Vector2(60, 0)
+text = "100%"
+
+[node name="PreviewLabel" type="Label" parent="Accessibility"]
+text = "In the world we make, words are the most honest tools we have."
+autowrap_mode = 3
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -68.0
+offset_right = 60.0
+offset_bottom = -32.0
+text = "Back"

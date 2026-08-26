@@ -44,6 +44,8 @@ func _run() -> void:
 	await _test_post_slice_flow()
 	await _test_inn_interior_and_tarbean_data()
 	await _test_title_menu_and_skip()
+	await _test_settings_and_credits()
+	await _test_chronicler_and_map()
 	await _test_scene_wiring()
 
 	if _failures == 0:
@@ -583,6 +585,83 @@ func _test_title_menu_and_skip() -> void:
 	# Main scene now points at the title menu.
 	var project_text := FileAccess.get_file_as_string("res://project.godot")
 	_check(project_text.contains("title_menu.tscn"), "main scene is title menu")
+
+
+# --- Settings + Credits -------------------------------------------------------
+
+func _test_settings_and_credits() -> void:
+	# Settings autoload loads + owns its bus topology.
+	var settings_path := "res://scripts/systems/settings.gd"
+	_check(load(settings_path) != null, "settings.gd loads")
+	var settings_text := FileAccess.get_file_as_string(settings_path)
+	_check(settings_text.contains("min_volume_db"), "settings exposes volume bounds")
+	_check(settings_text.contains("font_scale_options"), "settings exposes font scale options")
+	_check(settings_text.contains("colorblind_mode"), "settings exposes colorblind toggle")
+	_check(settings_text.contains("colorblind_adjusted"), "settings exposes colorblind adjuster")
+
+	var project := FileAccess.get_file_as_string("res://project.godot")
+	_check(project.contains('Settings="*res://scripts/systems/settings.gd"'), "Settings registered as autoload")
+
+	var music_manifest := FileAccess.get_file_as_string("audio/audio-manifest.json")
+	_check(music_manifest.contains("MUS_RUH_CAMP"), "MUS_RUH_CAMP published after approval")
+	_check(music_manifest.contains("MUS_TARBEAN"), "MUS_TARBEAN published after approval")
+
+	# Settings menu / credits screen assets.
+	_check(load("res://scenes/ui/settings_menu.tscn") != null, "settings_menu.tscn loads")
+	_check(load("res://scripts/ui/settings_menu.gd") != null, "settings_menu.gd loads")
+	_check(load("res://scenes/ui/credits_screen.tscn") != null, "credits_screen.tscn loads")
+	_check(load("res://scripts/ui/credits_screen.gd") != null, "credits_screen.gd loads")
+
+	# Title menu wired to both secondary entries.
+	var menu_text := FileAccess.get_file_as_string("res://scripts/ui/title_menu.gd")
+	_check(menu_text.contains("settings_menu.tscn"), "title menu routes to Settings")
+	_check(menu_text.contains("credits_screen.tscn"), "title menu routes to Credits")
+
+
+# --- Chronicler + ExplorationMap ----------------------------------------------
+
+func _test_chronicler_and_map() -> void:
+	# Journal screen + map renderer + overlay wiring.
+	_check(load("res://scenes/ui/journal_screen.tscn") != null, "journal_screen.tscn loads")
+	_check(load("res://scripts/ui/journal_screen.gd") != null, "journal_screen.gd loads")
+	_check(load("res://scripts/ui/map_renderer.gd") != null, "map_renderer.gd loads")
+	_check(load("res://scripts/ui/journal_overlay.gd") != null, "journal_overlay.gd loads")
+
+	var project := FileAccess.get_file_as_string("res://project.godot")
+	_check(project.contains('ChroniclerJournal="'), "ChroniclerJournal autoload registered")
+	_check(project.contains('ExplorationMap="'), "ExplorationMap autoload registered")
+	_check(project.contains('JournalOverlay="'), "JournalOverlay autoload registered")
+	_check(project.contains('journal=') and project.contains("keycode\":74"), "journal input action bound to J")
+
+	# Templates the writer uses are present in chronicler_journal.
+	var cj_text := FileAccess.get_file_as_string("res://scripts/systems/chronicler_journal.gd")
+	_check(cj_text.contains("threat_resolved"), "journal has threat template")
+	_check(cj_text.contains("puzzle_solved"), "journal has puzzle template")
+	_check(cj_text.contains("visit_first"), "journal has visit template")
+	_check(cj_text.contains("beat_solo_survive"), "journal has solo-survive template")
+	_check(cj_text.contains("beat_tarbean_road"), "journal has tarbean template")
+
+	# Exploration map populates from scene_registry.
+	var registry := FileAccess.get_file_as_string("res://data/journal/scene_registry.json")
+	_check(registry.contains("waystone_inn"), "scene registry has Waystone")
+	_check(registry.contains("solo_forest"), "scene registry has solo_forest")
+	_check(registry.contains("tarbean_road"), "scene registry has tarbean_road")
+
+	# Functional smoke for ChroniclerJournal add_event idempotency.
+	if root.get_node_or_null("GameState") == null:
+		var gs_init: Node = load("res://scripts/systems/game_state.gd").new()
+		gs_init.name = "GameState"
+		root.add_child(gs_init)
+	var journal: Node = load("res://scripts/systems/chronicler_journal.gd").new()
+	root.add_child(journal)
+	await process_frame
+	journal.add_event("beat_attack", {})
+	var first_count: int = journal.entry_count()
+	journal.add_event("beat_attack", {})
+	var second_count: int = journal.entry_count()
+	_check(second_count == first_count, "journal dedupes identical events")
+	journal.clear()
+	journal.queue_free()
 
 
 # --- waystone opening ------------------------------------------------------------

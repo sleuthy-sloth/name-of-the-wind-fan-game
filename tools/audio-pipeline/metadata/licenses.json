@@ -802,9 +802,9 @@
         "attributionRequired": true
       },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "notes": "MUS_TARBEAN candidate: subtle dark drone, 1:55 seamless loop, lossless source. CC-BY attribution will be emitted via credits if approved."
+        "status": "approved",
+        "reviewer": "user-approved-2026-08-26",
+        "notes": "MUS_TARBEAN candidate: subtle dark drone, 1:55 seamless loop, lossless source. CC-BY attribution will be emitted via credits. Approved by user on 2026-08-26."
       },
       "original": [
         "oga_dark_ambient_loop_13.wav"
@@ -875,9 +875,9 @@
         "attributionRequired": false
       },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "notes": "MUS_RUH_CAMP candidate: warm tavern/inn folk, 50 s seamless WAV loop. Music NEVER auto-publishes (plan s40); awaiting human review."
+        "status": "approved",
+        "reviewer": "user-approved-2026-08-26",
+        "notes": "MUS_RUH_CAMP candidate: warm tavern/inn folk, 50 s seamless WAV loop. Approved by user on 2026-08-26."
       },
       "original": [
         "oga_old_tower_inn_loop.wav"

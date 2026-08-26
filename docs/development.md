@@ -52,11 +52,15 @@ From the command line:
 | Move | W/A/S/D or arrow keys | Left stick |
 | Interact | E | A (bottom face button) |
 | Pause | Esc | Start |
+| Toggle journal | J | — |
 | Debug overlay | F3 | — |
 
 F3 toggles the debug overlay (act/day/time block, Alar, money, world-flag
 count, current scene). It is handled directly by the `DebugOverlay` autoload,
-not through the input map.
+not through the input map. The Chronicler's Journal (`J`) opens above any
+scene and closes on Esc; inside it the Story / Map / Items tabs cover
+auto-written narrative entries, visited-scene map with fog of war, and the
+inventory snapshot.
 
 ## Headless test suites
 
@@ -233,6 +237,44 @@ the success flag lands in GameState. `SympathyPuzzlePanel` renders the
 prompt, source choice, and live cost/risk preview, and journals every
 committed working like the bench does. The campsite carries the wagon-gate
 and hatch puzzles; `caravan_route.tscn` adds the fire-split boulder.
+
+### Settings (autoload)
+
+Central preferences store: per-category audio volumes (Master / Music /
+Ambience / SFX — buses are created at boot if absent), font scale, colorblind
+mode, reduce motion. `Settings.colorblind_adjusted(color)` returns a
+rewritten color when the palette swap is on, used by `MapRenderer` and any
+threat UI. Registers itself as a `save_contributor` so choices survive a
+reload. `scenes/ui/settings_menu.tscn` is the front-end; the title menu and
+the end card expose entries to it.
+
+### Chronicler's Journal
+
+Three-tab journal screen (`scenes/ui/journal_screen.tscn`) backed by two
+autoloads:
+
+- **ChroniclerJournal** — writes entries in Chronicler's voice. Templates in
+  the script cover the waystone opening, threat outcomes (resolved / forced
+  failure), puzzle commitments, scene visits (first / again), and the slice
+  + post-slice beats. Hooks at `WorldScene._ready` (note_visit),
+  `ThreatPanel` (note_threat), `SympathyPuzzlePanel` (note_puzzle),
+  `CombatTutorial` (abenthy lesson), `solo_forest` and `tarbean_road`
+  (epilogue beats). Save contributor.
+- **ExplorationMap** — tracks visited scenes (from `data/journal/scene_registry.json`)
+  + edges traversed; drives the JournalScreen map tab as lit dots + lines,
+  with unvisited scenes shown as dim fog-of-war hints.
+- **JournalOverlay** — autoload CanvasLayer that listens for the `journal`
+  action (bound to J by default and Esc to close) and toggles the
+  `JournalScreen` above any scene. The screen exposes three tab buttons:
+  Story (RichTextLabel of entries), Map (custom-drawn), Items (inventory
+  snapshot via `Inventory`).
+
+### CreditsScreen
+
+Reads `res://CREDITS/AUDIO-CREDITS.txt` and `res://CREDITS/LPC-CREDITS.txt`
+into a BBCode RichTextLabel with a fixed project attribution block on top.
+Reachable from the title menu; back-button returns to whichever scene
+invoked the credits (meta key `credits_return_scene` on the SceneTree root).
 
 ## Conventions
 

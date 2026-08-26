@@ -33,6 +33,9 @@ func _on_fire_resolved(outcome: Dictionary) -> void:
 	var gs := get_node_or_null("/root/GameState")
 	if gs != null and gs.has_method("set_flag"):
 		gs.call("set_flag", SURVIVAL_FLAG)
+	var journal := get_node_or_null("/root/ChroniclerJournal")
+	if journal != null:
+		(journal as ChroniclerJournal).add_event("beat_solo_survive")
 	if _director != null:
 		while _director.can_advance():
 			_director.advance_beat()
