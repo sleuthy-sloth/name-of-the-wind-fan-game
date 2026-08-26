@@ -17,7 +17,29 @@ var _tween: Tween = null
 func _ready() -> void:
 	_overlay = _find_overlay()
 	_label = _find_label()
+	_setup_ambience()
 	call_deferred("start_sequence")
+
+## Moody wind bed per phase; a thunder crack opens the attack itself.
+func _setup_ambience() -> void:
+	var bed_event := "AMB_WIND_LIGHT_LAYER"
+	if mode == "attack":
+		bed_event = "SFX_WIND_STRONG"
+	var stream := AudioLibrary.stream_for(bed_event)
+	if stream is AudioStream:
+		if stream is AudioStreamOggVorbis:
+			(stream as AudioStreamOggVorbis).loop = true
+		elif stream is AudioStreamWAV:
+			(stream as AudioStreamWAV).loop_mode = AudioStreamWAV.LOOP_FORWARD
+		var player := AudioStreamPlayer.new()
+		player.name = "AmbiencePlayer"
+		player.stream = stream
+		player.volume_db = -10.0
+		player.autoplay = true
+		add_child(player)
+	if mode == "attack":
+		var timer := get_tree().create_timer(0.6)
+		timer.timeout.connect(func() -> void: AudioLibrary.play("SFX_THUNDER", -4.0))
 
 func _find_overlay() -> ColorRect:
 	var layer: CanvasLayer = get_node_or_null("OverlayLayer")

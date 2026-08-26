@@ -30,6 +30,7 @@ func _run() -> void:
 	await _test_npc_prompt()
 	await _test_world_scene()
 	await _test_audio_manifest_refs()
+	await _test_cutscene_scenes()
 	_remove_probe_nodes()
 
 	if _failures == 0:
@@ -203,9 +204,32 @@ func _test_world_scene() -> void:
 
 func _test_audio_manifest_refs() -> void:
 	for event_id in ["AMB_CAMPFIRE_LOOP", "AMB_FOREST_NIGHT", "AMB_WIND_LIGHT_LAYER",
-			"MUS_STING_ENDCARD", "SFX_UI_CONFIRM", "SFX_UI_HOVER", "SFX_UI_TOGGLE"]:
+			"MUS_STING_ENDCARD", "SFX_UI_CONFIRM", "SFX_UI_HOVER", "SFX_UI_TOGGLE",
+			"SFX_WIND_STRONG", "SFX_THUNDER"]:
 		_check(AudioLibrary.has_event(event_id), "manifest has " + event_id)
 
 	var end_card_text := FileAccess.get_file_as_string("res://scenes/ui/end_card.tscn")
 	_check(not end_card_text.contains("sting_endcard_01.ogg"),
 		"end card uses manifest event, not hardcoded stream")
+
+
+# --- cutscene scenes ------------------------------------------------------------------
+
+func _test_cutscene_scenes() -> void:
+	for scene_path in ["res://scenes/world/chandrian_attack.tscn",
+			"res://scenes/world/escape_aftermath.tscn"]:
+		var packed := load(scene_path) as PackedScene
+		_check(packed != null, scene_path.get_file() + " loads")
+		if packed == null:
+			continue
+		var scene := packed.instantiate()
+		_track(scene)
+		root.add_child(scene)
+		await process_frame
+		var amb := scene.get_node_or_null("AmbiencePlayer") as AudioStreamPlayer
+		_check(amb != null and amb.stream != null,
+			scene_path.get_file() + " plays ambience bed")
+		var label := scene.get_node_or_null("TextLayer/NarrationLabel") as RichTextLabel
+		_check(label != null and label.get_theme_font_size("normal_font_size") >= 18,
+			scene_path.get_file() + " narration styled")
+		scene.queue_free()
