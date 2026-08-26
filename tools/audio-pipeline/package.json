@@ -14,6 +14,6 @@
     "audio:publish": "node scripts/publish-audio.mjs",
     "audio:credits": "node scripts/generate-credits.mjs",
     "audio:all": "npm run audio:index && npm run audio:validate && npm run audio:publish && npm run audio:credits",
-    "test": "node --test tests/"
+    "test": "node --test \"tests/**/**.test.mjs\""
   }
 }

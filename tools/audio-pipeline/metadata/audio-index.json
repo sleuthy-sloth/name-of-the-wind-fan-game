@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-25T04:55:46.620Z",
+  "generatedAt": "2026-08-26T00:54:51.783Z",
   "totals": {
     "requirements": 144,
-    "filled": 37,
+    "filled": 84,
     "partial": 7,
-    "unfilled": 100,
-    "assets": 10,
+    "unfilled": 53,
+    "assets": 11,
     "productionFiles": 136
   },
   "verticalSlice": [
@@ -69,8 +69,8 @@
       "id": "SFX_FOOT_DIRT",
       "dir": "sfx/footsteps",
       "min": 6,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 6,
       "priority": "vertical-slice"
     },
     {
@@ -93,8 +93,8 @@
       "id": "SFX_SWORD_SHEATHE",
       "dir": "sfx/weapons",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": "vertical-slice"
     },
     {
@@ -117,16 +117,16 @@
       "id": "SFX_DOOR_WOOD_CLOSE",
       "dir": "sfx/doors",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": "vertical-slice"
     },
     {
       "id": "SFX_FIRE_CAMP",
       "dir": "sfx/environment",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": "vertical-slice"
     },
     {
@@ -141,8 +141,8 @@
       "id": "SFX_BOOK_CLOSE",
       "dir": "sfx/books",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": "vertical-slice"
     },
     {
@@ -415,8 +415,8 @@
       "id": "SFX_FOOT_DIRT",
       "dir": "sfx/footsteps",
       "min": 6,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 6,
       "priority": "vertical-slice"
     },
     {
@@ -455,16 +455,16 @@
       "id": "SFX_FOOT_WATER",
       "dir": "sfx/footsteps",
       "min": 4,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 4,
       "priority": null
     },
     {
       "id": "SFX_FOOT_METAL",
       "dir": "sfx/footsteps",
       "min": 4,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 4,
       "priority": null
     },
     {
@@ -479,8 +479,8 @@
       "id": "SFX_SWORD_SHEATHE",
       "dir": "sfx/weapons",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": "vertical-slice"
     },
     {
@@ -495,8 +495,8 @@
       "id": "SFX_SWORD_SWING_HEAVY",
       "dir": "sfx/combat",
       "min": 3,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 3,
       "priority": null
     },
     {
@@ -535,104 +535,104 @@
       "id": "SFX_SWORD_BLOCK",
       "dir": "sfx/combat",
       "min": 3,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 3,
       "priority": null
     },
     {
       "id": "SFX_SWORD_PARRY",
       "dir": "sfx/combat",
       "min": 3,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 3,
       "priority": null
     },
     {
       "id": "SFX_SWORD_DROP",
       "dir": "sfx/weapons",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
       "id": "SFX_KNIFE_DRAW",
       "dir": "sfx/weapons",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
       "id": "SFX_KNIFE_SWING",
       "dir": "sfx/combat",
       "min": 3,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 3,
       "priority": null
     },
     {
       "id": "SFX_KNIFE_HIT",
       "dir": "sfx/combat",
       "min": 3,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 3,
       "priority": null
     },
     {
       "id": "SFX_KNIFE_BLOCK",
       "dir": "sfx/combat",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
       "id": "SFX_BOW_DRAW",
       "dir": "sfx/weapons",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
       "id": "SFX_BOW_RELEASE",
       "dir": "sfx/weapons",
       "min": 3,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 3,
       "priority": null
     },
     {
       "id": "SFX_ARROW_FLY",
       "dir": "sfx/combat",
       "min": 3,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 3,
       "priority": null
     },
     {
       "id": "SFX_ARROW_HIT_WOOD",
       "dir": "sfx/combat",
       "min": 3,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 3,
       "priority": null
     },
     {
       "id": "SFX_ARROW_HIT_STONE",
       "dir": "sfx/combat",
       "min": 3,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 3,
       "priority": null
     },
     {
       "id": "SFX_ARROW_HIT_FLESH",
       "dir": "sfx/combat",
       "min": 3,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 3,
       "priority": null
     },
     {
@@ -655,16 +655,16 @@
       "id": "SFX_CLOAK_MOVE",
       "dir": "sfx/clothing",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
       "id": "SFX_LEATHER_MOVE",
       "dir": "sfx/clothing",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
@@ -687,128 +687,128 @@
       "id": "SFX_DOOR_WOOD_CLOSE",
       "dir": "sfx/doors",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": "vertical-slice"
     },
     {
       "id": "SFX_DOOR_HEAVY_OPEN",
       "dir": "sfx/doors",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
       "id": "SFX_DOOR_HEAVY_CLOSE",
       "dir": "sfx/doors",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
       "id": "SFX_CHEST_OPEN",
       "dir": "sfx/objects",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
       "id": "SFX_CHEST_CLOSE",
       "dir": "sfx/objects",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
       "id": "SFX_WOOD_CREAK",
       "dir": "sfx/objects",
       "min": 3,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 3,
       "priority": null
     },
     {
       "id": "SFX_FIRE_CAMP",
       "dir": "sfx/environment",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": "vertical-slice"
     },
     {
       "id": "SFX_FIRE_LARGE",
       "dir": "sfx/environment",
       "min": 1,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 1,
       "priority": null
     },
     {
       "id": "SFX_RAIN_LIGHT",
       "dir": "sfx/environment",
       "min": 1,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 1,
       "priority": null
     },
     {
       "id": "SFX_RAIN_HEAVY",
       "dir": "sfx/environment",
       "min": 1,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 1,
       "priority": null
     },
     {
       "id": "SFX_THUNDER",
       "dir": "sfx/environment",
       "min": 3,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 3,
       "priority": null
     },
     {
       "id": "SFX_WIND_LIGHT",
       "dir": "sfx/environment",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
       "id": "SFX_WIND_STRONG",
       "dir": "sfx/environment",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
       "id": "SFX_WIND_INTERIOR",
       "dir": "sfx/environment",
       "min": 1,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 1,
       "priority": null
     },
     {
       "id": "SFX_WATER_DRIP",
       "dir": "sfx/environment",
       "min": 3,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 3,
       "priority": null
     },
     {
       "id": "SFX_WATER_STREAM",
       "dir": "sfx/environment",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
@@ -823,16 +823,16 @@
       "id": "SFX_ROPE",
       "dir": "sfx/objects",
       "min": 3,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 3,
       "priority": null
     },
     {
       "id": "SFX_METAL_MECHANISM",
       "dir": "sfx/objects",
       "min": 3,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 3,
       "priority": null
     },
     {
@@ -847,8 +847,8 @@
       "id": "SFX_BOOK_CLOSE",
       "dir": "sfx/books",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": "vertical-slice"
     },
     {
@@ -879,40 +879,40 @@
       "id": "SFX_PAPER_RUSTLE",
       "dir": "sfx/books",
       "min": 3,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 3,
       "priority": null
     },
     {
       "id": "SFX_QUILL_WRITE",
       "dir": "sfx/books",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
       "id": "SFX_BOOK_PLACE",
       "dir": "sfx/books",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
       "id": "SFX_BOOK_PICKUP",
       "dir": "sfx/books",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
       "id": "SFX_PARCHMENT",
       "dir": "sfx/books",
       "min": 3,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 3,
       "priority": null
     },
     {
@@ -1047,24 +1047,24 @@
       "id": "SFX_COIN_MEDIUM",
       "dir": "sfx/coins",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
       "id": "SFX_COIN_LARGE",
       "dir": "sfx/coins",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
       "id": "SFX_COIN_POUCH",
       "dir": "sfx/coins",
       "min": 2,
-      "status": "unfilled",
-      "variants": 0,
+      "status": "filled",
+      "variants": 2,
       "priority": null
     },
     {
@@ -1325,6 +1325,239 @@
     }
   ],
   "assets": [
+    {
+      "id": "kenney_impact_sounds",
+      "type": "sfx",
+      "source": {
+        "site": "kenney.nl",
+        "creator": "Kenney",
+        "title": "Impact Sounds",
+        "url": "https://kenney.nl/assets/impact-sounds",
+        "downloadDate": "2026-08-24"
+      },
+      "license": {
+        "name": "CC0-1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "attributionRequired": false
+      },
+      "review": {
+        "status": "approved",
+        "reviewer": "session-2026-08-25"
+      },
+      "events": {
+        "SFX_FOOT_STONE": {
+          "dir": "sfx/footsteps",
+          "files": [
+            {
+              "original": "kenney_impact_sounds/footstep_concrete_000.ogg",
+              "processed": "kenney_impact_sounds/foot_stone_01",
+              "target": "sfx/footsteps/foot_stone_01"
+            },
+            {
+              "original": "kenney_impact_sounds/footstep_concrete_001.ogg",
+              "processed": "kenney_impact_sounds/foot_stone_02",
+              "target": "sfx/footsteps/foot_stone_02"
+            },
+            {
+              "original": "kenney_impact_sounds/footstep_concrete_002.ogg",
+              "processed": "kenney_impact_sounds/foot_stone_03",
+              "target": "sfx/footsteps/foot_stone_03"
+            },
+            {
+              "original": "kenney_impact_sounds/footstep_concrete_003.ogg",
+              "processed": "kenney_impact_sounds/foot_stone_04",
+              "target": "sfx/footsteps/foot_stone_04"
+            },
+            {
+              "original": "kenney_impact_sounds/footstep_concrete_004.ogg",
+              "processed": "kenney_impact_sounds/foot_stone_05",
+              "target": "sfx/footsteps/foot_stone_05"
+            }
+          ]
+        },
+        "SFX_FOOT_GRASS": {
+          "dir": "sfx/footsteps",
+          "files": [
+            {
+              "original": "kenney_impact_sounds/footstep_grass_000.ogg",
+              "processed": "kenney_impact_sounds/foot_grass_01",
+              "target": "sfx/footsteps/foot_grass_01"
+            },
+            {
+              "original": "kenney_impact_sounds/footstep_grass_001.ogg",
+              "processed": "kenney_impact_sounds/foot_grass_02",
+              "target": "sfx/footsteps/foot_grass_02"
+            },
+            {
+              "original": "kenney_impact_sounds/footstep_grass_002.ogg",
+              "processed": "kenney_impact_sounds/foot_grass_03",
+              "target": "sfx/footsteps/foot_grass_03"
+            },
+            {
+              "original": "kenney_impact_sounds/footstep_grass_003.ogg",
+              "processed": "kenney_impact_sounds/foot_grass_04",
+              "target": "sfx/footsteps/foot_grass_04"
+            },
+            {
+              "original": "kenney_impact_sounds/footstep_grass_004.ogg",
+              "processed": "kenney_impact_sounds/foot_grass_05",
+              "target": "sfx/footsteps/foot_grass_05"
+            }
+          ]
+        },
+        "SFX_FOOT_WOOD": {
+          "dir": "sfx/footsteps",
+          "files": [
+            {
+              "original": "kenney_impact_sounds/footstep_wood_000.ogg",
+              "processed": "kenney_impact_sounds/foot_wood_01",
+              "target": "sfx/footsteps/foot_wood_01"
+            },
+            {
+              "original": "kenney_impact_sounds/footstep_wood_001.ogg",
+              "processed": "kenney_impact_sounds/foot_wood_02",
+              "target": "sfx/footsteps/foot_wood_02"
+            },
+            {
+              "original": "kenney_impact_sounds/footstep_wood_002.ogg",
+              "processed": "kenney_impact_sounds/foot_wood_03",
+              "target": "sfx/footsteps/foot_wood_03"
+            },
+            {
+              "original": "kenney_impact_sounds/footstep_wood_003.ogg",
+              "processed": "kenney_impact_sounds/foot_wood_04",
+              "target": "sfx/footsteps/foot_wood_04"
+            },
+            {
+              "original": "kenney_impact_sounds/footstep_wood_004.ogg",
+              "processed": "kenney_impact_sounds/foot_wood_05",
+              "target": "sfx/footsteps/foot_wood_05"
+            }
+          ]
+        },
+        "SFX_SWORD_HIT_METAL": {
+          "dir": "sfx/combat",
+          "files": [
+            {
+              "original": "kenney_impact_sounds/impactMetal_medium_000.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_metal_01",
+              "target": "sfx/combat/sword_hit_metal_01"
+            },
+            {
+              "original": "kenney_impact_sounds/impactMetal_medium_001.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_metal_02",
+              "target": "sfx/combat/sword_hit_metal_02"
+            },
+            {
+              "original": "kenney_impact_sounds/impactMetal_medium_002.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_metal_03",
+              "target": "sfx/combat/sword_hit_metal_03"
+            },
+            {
+              "original": "kenney_impact_sounds/impactMetal_medium_003.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_metal_04",
+              "target": "sfx/combat/sword_hit_metal_04"
+            },
+            {
+              "original": "kenney_impact_sounds/impactMetal_medium_004.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_metal_05",
+              "target": "sfx/combat/sword_hit_metal_05"
+            }
+          ]
+        },
+        "SFX_SWORD_HIT_WOOD": {
+          "dir": "sfx/combat",
+          "files": [
+            {
+              "original": "kenney_impact_sounds/impactPlank_medium_000.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_wood_01",
+              "target": "sfx/combat/sword_hit_wood_01"
+            },
+            {
+              "original": "kenney_impact_sounds/impactPlank_medium_001.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_wood_02",
+              "target": "sfx/combat/sword_hit_wood_02"
+            },
+            {
+              "original": "kenney_impact_sounds/impactPlank_medium_002.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_wood_03",
+              "target": "sfx/combat/sword_hit_wood_03"
+            },
+            {
+              "original": "kenney_impact_sounds/impactPlank_medium_003.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_wood_04",
+              "target": "sfx/combat/sword_hit_wood_04"
+            },
+            {
+              "original": "kenney_impact_sounds/impactPlank_medium_004.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_wood_05",
+              "target": "sfx/combat/sword_hit_wood_05"
+            }
+          ]
+        },
+        "SFX_SWORD_HIT_STONE": {
+          "dir": "sfx/combat",
+          "files": [
+            {
+              "original": "kenney_impact_sounds/impactMining_000.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_stone_01",
+              "target": "sfx/combat/sword_hit_stone_01"
+            },
+            {
+              "original": "kenney_impact_sounds/impactMining_001.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_stone_02",
+              "target": "sfx/combat/sword_hit_stone_02"
+            },
+            {
+              "original": "kenney_impact_sounds/impactMining_002.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_stone_03",
+              "target": "sfx/combat/sword_hit_stone_03"
+            },
+            {
+              "original": "kenney_impact_sounds/impactMining_003.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_stone_04",
+              "target": "sfx/combat/sword_hit_stone_04"
+            },
+            {
+              "original": "kenney_impact_sounds/impactMining_004.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_stone_05",
+              "target": "sfx/combat/sword_hit_stone_05"
+            }
+          ]
+        },
+        "SFX_SWORD_HIT_FLESH": {
+          "dir": "sfx/combat",
+          "files": [
+            {
+              "original": "kenney_impact_sounds/impactSoft_heavy_000.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_flesh_01",
+              "target": "sfx/combat/sword_hit_flesh_01"
+            },
+            {
+              "original": "kenney_impact_sounds/impactSoft_heavy_001.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_flesh_02",
+              "target": "sfx/combat/sword_hit_flesh_02"
+            },
+            {
+              "original": "kenney_impact_sounds/impactSoft_heavy_002.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_flesh_03",
+              "target": "sfx/combat/sword_hit_flesh_03"
+            },
+            {
+              "original": "kenney_impact_sounds/impactSoft_heavy_003.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_flesh_04",
+              "target": "sfx/combat/sword_hit_flesh_04"
+            },
+            {
+              "original": "kenney_impact_sounds/impactSoft_heavy_004.ogg",
+              "processed": "kenney_impact_sounds/sword_hit_flesh_05",
+              "target": "sfx/combat/sword_hit_flesh_05"
+            }
+          ]
+        }
+      },
+      "originalCount": 36
+    },
     {
       "id": "kenney_interface_sounds",
       "type": "sfx",
@@ -1717,6 +1950,49 @@
       "originalCount": 5
     },
     {
+      "id": "notw_ambience_loops",
+      "type": "ambience",
+      "source": {
+        "site": "in-repo",
+        "creator": "NOTW contributors",
+        "title": "Procedurally synthesized ambience loops (scripts/tools/synth_ambience.py)",
+        "url": "scripts/tools/synth_ambience.py",
+        "downloadDate": "2026-08-24"
+      },
+      "license": {
+        "name": "Project-original (CC BY-NC-SA 4.0 per LICENSE-ASSETS.md)",
+        "url": "../../LICENSE-ASSETS.md",
+        "attributionRequired": false
+      },
+      "review": {
+        "status": "approved",
+        "reviewer": null
+      },
+      "events": {
+        "AMB_CAMPFIRE_LOOP": {
+          "dir": "ambience/fire",
+          "files": [
+            {
+              "original": "notw_synthesized/ambience/campfire_loop.ogg",
+              "processed": "notw_ambience_loops/campfire_loop_01",
+              "target": "ambience/fire/campfire_loop_01"
+            }
+          ]
+        },
+        "AMB_FOREST_NIGHT": {
+          "dir": "ambience/forest",
+          "files": [
+            {
+              "original": "notw_synthesized/ambience/forest_night_loop.ogg",
+              "processed": "notw_ambience_loops/forest_night_01",
+              "target": "ambience/forest/forest_night_01"
+            }
+          ]
+        }
+      },
+      "originalCount": 2
+    },
+    {
       "id": "notw_lute_notes",
       "type": "sfx",
       "source": {
@@ -1820,14 +2096,14 @@
       "originalCount": 8
     },
     {
-      "id": "notw_ambience_loops",
-      "type": "ambience",
+      "id": "notw_synthesized_sfx",
+      "type": "sfx",
       "source": {
         "site": "in-repo",
         "creator": "NOTW contributors",
-        "title": "Procedurally synthesized ambience loops (scripts/tools/synth_ambience.py)",
-        "url": "scripts/tools/synth_ambience.py",
-        "downloadDate": "2026-08-24"
+        "title": "Procedurally synthesized SFX one-shots and weather layers (scripts/tools/synth_sfx.py)",
+        "url": "scripts/tools/synth_sfx.py",
+        "downloadDate": "2026-08-26"
       },
       "license": {
         "name": "Project-original (CC BY-NC-SA 4.0 per LICENSE-ASSETS.md)",
@@ -1839,28 +2115,1060 @@
         "reviewer": null
       },
       "events": {
-        "AMB_CAMPFIRE_LOOP": {
-          "dir": "ambience/fire",
+        "SFX_ARROW_FLY": {
+          "dir": "sfx/combat",
           "files": [
             {
-              "original": "notw_synthesized/ambience/campfire_loop.ogg",
-              "processed": "notw_ambience_loops/campfire_loop_01",
-              "target": "ambience/fire/campfire_loop_01"
+              "original": "notw_synthesized_sfx/arrow_fly_01.ogg",
+              "processed": "notw_synthesized_sfx/arrow_fly_01",
+              "target": "sfx/combat/arrow_fly_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/arrow_fly_02.ogg",
+              "processed": "notw_synthesized_sfx/arrow_fly_02",
+              "target": "sfx/combat/arrow_fly_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/arrow_fly_03.ogg",
+              "processed": "notw_synthesized_sfx/arrow_fly_03",
+              "target": "sfx/combat/arrow_fly_03"
             }
           ]
         },
-        "AMB_FOREST_NIGHT": {
-          "dir": "ambience/forest",
+        "SFX_ARROW_HIT_FLESH": {
+          "dir": "sfx/combat",
           "files": [
             {
-              "original": "notw_synthesized/ambience/forest_night_loop.ogg",
-              "processed": "notw_ambience_loops/forest_night_01",
-              "target": "ambience/forest/forest_night_01"
+              "original": "notw_synthesized_sfx/arrow_hit_flesh_01.ogg",
+              "processed": "notw_synthesized_sfx/arrow_hit_flesh_01",
+              "target": "sfx/combat/arrow_hit_flesh_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/arrow_hit_flesh_02.ogg",
+              "processed": "notw_synthesized_sfx/arrow_hit_flesh_02",
+              "target": "sfx/combat/arrow_hit_flesh_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/arrow_hit_flesh_03.ogg",
+              "processed": "notw_synthesized_sfx/arrow_hit_flesh_03",
+              "target": "sfx/combat/arrow_hit_flesh_03"
+            }
+          ]
+        },
+        "SFX_ARROW_HIT_STONE": {
+          "dir": "sfx/combat",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/arrow_hit_stone_01.ogg",
+              "processed": "notw_synthesized_sfx/arrow_hit_stone_01",
+              "target": "sfx/combat/arrow_hit_stone_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/arrow_hit_stone_02.ogg",
+              "processed": "notw_synthesized_sfx/arrow_hit_stone_02",
+              "target": "sfx/combat/arrow_hit_stone_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/arrow_hit_stone_03.ogg",
+              "processed": "notw_synthesized_sfx/arrow_hit_stone_03",
+              "target": "sfx/combat/arrow_hit_stone_03"
+            }
+          ]
+        },
+        "SFX_ARROW_HIT_WOOD": {
+          "dir": "sfx/combat",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/arrow_hit_wood_01.ogg",
+              "processed": "notw_synthesized_sfx/arrow_hit_wood_01",
+              "target": "sfx/combat/arrow_hit_wood_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/arrow_hit_wood_02.ogg",
+              "processed": "notw_synthesized_sfx/arrow_hit_wood_02",
+              "target": "sfx/combat/arrow_hit_wood_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/arrow_hit_wood_03.ogg",
+              "processed": "notw_synthesized_sfx/arrow_hit_wood_03",
+              "target": "sfx/combat/arrow_hit_wood_03"
+            }
+          ]
+        },
+        "SFX_BOOK_CLOSE": {
+          "dir": "sfx/books",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/book_close_01.ogg",
+              "processed": "notw_synthesized_sfx/book_close_01",
+              "target": "sfx/books/book_close_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/book_close_02.ogg",
+              "processed": "notw_synthesized_sfx/book_close_02",
+              "target": "sfx/books/book_close_02"
+            }
+          ]
+        },
+        "SFX_BOOK_PICKUP": {
+          "dir": "sfx/books",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/book_pickup_01.ogg",
+              "processed": "notw_synthesized_sfx/book_pickup_01",
+              "target": "sfx/books/book_pickup_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/book_pickup_02.ogg",
+              "processed": "notw_synthesized_sfx/book_pickup_02",
+              "target": "sfx/books/book_pickup_02"
+            }
+          ]
+        },
+        "SFX_BOOK_PLACE": {
+          "dir": "sfx/books",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/book_place_01.ogg",
+              "processed": "notw_synthesized_sfx/book_place_01",
+              "target": "sfx/books/book_place_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/book_place_02.ogg",
+              "processed": "notw_synthesized_sfx/book_place_02",
+              "target": "sfx/books/book_place_02"
+            }
+          ]
+        },
+        "SFX_BOW_DRAW": {
+          "dir": "sfx/weapons",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/bow_draw_01.ogg",
+              "processed": "notw_synthesized_sfx/bow_draw_01",
+              "target": "sfx/weapons/bow_draw_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/bow_draw_02.ogg",
+              "processed": "notw_synthesized_sfx/bow_draw_02",
+              "target": "sfx/weapons/bow_draw_02"
+            }
+          ]
+        },
+        "SFX_BOW_RELEASE": {
+          "dir": "sfx/weapons",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/bow_release_01.ogg",
+              "processed": "notw_synthesized_sfx/bow_release_01",
+              "target": "sfx/weapons/bow_release_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/bow_release_02.ogg",
+              "processed": "notw_synthesized_sfx/bow_release_02",
+              "target": "sfx/weapons/bow_release_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/bow_release_03.ogg",
+              "processed": "notw_synthesized_sfx/bow_release_03",
+              "target": "sfx/weapons/bow_release_03"
+            }
+          ]
+        },
+        "SFX_CHEST_CLOSE": {
+          "dir": "sfx/objects",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/chest_close_01.ogg",
+              "processed": "notw_synthesized_sfx/chest_close_01",
+              "target": "sfx/objects/chest_close_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/chest_close_02.ogg",
+              "processed": "notw_synthesized_sfx/chest_close_02",
+              "target": "sfx/objects/chest_close_02"
+            }
+          ]
+        },
+        "SFX_CHEST_OPEN": {
+          "dir": "sfx/objects",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/chest_open_01.ogg",
+              "processed": "notw_synthesized_sfx/chest_open_01",
+              "target": "sfx/objects/chest_open_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/chest_open_02.ogg",
+              "processed": "notw_synthesized_sfx/chest_open_02",
+              "target": "sfx/objects/chest_open_02"
+            }
+          ]
+        },
+        "SFX_CLOAK_MOVE": {
+          "dir": "sfx/clothing",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/cloak_move_01.ogg",
+              "processed": "notw_synthesized_sfx/cloak_move_01",
+              "target": "sfx/clothing/cloak_move_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/cloak_move_02.ogg",
+              "processed": "notw_synthesized_sfx/cloak_move_02",
+              "target": "sfx/clothing/cloak_move_02"
+            }
+          ]
+        },
+        "SFX_COIN_LARGE": {
+          "dir": "sfx/coins",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/coin_large_01.ogg",
+              "processed": "notw_synthesized_sfx/coin_large_01",
+              "target": "sfx/coins/coin_large_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/coin_large_02.ogg",
+              "processed": "notw_synthesized_sfx/coin_large_02",
+              "target": "sfx/coins/coin_large_02"
+            }
+          ]
+        },
+        "SFX_COIN_MEDIUM": {
+          "dir": "sfx/coins",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/coin_medium_01.ogg",
+              "processed": "notw_synthesized_sfx/coin_medium_01",
+              "target": "sfx/coins/coin_medium_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/coin_medium_02.ogg",
+              "processed": "notw_synthesized_sfx/coin_medium_02",
+              "target": "sfx/coins/coin_medium_02"
+            }
+          ]
+        },
+        "SFX_COIN_POUCH": {
+          "dir": "sfx/coins",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/coin_pouch_01.ogg",
+              "processed": "notw_synthesized_sfx/coin_pouch_01",
+              "target": "sfx/coins/coin_pouch_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/coin_pouch_02.ogg",
+              "processed": "notw_synthesized_sfx/coin_pouch_02",
+              "target": "sfx/coins/coin_pouch_02"
+            }
+          ]
+        },
+        "SFX_DOOR_HEAVY_CLOSE": {
+          "dir": "sfx/doors",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/door_heavy_close_01.ogg",
+              "processed": "notw_synthesized_sfx/door_heavy_close_01",
+              "target": "sfx/doors/door_heavy_close_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/door_heavy_close_02.ogg",
+              "processed": "notw_synthesized_sfx/door_heavy_close_02",
+              "target": "sfx/doors/door_heavy_close_02"
+            }
+          ]
+        },
+        "SFX_DOOR_HEAVY_OPEN": {
+          "dir": "sfx/doors",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/door_heavy_open_01.ogg",
+              "processed": "notw_synthesized_sfx/door_heavy_open_01",
+              "target": "sfx/doors/door_heavy_open_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/door_heavy_open_02.ogg",
+              "processed": "notw_synthesized_sfx/door_heavy_open_02",
+              "target": "sfx/doors/door_heavy_open_02"
+            }
+          ]
+        },
+        "SFX_DOOR_WOOD_CLOSE": {
+          "dir": "sfx/doors",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/door_wood_close_01.ogg",
+              "processed": "notw_synthesized_sfx/door_wood_close_01",
+              "target": "sfx/doors/door_wood_close_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/door_wood_close_02.ogg",
+              "processed": "notw_synthesized_sfx/door_wood_close_02",
+              "target": "sfx/doors/door_wood_close_02"
+            }
+          ]
+        },
+        "SFX_FIRE_CAMP": {
+          "dir": "sfx/environment",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/fire_camp_01.ogg",
+              "processed": "notw_synthesized_sfx/fire_camp_01",
+              "target": "sfx/environment/fire_camp_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/fire_camp_02.ogg",
+              "processed": "notw_synthesized_sfx/fire_camp_02",
+              "target": "sfx/environment/fire_camp_02"
+            }
+          ]
+        },
+        "SFX_FIRE_LARGE": {
+          "dir": "sfx/environment",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/fire_large_01.ogg",
+              "processed": "notw_synthesized_sfx/fire_large_01",
+              "target": "sfx/environment/fire_large_01"
+            }
+          ]
+        },
+        "SFX_FOOT_DIRT": {
+          "dir": "sfx/footsteps",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/foot_dirt_01.ogg",
+              "processed": "notw_synthesized_sfx/foot_dirt_01",
+              "target": "sfx/footsteps/foot_dirt_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/foot_dirt_02.ogg",
+              "processed": "notw_synthesized_sfx/foot_dirt_02",
+              "target": "sfx/footsteps/foot_dirt_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/foot_dirt_03.ogg",
+              "processed": "notw_synthesized_sfx/foot_dirt_03",
+              "target": "sfx/footsteps/foot_dirt_03"
+            },
+            {
+              "original": "notw_synthesized_sfx/foot_dirt_04.ogg",
+              "processed": "notw_synthesized_sfx/foot_dirt_04",
+              "target": "sfx/footsteps/foot_dirt_04"
+            },
+            {
+              "original": "notw_synthesized_sfx/foot_dirt_05.ogg",
+              "processed": "notw_synthesized_sfx/foot_dirt_05",
+              "target": "sfx/footsteps/foot_dirt_05"
+            },
+            {
+              "original": "notw_synthesized_sfx/foot_dirt_06.ogg",
+              "processed": "notw_synthesized_sfx/foot_dirt_06",
+              "target": "sfx/footsteps/foot_dirt_06"
+            }
+          ]
+        },
+        "SFX_FOOT_METAL": {
+          "dir": "sfx/footsteps",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/foot_metal_01.ogg",
+              "processed": "notw_synthesized_sfx/foot_metal_01",
+              "target": "sfx/footsteps/foot_metal_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/foot_metal_02.ogg",
+              "processed": "notw_synthesized_sfx/foot_metal_02",
+              "target": "sfx/footsteps/foot_metal_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/foot_metal_03.ogg",
+              "processed": "notw_synthesized_sfx/foot_metal_03",
+              "target": "sfx/footsteps/foot_metal_03"
+            },
+            {
+              "original": "notw_synthesized_sfx/foot_metal_04.ogg",
+              "processed": "notw_synthesized_sfx/foot_metal_04",
+              "target": "sfx/footsteps/foot_metal_04"
+            }
+          ]
+        },
+        "SFX_FOOT_WATER": {
+          "dir": "sfx/footsteps",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/foot_water_01.ogg",
+              "processed": "notw_synthesized_sfx/foot_water_01",
+              "target": "sfx/footsteps/foot_water_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/foot_water_02.ogg",
+              "processed": "notw_synthesized_sfx/foot_water_02",
+              "target": "sfx/footsteps/foot_water_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/foot_water_03.ogg",
+              "processed": "notw_synthesized_sfx/foot_water_03",
+              "target": "sfx/footsteps/foot_water_03"
+            },
+            {
+              "original": "notw_synthesized_sfx/foot_water_04.ogg",
+              "processed": "notw_synthesized_sfx/foot_water_04",
+              "target": "sfx/footsteps/foot_water_04"
+            }
+          ]
+        },
+        "SFX_KNIFE_BLOCK": {
+          "dir": "sfx/combat",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/knife_block_01.ogg",
+              "processed": "notw_synthesized_sfx/knife_block_01",
+              "target": "sfx/combat/knife_block_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/knife_block_02.ogg",
+              "processed": "notw_synthesized_sfx/knife_block_02",
+              "target": "sfx/combat/knife_block_02"
+            }
+          ]
+        },
+        "SFX_KNIFE_DRAW": {
+          "dir": "sfx/weapons",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/knife_draw_01.ogg",
+              "processed": "notw_synthesized_sfx/knife_draw_01",
+              "target": "sfx/weapons/knife_draw_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/knife_draw_02.ogg",
+              "processed": "notw_synthesized_sfx/knife_draw_02",
+              "target": "sfx/weapons/knife_draw_02"
+            }
+          ]
+        },
+        "SFX_KNIFE_HIT": {
+          "dir": "sfx/combat",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/knife_hit_01.ogg",
+              "processed": "notw_synthesized_sfx/knife_hit_01",
+              "target": "sfx/combat/knife_hit_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/knife_hit_02.ogg",
+              "processed": "notw_synthesized_sfx/knife_hit_02",
+              "target": "sfx/combat/knife_hit_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/knife_hit_03.ogg",
+              "processed": "notw_synthesized_sfx/knife_hit_03",
+              "target": "sfx/combat/knife_hit_03"
+            }
+          ]
+        },
+        "SFX_KNIFE_SWING": {
+          "dir": "sfx/combat",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/knife_swing_01.ogg",
+              "processed": "notw_synthesized_sfx/knife_swing_01",
+              "target": "sfx/combat/knife_swing_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/knife_swing_02.ogg",
+              "processed": "notw_synthesized_sfx/knife_swing_02",
+              "target": "sfx/combat/knife_swing_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/knife_swing_03.ogg",
+              "processed": "notw_synthesized_sfx/knife_swing_03",
+              "target": "sfx/combat/knife_swing_03"
+            }
+          ]
+        },
+        "SFX_LEATHER_MOVE": {
+          "dir": "sfx/clothing",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/leather_move_01.ogg",
+              "processed": "notw_synthesized_sfx/leather_move_01",
+              "target": "sfx/clothing/leather_move_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/leather_move_02.ogg",
+              "processed": "notw_synthesized_sfx/leather_move_02",
+              "target": "sfx/clothing/leather_move_02"
+            }
+          ]
+        },
+        "SFX_METAL_MECHANISM": {
+          "dir": "sfx/objects",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/metal_mechanism_01.ogg",
+              "processed": "notw_synthesized_sfx/metal_mechanism_01",
+              "target": "sfx/objects/metal_mechanism_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/metal_mechanism_02.ogg",
+              "processed": "notw_synthesized_sfx/metal_mechanism_02",
+              "target": "sfx/objects/metal_mechanism_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/metal_mechanism_03.ogg",
+              "processed": "notw_synthesized_sfx/metal_mechanism_03",
+              "target": "sfx/objects/metal_mechanism_03"
+            }
+          ]
+        },
+        "SFX_PAPER_RUSTLE": {
+          "dir": "sfx/books",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/paper_rustle_01.ogg",
+              "processed": "notw_synthesized_sfx/paper_rustle_01",
+              "target": "sfx/books/paper_rustle_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/paper_rustle_02.ogg",
+              "processed": "notw_synthesized_sfx/paper_rustle_02",
+              "target": "sfx/books/paper_rustle_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/paper_rustle_03.ogg",
+              "processed": "notw_synthesized_sfx/paper_rustle_03",
+              "target": "sfx/books/paper_rustle_03"
+            }
+          ]
+        },
+        "SFX_PARCHMENT": {
+          "dir": "sfx/books",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/parchment_01.ogg",
+              "processed": "notw_synthesized_sfx/parchment_01",
+              "target": "sfx/books/parchment_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/parchment_02.ogg",
+              "processed": "notw_synthesized_sfx/parchment_02",
+              "target": "sfx/books/parchment_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/parchment_03.ogg",
+              "processed": "notw_synthesized_sfx/parchment_03",
+              "target": "sfx/books/parchment_03"
+            }
+          ]
+        },
+        "SFX_QUILL_WRITE": {
+          "dir": "sfx/books",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/quill_write_01.ogg",
+              "processed": "notw_synthesized_sfx/quill_write_01",
+              "target": "sfx/books/quill_write_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/quill_write_02.ogg",
+              "processed": "notw_synthesized_sfx/quill_write_02",
+              "target": "sfx/books/quill_write_02"
+            }
+          ]
+        },
+        "SFX_RAIN_HEAVY": {
+          "dir": "sfx/environment",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/rain_heavy_01.ogg",
+              "processed": "notw_synthesized_sfx/rain_heavy_01",
+              "target": "sfx/environment/rain_heavy_01"
+            }
+          ]
+        },
+        "SFX_RAIN_LIGHT": {
+          "dir": "sfx/environment",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/rain_light_01.ogg",
+              "processed": "notw_synthesized_sfx/rain_light_01",
+              "target": "sfx/environment/rain_light_01"
+            }
+          ]
+        },
+        "SFX_ROPE": {
+          "dir": "sfx/objects",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/rope_01.ogg",
+              "processed": "notw_synthesized_sfx/rope_01",
+              "target": "sfx/objects/rope_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/rope_02.ogg",
+              "processed": "notw_synthesized_sfx/rope_02",
+              "target": "sfx/objects/rope_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/rope_03.ogg",
+              "processed": "notw_synthesized_sfx/rope_03",
+              "target": "sfx/objects/rope_03"
+            }
+          ]
+        },
+        "SFX_SWORD_BLOCK": {
+          "dir": "sfx/combat",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/sword_block_01.ogg",
+              "processed": "notw_synthesized_sfx/sword_block_01",
+              "target": "sfx/combat/sword_block_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/sword_block_02.ogg",
+              "processed": "notw_synthesized_sfx/sword_block_02",
+              "target": "sfx/combat/sword_block_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/sword_block_03.ogg",
+              "processed": "notw_synthesized_sfx/sword_block_03",
+              "target": "sfx/combat/sword_block_03"
+            }
+          ]
+        },
+        "SFX_SWORD_DROP": {
+          "dir": "sfx/weapons",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/sword_drop_01.ogg",
+              "processed": "notw_synthesized_sfx/sword_drop_01",
+              "target": "sfx/weapons/sword_drop_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/sword_drop_02.ogg",
+              "processed": "notw_synthesized_sfx/sword_drop_02",
+              "target": "sfx/weapons/sword_drop_02"
+            }
+          ]
+        },
+        "SFX_SWORD_PARRY": {
+          "dir": "sfx/combat",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/sword_parry_01.ogg",
+              "processed": "notw_synthesized_sfx/sword_parry_01",
+              "target": "sfx/combat/sword_parry_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/sword_parry_02.ogg",
+              "processed": "notw_synthesized_sfx/sword_parry_02",
+              "target": "sfx/combat/sword_parry_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/sword_parry_03.ogg",
+              "processed": "notw_synthesized_sfx/sword_parry_03",
+              "target": "sfx/combat/sword_parry_03"
+            }
+          ]
+        },
+        "SFX_SWORD_SHEATHE": {
+          "dir": "sfx/weapons",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/sword_sheathe_01.ogg",
+              "processed": "notw_synthesized_sfx/sword_sheathe_01",
+              "target": "sfx/weapons/sword_sheathe_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/sword_sheathe_02.ogg",
+              "processed": "notw_synthesized_sfx/sword_sheathe_02",
+              "target": "sfx/weapons/sword_sheathe_02"
+            }
+          ]
+        },
+        "SFX_SWORD_SWING_HEAVY": {
+          "dir": "sfx/combat",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/sword_swing_heavy_01.ogg",
+              "processed": "notw_synthesized_sfx/sword_swing_heavy_01",
+              "target": "sfx/combat/sword_swing_heavy_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/sword_swing_heavy_02.ogg",
+              "processed": "notw_synthesized_sfx/sword_swing_heavy_02",
+              "target": "sfx/combat/sword_swing_heavy_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/sword_swing_heavy_03.ogg",
+              "processed": "notw_synthesized_sfx/sword_swing_heavy_03",
+              "target": "sfx/combat/sword_swing_heavy_03"
+            }
+          ]
+        },
+        "SFX_THUNDER": {
+          "dir": "sfx/environment",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/thunder_01.ogg",
+              "processed": "notw_synthesized_sfx/thunder_01",
+              "target": "sfx/environment/thunder_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/thunder_02.ogg",
+              "processed": "notw_synthesized_sfx/thunder_02",
+              "target": "sfx/environment/thunder_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/thunder_03.ogg",
+              "processed": "notw_synthesized_sfx/thunder_03",
+              "target": "sfx/environment/thunder_03"
+            }
+          ]
+        },
+        "SFX_WATER_DRIP": {
+          "dir": "sfx/environment",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/water_drip_01.ogg",
+              "processed": "notw_synthesized_sfx/water_drip_01",
+              "target": "sfx/environment/water_drip_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/water_drip_02.ogg",
+              "processed": "notw_synthesized_sfx/water_drip_02",
+              "target": "sfx/environment/water_drip_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/water_drip_03.ogg",
+              "processed": "notw_synthesized_sfx/water_drip_03",
+              "target": "sfx/environment/water_drip_03"
+            }
+          ]
+        },
+        "SFX_WATER_STREAM": {
+          "dir": "sfx/environment",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/water_stream_01.ogg",
+              "processed": "notw_synthesized_sfx/water_stream_01",
+              "target": "sfx/environment/water_stream_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/water_stream_02.ogg",
+              "processed": "notw_synthesized_sfx/water_stream_02",
+              "target": "sfx/environment/water_stream_02"
+            }
+          ]
+        },
+        "SFX_WIND_INTERIOR": {
+          "dir": "sfx/environment",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/wind_interior_01.ogg",
+              "processed": "notw_synthesized_sfx/wind_interior_01",
+              "target": "sfx/environment/wind_interior_01"
+            }
+          ]
+        },
+        "SFX_WIND_LIGHT": {
+          "dir": "sfx/environment",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/wind_light_01.ogg",
+              "processed": "notw_synthesized_sfx/wind_light_01",
+              "target": "sfx/environment/wind_light_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/wind_light_02.ogg",
+              "processed": "notw_synthesized_sfx/wind_light_02",
+              "target": "sfx/environment/wind_light_02"
+            }
+          ]
+        },
+        "SFX_WIND_STRONG": {
+          "dir": "sfx/environment",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/wind_strong_01.ogg",
+              "processed": "notw_synthesized_sfx/wind_strong_01",
+              "target": "sfx/environment/wind_strong_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/wind_strong_02.ogg",
+              "processed": "notw_synthesized_sfx/wind_strong_02",
+              "target": "sfx/environment/wind_strong_02"
+            }
+          ]
+        },
+        "SFX_WOOD_CREAK": {
+          "dir": "sfx/objects",
+          "files": [
+            {
+              "original": "notw_synthesized_sfx/wood_creak_01.ogg",
+              "processed": "notw_synthesized_sfx/wood_creak_01",
+              "target": "sfx/objects/wood_creak_01"
+            },
+            {
+              "original": "notw_synthesized_sfx/wood_creak_02.ogg",
+              "processed": "notw_synthesized_sfx/wood_creak_02",
+              "target": "sfx/objects/wood_creak_02"
+            },
+            {
+              "original": "notw_synthesized_sfx/wood_creak_03.ogg",
+              "processed": "notw_synthesized_sfx/wood_creak_03",
+              "target": "sfx/objects/wood_creak_03"
             }
           ]
         }
       },
-      "originalCount": 2
+      "originalCount": 115
+    },
+    {
+      "id": "oga_80_cc0_rpg_sfx",
+      "type": "sfx",
+      "source": {
+        "site": "OpenGameArt",
+        "creator": "rubberduck",
+        "title": "80 CC0 RPG SFX",
+        "url": "https://opengameart.org/content/80-cc0-rpg-sfx",
+        "downloadDate": "2026-08-24"
+      },
+      "license": {
+        "name": "CC0-1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "attributionRequired": false
+      },
+      "review": {
+        "status": "approved",
+        "reviewer": "session-2026-08-25"
+      },
+      "events": {
+        "SFX_BOOK_OPEN": {
+          "dir": "sfx/books",
+          "files": [
+            {
+              "original": "rpg_sfx_80_cc0/book_01.ogg",
+              "processed": "oga_80_cc0_rpg_sfx/book_open_01",
+              "target": "sfx/books/book_open_01"
+            }
+          ]
+        },
+        "SFX_PAGE_TURN_01": {
+          "dir": "sfx/books",
+          "files": [
+            {
+              "original": "rpg_sfx_80_cc0/book_02.ogg",
+              "processed": "oga_80_cc0_rpg_sfx/page_turn_01",
+              "target": "sfx/books/page_turn_01"
+            }
+          ]
+        },
+        "SFX_PAGE_TURN_02": {
+          "dir": "sfx/books",
+          "files": [
+            {
+              "original": "rpg_sfx_80_cc0/book_03.ogg",
+              "processed": "oga_80_cc0_rpg_sfx/page_turn_02",
+              "target": "sfx/books/page_turn_02"
+            }
+          ]
+        },
+        "SFX_PAGE_TURN_03": {
+          "dir": "sfx/books",
+          "files": [
+            {
+              "original": "rpg_sfx_80_cc0/book_04.ogg",
+              "processed": "oga_80_cc0_rpg_sfx/page_turn_03",
+              "target": "sfx/books/page_turn_03"
+            }
+          ]
+        },
+        "SFX_COIN_SMALL": {
+          "dir": "sfx/coins",
+          "files": [
+            {
+              "original": "rpg_sfx_80_cc0/item_coins_01.ogg",
+              "processed": "oga_80_cc0_rpg_sfx/coin_small_01",
+              "target": "sfx/coins/coin_small_01"
+            },
+            {
+              "original": "rpg_sfx_80_cc0/item_coins_02.ogg",
+              "processed": "oga_80_cc0_rpg_sfx/coin_small_02",
+              "target": "sfx/coins/coin_small_02"
+            },
+            {
+              "original": "rpg_sfx_80_cc0/item_coins_03.ogg",
+              "processed": "oga_80_cc0_rpg_sfx/coin_small_03",
+              "target": "sfx/coins/coin_small_03"
+            },
+            {
+              "original": "rpg_sfx_80_cc0/item_coins_04.ogg",
+              "processed": "oga_80_cc0_rpg_sfx/coin_small_04",
+              "target": "sfx/coins/coin_small_04"
+            }
+          ]
+        },
+        "SFX_CHAIN": {
+          "dir": "sfx/objects",
+          "files": [
+            {
+              "original": "rpg_sfx_80_cc0/chain_01.ogg",
+              "processed": "oga_80_cc0_rpg_sfx/chain_01",
+              "target": "sfx/objects/chain_01"
+            },
+            {
+              "original": "rpg_sfx_80_cc0/chain_02.ogg",
+              "processed": "oga_80_cc0_rpg_sfx/chain_02",
+              "target": "sfx/objects/chain_02"
+            },
+            {
+              "original": "rpg_sfx_80_cc0/chain_03.ogg",
+              "processed": "oga_80_cc0_rpg_sfx/chain_03",
+              "target": "sfx/objects/chain_03"
+            }
+          ]
+        }
+      },
+      "originalCount": 12
+    },
+    {
+      "id": "oga_dark_ambient_loop_13",
+      "type": "music",
+      "source": {
+        "site": "OpenGameArt",
+        "creator": "MundoSound (Lucas Calvo)",
+        "title": "Dark Ambient Loop 13",
+        "url": "https://opengameart.org/content/dark-ambient-loop-13",
+        "downloadDate": "2026-08-24"
+      },
+      "license": {
+        "name": "CC-BY-3.0",
+        "url": "http://creativecommons.org/licenses/by/3.0/",
+        "attributionRequired": true
+      },
+      "review": {
+        "status": "pending",
+        "reviewer": null
+      },
+      "events": {
+        "MUS_TARBEAN": {
+          "dir": "music/tarbean",
+          "files": [
+            {
+              "original": "oga_dark_ambient_loop_13.wav",
+              "processed": "oga_dark_ambient_loop_13/tarbean_01",
+              "target": "music/tarbean/tarbean_01"
+            }
+          ]
+        }
+      },
+      "originalCount": 1
+    },
+    {
+      "id": "oga_different_steps",
+      "type": "sfx",
+      "source": {
+        "site": "OpenGameArt",
+        "creator": "TinyWorlds",
+        "title": "Different steps on wood, stone, leaves, gravel and mud",
+        "url": "https://opengameart.org/content/different-steps-on-wood-stone-leaves-gravel-and-mud",
+        "downloadDate": "2026-08-24"
+      },
+      "license": {
+        "name": "CC0-1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "attributionRequired": false
+      },
+      "review": {
+        "status": "approved",
+        "reviewer": "session-2026-08-25"
+      },
+      "events": {
+        "SFX_FOOT_WOOD": {
+          "dir": "sfx/footsteps",
+          "files": [
+            {
+              "original": "steps_wood_stone_leaves_gravel_mud/wood01.ogg",
+              "processed": "oga_different_steps/foot_wood_06",
+              "target": "sfx/footsteps/foot_wood_06"
+            },
+            {
+              "original": "steps_wood_stone_leaves_gravel_mud/wood02.ogg",
+              "processed": "oga_different_steps/foot_wood_07",
+              "target": "sfx/footsteps/foot_wood_07"
+            },
+            {
+              "original": "steps_wood_stone_leaves_gravel_mud/wood03.ogg",
+              "processed": "oga_different_steps/foot_wood_08",
+              "target": "sfx/footsteps/foot_wood_08"
+            }
+          ]
+        },
+        "SFX_FOOT_STONE": {
+          "dir": "sfx/footsteps",
+          "files": [
+            {
+              "original": "steps_wood_stone_leaves_gravel_mud/stone01.ogg",
+              "processed": "oga_different_steps/foot_stone_06",
+              "target": "sfx/footsteps/foot_stone_06"
+            },
+            {
+              "original": "steps_wood_stone_leaves_gravel_mud/gravel.ogg",
+              "processed": "oga_different_steps/foot_stone_07",
+              "target": "sfx/footsteps/foot_stone_07"
+            }
+          ]
+        },
+        "SFX_FOOT_MUD": {
+          "dir": "sfx/footsteps",
+          "files": [
+            {
+              "original": "steps_wood_stone_leaves_gravel_mud/mud02.ogg",
+              "processed": "oga_different_steps/foot_mud_01",
+              "target": "sfx/footsteps/foot_mud_01"
+            }
+          ]
+        }
+      },
+      "originalCount": 7
+    },
+    {
+      "id": "oga_old_tower_inn",
+      "type": "music",
+      "source": {
+        "site": "OpenGameArt",
+        "creator": "RandomMind",
+        "title": "Medieval: The Old Tower Inn (loop)",
+        "url": "https://opengameart.org/content/medieval-the-old-tower-inn",
+        "downloadDate": "2026-08-24"
+      },
+      "license": {
+        "name": "CC0-1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "attributionRequired": false
+      },
+      "review": {
+        "status": "pending",
+        "reviewer": null
+      },
+      "events": {
+        "MUS_RUH_CAMP": {
+          "dir": "music/ruh",
+          "files": [
+            {
+              "original": "oga_old_tower_inn_loop.wav",
+              "processed": "oga_old_tower_inn/ruh_camp_01",
+              "target": "music/ruh/ruh_camp_01"
+            }
+          ]
+        }
+      },
+      "originalCount": 1
     },
     {
       "id": "oga_rpg_sound_pack",
@@ -1999,481 +3307,6 @@
         }
       },
       "originalCount": 17
-    },
-    {
-      "id": "oga_80_cc0_rpg_sfx",
-      "type": "sfx",
-      "source": {
-        "site": "OpenGameArt",
-        "creator": "rubberduck",
-        "title": "80 CC0 RPG SFX",
-        "url": "https://opengameart.org/content/80-cc0-rpg-sfx",
-        "downloadDate": "2026-08-24"
-      },
-      "license": {
-        "name": "CC0-1.0",
-        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
-        "attributionRequired": false
-      },
-      "review": {
-        "status": "approved",
-        "reviewer": "session-2026-08-25"
-      },
-      "events": {
-        "SFX_BOOK_OPEN": {
-          "dir": "sfx/books",
-          "files": [
-            {
-              "original": "rpg_sfx_80_cc0/book_01.ogg",
-              "processed": "oga_80_cc0_rpg_sfx/book_open_01",
-              "target": "sfx/books/book_open_01"
-            }
-          ]
-        },
-        "SFX_PAGE_TURN_01": {
-          "dir": "sfx/books",
-          "files": [
-            {
-              "original": "rpg_sfx_80_cc0/book_02.ogg",
-              "processed": "oga_80_cc0_rpg_sfx/page_turn_01",
-              "target": "sfx/books/page_turn_01"
-            }
-          ]
-        },
-        "SFX_PAGE_TURN_02": {
-          "dir": "sfx/books",
-          "files": [
-            {
-              "original": "rpg_sfx_80_cc0/book_03.ogg",
-              "processed": "oga_80_cc0_rpg_sfx/page_turn_02",
-              "target": "sfx/books/page_turn_02"
-            }
-          ]
-        },
-        "SFX_PAGE_TURN_03": {
-          "dir": "sfx/books",
-          "files": [
-            {
-              "original": "rpg_sfx_80_cc0/book_04.ogg",
-              "processed": "oga_80_cc0_rpg_sfx/page_turn_03",
-              "target": "sfx/books/page_turn_03"
-            }
-          ]
-        },
-        "SFX_COIN_SMALL": {
-          "dir": "sfx/coins",
-          "files": [
-            {
-              "original": "rpg_sfx_80_cc0/item_coins_01.ogg",
-              "processed": "oga_80_cc0_rpg_sfx/coin_small_01",
-              "target": "sfx/coins/coin_small_01"
-            },
-            {
-              "original": "rpg_sfx_80_cc0/item_coins_02.ogg",
-              "processed": "oga_80_cc0_rpg_sfx/coin_small_02",
-              "target": "sfx/coins/coin_small_02"
-            },
-            {
-              "original": "rpg_sfx_80_cc0/item_coins_03.ogg",
-              "processed": "oga_80_cc0_rpg_sfx/coin_small_03",
-              "target": "sfx/coins/coin_small_03"
-            },
-            {
-              "original": "rpg_sfx_80_cc0/item_coins_04.ogg",
-              "processed": "oga_80_cc0_rpg_sfx/coin_small_04",
-              "target": "sfx/coins/coin_small_04"
-            }
-          ]
-        },
-        "SFX_CHAIN": {
-          "dir": "sfx/objects",
-          "files": [
-            {
-              "original": "rpg_sfx_80_cc0/chain_01.ogg",
-              "processed": "oga_80_cc0_rpg_sfx/chain_01",
-              "target": "sfx/objects/chain_01"
-            },
-            {
-              "original": "rpg_sfx_80_cc0/chain_02.ogg",
-              "processed": "oga_80_cc0_rpg_sfx/chain_02",
-              "target": "sfx/objects/chain_02"
-            },
-            {
-              "original": "rpg_sfx_80_cc0/chain_03.ogg",
-              "processed": "oga_80_cc0_rpg_sfx/chain_03",
-              "target": "sfx/objects/chain_03"
-            }
-          ]
-        }
-      },
-      "originalCount": 12
-    },
-    {
-      "id": "oga_different_steps",
-      "type": "sfx",
-      "source": {
-        "site": "OpenGameArt",
-        "creator": "TinyWorlds",
-        "title": "Different steps on wood, stone, leaves, gravel and mud",
-        "url": "https://opengameart.org/content/different-steps-on-wood-stone-leaves-gravel-and-mud",
-        "downloadDate": "2026-08-24"
-      },
-      "license": {
-        "name": "CC0-1.0",
-        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
-        "attributionRequired": false
-      },
-      "review": {
-        "status": "approved",
-        "reviewer": "session-2026-08-25"
-      },
-      "events": {
-        "SFX_FOOT_WOOD": {
-          "dir": "sfx/footsteps",
-          "files": [
-            {
-              "original": "steps_wood_stone_leaves_gravel_mud/wood01.ogg",
-              "processed": "oga_different_steps/foot_wood_01",
-              "target": "sfx/footsteps/foot_wood_01"
-            },
-            {
-              "original": "steps_wood_stone_leaves_gravel_mud/wood02.ogg",
-              "processed": "oga_different_steps/foot_wood_02",
-              "target": "sfx/footsteps/foot_wood_02"
-            },
-            {
-              "original": "steps_wood_stone_leaves_gravel_mud/wood03.ogg",
-              "processed": "oga_different_steps/foot_wood_03",
-              "target": "sfx/footsteps/foot_wood_03"
-            }
-          ]
-        },
-        "SFX_FOOT_STONE": {
-          "dir": "sfx/footsteps",
-          "files": [
-            {
-              "original": "steps_wood_stone_leaves_gravel_mud/stone01.ogg",
-              "processed": "oga_different_steps/foot_stone_01",
-              "target": "sfx/footsteps/foot_stone_01"
-            },
-            {
-              "original": "steps_wood_stone_leaves_gravel_mud/gravel.ogg",
-              "processed": "oga_different_steps/foot_stone_02",
-              "target": "sfx/footsteps/foot_stone_02"
-            }
-          ]
-        },
-        "SFX_FOOT_MUD": {
-          "dir": "sfx/footsteps",
-          "files": [
-            {
-              "original": "steps_wood_stone_leaves_gravel_mud/mud02.ogg",
-              "processed": "oga_different_steps/foot_mud_01",
-              "target": "sfx/footsteps/foot_mud_01"
-            }
-          ]
-        }
-      },
-      "originalCount": 7
-    },
-    {
-      "id": "oga_old_tower_inn",
-      "type": "music",
-      "source": {
-        "site": "OpenGameArt",
-        "creator": "RandomMind",
-        "title": "Medieval: The Old Tower Inn (loop)",
-        "url": "https://opengameart.org/content/medieval-the-old-tower-inn",
-        "downloadDate": "2026-08-24"
-      },
-      "license": {
-        "name": "CC0-1.0",
-        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
-        "attributionRequired": false
-      },
-      "review": {
-        "status": "pending",
-        "reviewer": null
-      },
-      "events": {
-        "MUS_RUH_CAMP": {
-          "dir": "music/ruh",
-          "files": [
-            {
-              "original": "oga_old_tower_inn_loop.wav",
-              "processed": "oga_old_tower_inn/ruh_camp_01",
-              "target": "music/ruh/ruh_camp_01"
-            }
-          ]
-        }
-      },
-      "originalCount": 1
-    },
-    {
-      "id": "oga_dark_ambient_loop_13",
-      "type": "music",
-      "source": {
-        "site": "OpenGameArt",
-        "creator": "MundoSound (Lucas Calvo)",
-        "title": "Dark Ambient Loop 13",
-        "url": "https://opengameart.org/content/dark-ambient-loop-13",
-        "downloadDate": "2026-08-24"
-      },
-      "license": {
-        "name": "CC-BY-3.0",
-        "url": "http://creativecommons.org/licenses/by/3.0/",
-        "attributionRequired": true
-      },
-      "review": {
-        "status": "pending",
-        "reviewer": null
-      },
-      "events": {
-        "MUS_TARBEAN": {
-          "dir": "music/tarbean",
-          "files": [
-            {
-              "original": "oga_dark_ambient_loop_13.wav",
-              "processed": "oga_dark_ambient_loop_13/tarbean_01",
-              "target": "music/tarbean/tarbean_01"
-            }
-          ]
-        }
-      },
-      "originalCount": 1
-    },
-    {
-      "id": "kenney_impact_sounds",
-      "type": "sfx",
-      "source": {
-        "site": "kenney.nl",
-        "creator": "Kenney",
-        "title": "Impact Sounds",
-        "url": "https://kenney.nl/assets/impact-sounds",
-        "downloadDate": "2026-08-24"
-      },
-      "license": {
-        "name": "CC0-1.0",
-        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
-        "attributionRequired": false
-      },
-      "review": {
-        "status": "approved",
-        "reviewer": "session-2026-08-25"
-      },
-      "events": {
-        "SFX_FOOT_STONE": {
-          "dir": "sfx/footsteps",
-          "files": [
-            {
-              "original": "kenney_impact_sounds/footstep_concrete_000.ogg",
-              "processed": "kenney_impact_sounds/foot_stone_03",
-              "target": "sfx/footsteps/foot_stone_03"
-            },
-            {
-              "original": "kenney_impact_sounds/footstep_concrete_001.ogg",
-              "processed": "kenney_impact_sounds/foot_stone_04",
-              "target": "sfx/footsteps/foot_stone_04"
-            },
-            {
-              "original": "kenney_impact_sounds/footstep_concrete_002.ogg",
-              "processed": "kenney_impact_sounds/foot_stone_05",
-              "target": "sfx/footsteps/foot_stone_05"
-            },
-            {
-              "original": "kenney_impact_sounds/footstep_concrete_003.ogg",
-              "processed": "kenney_impact_sounds/foot_stone_06",
-              "target": "sfx/footsteps/foot_stone_06"
-            },
-            {
-              "original": "kenney_impact_sounds/footstep_concrete_004.ogg",
-              "processed": "kenney_impact_sounds/foot_stone_07",
-              "target": "sfx/footsteps/foot_stone_07"
-            }
-          ]
-        },
-        "SFX_FOOT_GRASS": {
-          "dir": "sfx/footsteps",
-          "files": [
-            {
-              "original": "kenney_impact_sounds/footstep_grass_000.ogg",
-              "processed": "kenney_impact_sounds/foot_grass_01",
-              "target": "sfx/footsteps/foot_grass_01"
-            },
-            {
-              "original": "kenney_impact_sounds/footstep_grass_001.ogg",
-              "processed": "kenney_impact_sounds/foot_grass_02",
-              "target": "sfx/footsteps/foot_grass_02"
-            },
-            {
-              "original": "kenney_impact_sounds/footstep_grass_002.ogg",
-              "processed": "kenney_impact_sounds/foot_grass_03",
-              "target": "sfx/footsteps/foot_grass_03"
-            },
-            {
-              "original": "kenney_impact_sounds/footstep_grass_003.ogg",
-              "processed": "kenney_impact_sounds/foot_grass_04",
-              "target": "sfx/footsteps/foot_grass_04"
-            },
-            {
-              "original": "kenney_impact_sounds/footstep_grass_004.ogg",
-              "processed": "kenney_impact_sounds/foot_grass_05",
-              "target": "sfx/footsteps/foot_grass_05"
-            }
-          ]
-        },
-        "SFX_FOOT_WOOD": {
-          "dir": "sfx/footsteps",
-          "files": [
-            {
-              "original": "kenney_impact_sounds/footstep_wood_000.ogg",
-              "processed": "kenney_impact_sounds/foot_wood_04",
-              "target": "sfx/footsteps/foot_wood_04"
-            },
-            {
-              "original": "kenney_impact_sounds/footstep_wood_001.ogg",
-              "processed": "kenney_impact_sounds/foot_wood_05",
-              "target": "sfx/footsteps/foot_wood_05"
-            },
-            {
-              "original": "kenney_impact_sounds/footstep_wood_002.ogg",
-              "processed": "kenney_impact_sounds/foot_wood_06",
-              "target": "sfx/footsteps/foot_wood_06"
-            },
-            {
-              "original": "kenney_impact_sounds/footstep_wood_003.ogg",
-              "processed": "kenney_impact_sounds/foot_wood_07",
-              "target": "sfx/footsteps/foot_wood_07"
-            },
-            {
-              "original": "kenney_impact_sounds/footstep_wood_004.ogg",
-              "processed": "kenney_impact_sounds/foot_wood_08",
-              "target": "sfx/footsteps/foot_wood_08"
-            }
-          ]
-        },
-        "SFX_SWORD_HIT_METAL": {
-          "dir": "sfx/combat",
-          "files": [
-            {
-              "original": "kenney_impact_sounds/impactMetal_medium_000.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_metal_01",
-              "target": "sfx/combat/sword_hit_metal_01"
-            },
-            {
-              "original": "kenney_impact_sounds/impactMetal_medium_001.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_metal_02",
-              "target": "sfx/combat/sword_hit_metal_02"
-            },
-            {
-              "original": "kenney_impact_sounds/impactMetal_medium_002.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_metal_03",
-              "target": "sfx/combat/sword_hit_metal_03"
-            },
-            {
-              "original": "kenney_impact_sounds/impactMetal_medium_003.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_metal_04",
-              "target": "sfx/combat/sword_hit_metal_04"
-            },
-            {
-              "original": "kenney_impact_sounds/impactMetal_medium_004.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_metal_05",
-              "target": "sfx/combat/sword_hit_metal_05"
-            }
-          ]
-        },
-        "SFX_SWORD_HIT_WOOD": {
-          "dir": "sfx/combat",
-          "files": [
-            {
-              "original": "kenney_impact_sounds/impactPlank_medium_000.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_wood_01",
-              "target": "sfx/combat/sword_hit_wood_01"
-            },
-            {
-              "original": "kenney_impact_sounds/impactPlank_medium_001.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_wood_02",
-              "target": "sfx/combat/sword_hit_wood_02"
-            },
-            {
-              "original": "kenney_impact_sounds/impactPlank_medium_002.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_wood_03",
-              "target": "sfx/combat/sword_hit_wood_03"
-            },
-            {
-              "original": "kenney_impact_sounds/impactPlank_medium_003.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_wood_04",
-              "target": "sfx/combat/sword_hit_wood_04"
-            },
-            {
-              "original": "kenney_impact_sounds/impactPlank_medium_004.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_wood_05",
-              "target": "sfx/combat/sword_hit_wood_05"
-            }
-          ]
-        },
-        "SFX_SWORD_HIT_STONE": {
-          "dir": "sfx/combat",
-          "files": [
-            {
-              "original": "kenney_impact_sounds/impactMining_000.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_stone_01",
-              "target": "sfx/combat/sword_hit_stone_01"
-            },
-            {
-              "original": "kenney_impact_sounds/impactMining_001.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_stone_02",
-              "target": "sfx/combat/sword_hit_stone_02"
-            },
-            {
-              "original": "kenney_impact_sounds/impactMining_002.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_stone_03",
-              "target": "sfx/combat/sword_hit_stone_03"
-            },
-            {
-              "original": "kenney_impact_sounds/impactMining_003.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_stone_04",
-              "target": "sfx/combat/sword_hit_stone_04"
-            },
-            {
-              "original": "kenney_impact_sounds/impactMining_004.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_stone_05",
-              "target": "sfx/combat/sword_hit_stone_05"
-            }
-          ]
-        },
-        "SFX_SWORD_HIT_FLESH": {
-          "dir": "sfx/combat",
-          "files": [
-            {
-              "original": "kenney_impact_sounds/impactSoft_heavy_000.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_flesh_01",
-              "target": "sfx/combat/sword_hit_flesh_01"
-            },
-            {
-              "original": "kenney_impact_sounds/impactSoft_heavy_001.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_flesh_02",
-              "target": "sfx/combat/sword_hit_flesh_02"
-            },
-            {
-              "original": "kenney_impact_sounds/impactSoft_heavy_002.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_flesh_03",
-              "target": "sfx/combat/sword_hit_flesh_03"
-            },
-            {
-              "original": "kenney_impact_sounds/impactSoft_heavy_003.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_flesh_04",
-              "target": "sfx/combat/sword_hit_flesh_04"
-            },
-            {
-              "original": "kenney_impact_sounds/impactSoft_heavy_004.ogg",
-              "processed": "kenney_impact_sounds/sword_hit_flesh_05",
-              "target": "sfx/combat/sword_hit_flesh_05"
-            }
-          ]
-        }
-      },
-      "originalCount": 36
     }
   ],
   "productionOrphans": []

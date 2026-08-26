@@ -1,0 +1,21 @@
+{
+  "id": "notw_synthesized_sfx",
+  "source": {
+    "site": "in-repo",
+    "creator": "NOTW contributors",
+    "title": "Procedurally synthesized SFX one-shots and weather layers (footsteps, weapons, doors, fire, weather, water, paper, UI, coins)",
+    "url": "scripts/tools/synth_sfx.py",
+    "downloadDate": "2026-08-25",
+    "pageText": "Generated in-repository by scripts/tools/synth_sfx.py with seeded numpy DSP; no third-party recordings involved."
+  },
+  "license": {
+    "name": "Project-original (CC BY-NC-SA 4.0 per LICENSE-ASSETS.md)",
+    "url": "../../../LICENSE-ASSETS.md",
+    "attributionRequired": false
+  },
+  "evidenceNotes": [
+    "policy: project-original — exempt from third-party license tiers; governed by the project license.",
+    "Deterministic synthesis (fixed per-variant seeds); regenerable byte-for-byte via scripts/tools/synth_sfx.py.",
+    "Deliberately excludes music, crowd/voice ambience, and signature sounds (sympathy, Naming, Chandrian, lute performances) which require human review or recorded sources."
+  ]
+}

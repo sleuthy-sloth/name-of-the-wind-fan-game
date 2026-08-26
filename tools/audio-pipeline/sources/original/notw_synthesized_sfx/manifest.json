@@ -1,0 +1,352 @@
+{
+  "SFX_ARROW_FLY": {
+    "dir": "sfx/combat",
+    "files": [
+      "arrow_fly_01.ogg",
+      "arrow_fly_02.ogg",
+      "arrow_fly_03.ogg"
+    ]
+  },
+  "SFX_ARROW_HIT_FLESH": {
+    "dir": "sfx/combat",
+    "files": [
+      "arrow_hit_flesh_01.ogg",
+      "arrow_hit_flesh_02.ogg",
+      "arrow_hit_flesh_03.ogg"
+    ]
+  },
+  "SFX_ARROW_HIT_STONE": {
+    "dir": "sfx/combat",
+    "files": [
+      "arrow_hit_stone_01.ogg",
+      "arrow_hit_stone_02.ogg",
+      "arrow_hit_stone_03.ogg"
+    ]
+  },
+  "SFX_ARROW_HIT_WOOD": {
+    "dir": "sfx/combat",
+    "files": [
+      "arrow_hit_wood_01.ogg",
+      "arrow_hit_wood_02.ogg",
+      "arrow_hit_wood_03.ogg"
+    ]
+  },
+  "SFX_BOOK_CLOSE": {
+    "dir": "sfx/books",
+    "files": [
+      "book_close_01.ogg",
+      "book_close_02.ogg"
+    ]
+  },
+  "SFX_BOOK_PICKUP": {
+    "dir": "sfx/books",
+    "files": [
+      "book_pickup_01.ogg",
+      "book_pickup_02.ogg"
+    ]
+  },
+  "SFX_BOOK_PLACE": {
+    "dir": "sfx/books",
+    "files": [
+      "book_place_01.ogg",
+      "book_place_02.ogg"
+    ]
+  },
+  "SFX_BOW_DRAW": {
+    "dir": "sfx/weapons",
+    "files": [
+      "bow_draw_01.ogg",
+      "bow_draw_02.ogg"
+    ]
+  },
+  "SFX_BOW_RELEASE": {
+    "dir": "sfx/weapons",
+    "files": [
+      "bow_release_01.ogg",
+      "bow_release_02.ogg",
+      "bow_release_03.ogg"
+    ]
+  },
+  "SFX_CHEST_CLOSE": {
+    "dir": "sfx/objects",
+    "files": [
+      "chest_close_01.ogg",
+      "chest_close_02.ogg"
+    ]
+  },
+  "SFX_CHEST_OPEN": {
+    "dir": "sfx/objects",
+    "files": [
+      "chest_open_01.ogg",
+      "chest_open_02.ogg"
+    ]
+  },
+  "SFX_CLOAK_MOVE": {
+    "dir": "sfx/clothing",
+    "files": [
+      "cloak_move_01.ogg",
+      "cloak_move_02.ogg"
+    ]
+  },
+  "SFX_COIN_LARGE": {
+    "dir": "sfx/coins",
+    "files": [
+      "coin_large_01.ogg",
+      "coin_large_02.ogg"
+    ]
+  },
+  "SFX_COIN_MEDIUM": {
+    "dir": "sfx/coins",
+    "files": [
+      "coin_medium_01.ogg",
+      "coin_medium_02.ogg"
+    ]
+  },
+  "SFX_COIN_POUCH": {
+    "dir": "sfx/coins",
+    "files": [
+      "coin_pouch_01.ogg",
+      "coin_pouch_02.ogg"
+    ]
+  },
+  "SFX_DOOR_HEAVY_CLOSE": {
+    "dir": "sfx/doors",
+    "files": [
+      "door_heavy_close_01.ogg",
+      "door_heavy_close_02.ogg"
+    ]
+  },
+  "SFX_DOOR_HEAVY_OPEN": {
+    "dir": "sfx/doors",
+    "files": [
+      "door_heavy_open_01.ogg",
+      "door_heavy_open_02.ogg"
+    ]
+  },
+  "SFX_DOOR_WOOD_CLOSE": {
+    "dir": "sfx/doors",
+    "files": [
+      "door_wood_close_01.ogg",
+      "door_wood_close_02.ogg"
+    ]
+  },
+  "SFX_FIRE_CAMP": {
+    "dir": "sfx/environment",
+    "files": [
+      "fire_camp_01.ogg",
+      "fire_camp_02.ogg"
+    ]
+  },
+  "SFX_FIRE_LARGE": {
+    "dir": "sfx/environment",
+    "files": [
+      "fire_large_01.ogg"
+    ]
+  },
+  "SFX_FOOT_DIRT": {
+    "dir": "sfx/footsteps",
+    "files": [
+      "foot_dirt_01.ogg",
+      "foot_dirt_02.ogg",
+      "foot_dirt_03.ogg",
+      "foot_dirt_04.ogg",
+      "foot_dirt_05.ogg",
+      "foot_dirt_06.ogg"
+    ]
+  },
+  "SFX_FOOT_METAL": {
+    "dir": "sfx/footsteps",
+    "files": [
+      "foot_metal_01.ogg",
+      "foot_metal_02.ogg",
+      "foot_metal_03.ogg",
+      "foot_metal_04.ogg"
+    ]
+  },
+  "SFX_FOOT_WATER": {
+    "dir": "sfx/footsteps",
+    "files": [
+      "foot_water_01.ogg",
+      "foot_water_02.ogg",
+      "foot_water_03.ogg",
+      "foot_water_04.ogg"
+    ]
+  },
+  "SFX_KNIFE_BLOCK": {
+    "dir": "sfx/combat",
+    "files": [
+      "knife_block_01.ogg",
+      "knife_block_02.ogg"
+    ]
+  },
+  "SFX_KNIFE_DRAW": {
+    "dir": "sfx/weapons",
+    "files": [
+      "knife_draw_01.ogg",
+      "knife_draw_02.ogg"
+    ]
+  },
+  "SFX_KNIFE_HIT": {
+    "dir": "sfx/combat",
+    "files": [
+      "knife_hit_01.ogg",
+      "knife_hit_02.ogg",
+      "knife_hit_03.ogg"
+    ]
+  },
+  "SFX_KNIFE_SWING": {
+    "dir": "sfx/combat",
+    "files": [
+      "knife_swing_01.ogg",
+      "knife_swing_02.ogg",
+      "knife_swing_03.ogg"
+    ]
+  },
+  "SFX_LEATHER_MOVE": {
+    "dir": "sfx/clothing",
+    "files": [
+      "leather_move_01.ogg",
+      "leather_move_02.ogg"
+    ]
+  },
+  "SFX_METAL_MECHANISM": {
+    "dir": "sfx/objects",
+    "files": [
+      "metal_mechanism_01.ogg",
+      "metal_mechanism_02.ogg",
+      "metal_mechanism_03.ogg"
+    ]
+  },
+  "SFX_PAPER_RUSTLE": {
+    "dir": "sfx/books",
+    "files": [
+      "paper_rustle_01.ogg",
+      "paper_rustle_02.ogg",
+      "paper_rustle_03.ogg"
+    ]
+  },
+  "SFX_PARCHMENT": {
+    "dir": "sfx/books",
+    "files": [
+      "parchment_01.ogg",
+      "parchment_02.ogg",
+      "parchment_03.ogg"
+    ]
+  },
+  "SFX_QUILL_WRITE": {
+    "dir": "sfx/books",
+    "files": [
+      "quill_write_01.ogg",
+      "quill_write_02.ogg"
+    ]
+  },
+  "SFX_RAIN_HEAVY": {
+    "dir": "sfx/environment",
+    "files": [
+      "rain_heavy_01.ogg"
+    ]
+  },
+  "SFX_RAIN_LIGHT": {
+    "dir": "sfx/environment",
+    "files": [
+      "rain_light_01.ogg"
+    ]
+  },
+  "SFX_ROPE": {
+    "dir": "sfx/objects",
+    "files": [
+      "rope_01.ogg",
+      "rope_02.ogg",
+      "rope_03.ogg"
+    ]
+  },
+  "SFX_SWORD_BLOCK": {
+    "dir": "sfx/combat",
+    "files": [
+      "sword_block_01.ogg",
+      "sword_block_02.ogg",
+      "sword_block_03.ogg"
+    ]
+  },
+  "SFX_SWORD_DROP": {
+    "dir": "sfx/weapons",
+    "files": [
+      "sword_drop_01.ogg",
+      "sword_drop_02.ogg"
+    ]
+  },
+  "SFX_SWORD_PARRY": {
+    "dir": "sfx/combat",
+    "files": [
+      "sword_parry_01.ogg",
+      "sword_parry_02.ogg",
+      "sword_parry_03.ogg"
+    ]
+  },
+  "SFX_SWORD_SHEATHE": {
+    "dir": "sfx/weapons",
+    "files": [
+      "sword_sheathe_01.ogg",
+      "sword_sheathe_02.ogg"
+    ]
+  },
+  "SFX_SWORD_SWING_HEAVY": {
+    "dir": "sfx/combat",
+    "files": [
+      "sword_swing_heavy_01.ogg",
+      "sword_swing_heavy_02.ogg",
+      "sword_swing_heavy_03.ogg"
+    ]
+  },
+  "SFX_THUNDER": {
+    "dir": "sfx/environment",
+    "files": [
+      "thunder_01.ogg",
+      "thunder_02.ogg",
+      "thunder_03.ogg"
+    ]
+  },
+  "SFX_WATER_DRIP": {
+    "dir": "sfx/environment",
+    "files": [
+      "water_drip_01.ogg",
+      "water_drip_02.ogg",
+      "water_drip_03.ogg"
+    ]
+  },
+  "SFX_WATER_STREAM": {
+    "dir": "sfx/environment",
+    "files": [
+      "water_stream_01.ogg",
+      "water_stream_02.ogg"
+    ]
+  },
+  "SFX_WIND_INTERIOR": {
+    "dir": "sfx/environment",
+    "files": [
+      "wind_interior_01.ogg"
+    ]
+  },
+  "SFX_WIND_LIGHT": {
+    "dir": "sfx/environment",
+    "files": [
+      "wind_light_01.ogg",
+      "wind_light_02.ogg"
+    ]
+  },
+  "SFX_WIND_STRONG": {
+    "dir": "sfx/environment",
+    "files": [
+      "wind_strong_01.ogg",
+      "wind_strong_02.ogg"
+    ]
+  },
+  "SFX_WOOD_CREAK": {
+    "dir": "sfx/objects",
+    "files": [
+      "wood_creak_01.ogg",
+      "wood_creak_02.ogg",
+      "wood_creak_03.ogg"
+    ]
+  }
+}

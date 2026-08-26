@@ -17,7 +17,7 @@
     "lpc:validate": "node scripts/validate-build.mjs",
     "lpc:credits": "node scripts/generate-credits.mjs",
     "lpc:all": "node scripts/build-all.mjs",
-    "test": "node --test tests/"
+    "test": "node --test \"tests/**/**.test.mjs\""
   },
   "dependencies": {
     "js-yaml": "^4.1.0",
