@@ -1,0 +1,47 @@
+{
+  "id": "waystone_opening",
+  "beats": [
+    {
+      "id": "beat_waystone_crossroads",
+      "narration": "Two roads cross at a quiet little town, and where they cross stands the Waystone Inn.",
+      "effect": "calm",
+      "duration": 3.2
+    },
+    {
+      "id": "beat_waystone_kote",
+      "narration": "Inside, a fire keeps its own counsel. The innkeeper — they call him Kote here — polishes a counter that needs no polishing, and watches the road through the window as if he expects it to say something.",
+      "effect": "warm",
+      "sfx": "AMB_FIRE_SMALL",
+      "duration": 4.0
+    },
+    {
+      "id": "beat_waystone_bast",
+      "narration": "A young man lingers in the doorway, half shadow. He has been at the Waystone for a while now. He is not, strictly speaking, a customer.",
+      "effect": "dim",
+      "sfx": "SFX_DOOR_WOOD_OPEN",
+      "duration": 3.6
+    },
+    {
+      "id": "beat_waystone_exchange",
+      "narration": "\"You were somebody once,\" the young man says, not unkindly. The innkeeper does not look up. \"That was a long time ago,\" he answers. \"And far away.\"",
+      "effect": "unease",
+      "duration": 3.8
+    },
+    {
+      "id": "beat_waystone_road_back",
+      "narration": "But every story starts somewhere, and his started on the road — with wagons and songs and a troupe of Edema Ruh, long before anyone called him anything but a boy.",
+      "effect": "dim",
+      "sfx": "SFX_BOOK_OPEN",
+      "duration": 4.0
+    },
+    {
+      "id": "beat_waystone_story_begins",
+      "narration": "The fire settles. The silence leans in to listen. And the story begins where all such stories begin: with a caravan rolling out at first light.",
+      "effect": "darkness",
+      "set_flag": "waystone_opening_seen",
+      "autosave": true,
+      "next_scene": "res://scenes/world/caravan_route.tscn",
+      "duration": 3.6
+    }
+  ]
+}

@@ -1,10 +1,59 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scripts/world/world_scene.gd" id="1_world"]
+
+[sub_resource type="RectangleShape2D" id="gate_shape"]
+size = Vector2(36, 52)
+
+[sub_resource type="RectangleShape2D" id="hatch_shape"]
+size = Vector2(44, 28)
 
 [node name="ForestCampsite" type="Node2D"]
 script = ExtResource("1_world")
 ldtk_path = "res://maps/forest_campsite.ldtk"
 door_target_scene = "res://scenes/world/caravan_route.tscn"
-ambience_events = Array[String](["AMB_CAMPFIRE_LOOP", "AMB_FOREST_NIGHT"])
+ambience_events = Array[String](["AMB_FOREST_NIGHT", "AMB_CAMPFIRE_LOOP"])
 spawn_troupe = true
+extra_doors = Array[Dictionary]([{
+"position": Vector2(600, 300),
+"target_scene": "res://scenes/world/combat_tutorial.tscn"
+}])
+sympathy_targets = Array[Dictionary]([{
+"working_id": "working_jammed_wagon_gate",
+"display_name": "Jammed wagon gate",
+"position": Vector2(372, 176),
+"obstacle_path": "../WagonGate",
+"move_offset": Vector2(-56, 0)
+}, {
+"working_id": "working_swollen_hatch_latch",
+"display_name": "Swollen supply hatch",
+"position": Vector2(196, 116),
+"obstacle_path": "../SupplyHatchBarrier",
+"move_offset": Vector2(0, 0)
+}])
+
+[node name="WagonGate" type="StaticBody2D" parent="."]
+position = Vector2(412, 176)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WagonGate"]
+shape = SubResource("gate_shape")
+
+[node name="Sprite" type="ColorRect" parent="WagonGate"]
+offset_left = -18.0
+offset_top = -26.0
+offset_right = 18.0
+offset_bottom = 26.0
+color = Color(0.42, 0.3, 0.16, 1)
+
+[node name="SupplyHatchBarrier" type="StaticBody2D" parent="."]
+position = Vector2(196, 92)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SupplyHatchBarrier"]
+shape = SubResource("hatch_shape")
+
+[node name="Sprite" type="ColorRect" parent="SupplyHatchBarrier"]
+offset_left = -22.0
+offset_top = -14.0
+offset_right = 22.0
+offset_bottom = 14.0
+color = Color(0.36, 0.24, 0.13, 1)

@@ -1,0 +1,78 @@
+{
+  "dialogue_id": "dialogue_act1_threat_lesson",
+  "root": "node_intro",
+  "nodes": {
+    "node_intro": {
+      "speaker": "Abenthy",
+      "text": "Sit down, boy, and listen. The road is kind nine days in ten, but trouble keeps its own calendar. When it finds a troupe, you will have exactly four ways out. Do you know them?",
+      "choices": [
+        {
+          "text": "Run. Nothing worth having is worth dying for.",
+          "tag": "curious",
+          "next": "node_flee",
+          "effects": [
+            {
+              "type": "relationship",
+              "target": "char_abenthy",
+              "delta": 1
+            }
+          ]
+        },
+        {
+          "text": "Stand and face it. We are Ruh. We do not run.",
+          "tag": "proud",
+          "next": "node_stand",
+          "effects": []
+        }
+      ]
+    },
+    "node_flee": {
+      "speaker": "Abenthy",
+      "text": "Right answer first, for once. Fleeing is not cowardice — it is choosing which ground your wagons cross. A good route beats a strong arm every time.",
+      "next": "node_hide"
+    },
+    "node_stand": {
+      "speaker": "Abenthy",
+      "text": "Brave, and foolish in equal measure. There are only two kinds of people who win fights they cannot avoid: the lucky and the dead. Learn the other doors first.",
+      "next": "node_hide",
+      "effects": [
+        {
+          "type": "relationship",
+          "target": "char_abenthy",
+          "delta": -1
+        }
+      ]
+    },
+    "node_hide": {
+      "speaker": "Abenthy",
+      "text": "Second door: hide. Trouble is lazy — it looks where moving things catch the eye. Still hands, quiet feet, and the right beat of timing, and trouble forgets you were ever there.",
+      "next": "node_talk"
+    },
+    "node_talk": {
+      "speaker": "Abenthy",
+      "text": "Third door: talk. A reputation opens mouths before knives come out, and a friend who vouches for you is worth more than any blade. That is why troupes mind their standing in every town we play.",
+      "next": "node_sympathy"
+    },
+    "node_sympathy": {
+      "speaker": "Abenthy",
+      "text": "And the last door, saved for when the others are shut: sympathy. A working under pressure costs Alar and carries risk — slip the binding and it bites YOU, not him. But a boiled cup of ale has ended more brawls than swords ever drew.",
+      "next": "node_practice"
+    },
+    "node_practice": {
+      "speaker": "Abenthy",
+      "text": "Now practice. Down by the crossing there is a man spoiling for a fight with anyone in trouper's colors. Go on. Pick your door carefully — all four will open, but not all of them quietly.",
+      "text_by_flag": [
+        {
+          "flag": "flag_threat_ford_lout_resolved",
+          "text": "You handled the carter at the ford already? Then you know: every door works, if you pick it early enough."
+        }
+      ],
+      "next": "node_end"
+    },
+    "node_end": {
+      "speaker": "",
+      "text": "",
+      "end": true
+    }
+  }
+}

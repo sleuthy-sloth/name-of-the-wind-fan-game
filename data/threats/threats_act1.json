@@ -1,0 +1,86 @@
+[
+  {
+    "id": "threat_ford_lout",
+    "title": "Trouble at the Ford",
+    "intro": "A red-faced carter has planted his cart broadside in the shallows and dares anyone to move it. He is big, he is drunk, and he has decided your troupe is his evening's entertainment.",
+    "pressure_limit": 4,
+    "failure_text": "The carter shoves past you, splintering a wheel on his way through the ford. The whole crossing is lost, and so is the afternoon.",
+    "flee": {
+      "success_text": "",
+      "fail_text": "",
+      "routes": [
+        {
+          "id": "route_ford_shallows",
+          "label": "Lead the wagons through the calm shallows downstream",
+          "risk": 0.15,
+          "success_text": "You walk the wagons through the slow water while he bellows at no one. The troupe crosses clean.",
+          "fail_text": "The riverbed turns soft under the wheels and the lead axle digs in. He is laughing now."
+        },
+        {
+          "id": "route_thorn_brush",
+          "label": "Cut straight through the thorn brush along the bank",
+          "risk": 0.6,
+          "success_text": "You thread the wagons through the thorns without tearing more than a canvas corner.",
+          "fail_text": "A hidden stump catches a wheel and nearly tips a wagon into the current."
+        }
+      ]
+    },
+    "hide": {
+      "window_center": 0.5,
+      "window_width": 0.3,
+      "success_text": "You wait until he turns to bellow at the river, then walk the first wagon past quiet as smoke. The rest follow.",
+      "fail_text": "You move too soon. His eyes find you and he plants himself square in the road again."
+    },
+    "talk": {
+      "requirement": { "kind": "relationship", "target": "char_abenthy", "value": 1.0 },
+      "success_text": "Abenthy steps up beside you with a crooked grin and buys the man a drink from his own bottle. Two troupers are worth ten arguments.",
+      "fail_text": "Your words slide off him like rain off canvas. Without Abenthy's easy authority behind them, nobody believes a boy in a trouper's coat."
+    },
+    "sympathy": {
+      "source": { "id": "src_sun_heated_iron", "label": "The sun-heated iron of your own wagon rail", "domain": "thermal", "energy": 9.0 },
+      "link": { "id": "link_his_tin_cup", "label": "The tin cup dangling from his belt — same metal, same sun", "domains": ["thermal"], "quality": 0.75 },
+      "target": { "id": "target_cup_of_ale", "label": "The ale inside his cup", "domain": "thermal", "tolerance": 4.0 },
+      "effect": { "id": "effect_boil_the_ale", "label": "Boil his ale to froth", "domain": "thermal", "cost": 3.5, "payload": {} },
+      "mastery": 0.35,
+      "composure": 0.5,
+      "difficulty": 1.2,
+      "success_text": "His cup spits and foams over his fist. He yelps, drops everything, and spends the next quarter hour convinced the river spirits are against him — leaving the ford wide open.",
+      "fail_text": "The binding slips. Your own palm comes away scorched and he notices you flinching, which only encourages him."
+    },
+    "flags": {
+      "success_flag": "flag_threat_ford_lout_resolved",
+      "failure_flag": "flag_threat_ford_lout_failed"
+    }
+  },
+  {
+    "id": "threat_market_cutpurse",
+    "title": "Quick Fingers in the Market",
+    "intro": "You catch a lean young man's hand inside your coin purse. He smiles like this is a game and the crowd is thick around you both.",
+    "pressure_limit": 3,
+    "failure_text": "He twists free and is gone over a wall before anyone can react, purse and all.",
+    "flee": {
+      "routes": [
+        {
+          "id": "route_step_back",
+          "label": "Simply step back and let the crowd close between you",
+          "risk": 0.05,
+          "success_text": "You step back. The crowd swallows him and your purse stays yours — mostly."
+        }
+      ]
+    },
+    "hide": {
+      "window_center": 0.4,
+      "window_width": 0.25,
+      "success_text": "You turn away at just the right beat and he loses interest in what he cannot see.",
+      "fail_text": "You fumble the moment and he uses your stumble to vanish."
+    },
+    "talk": {
+      "requirement": { "kind": "none", "value": 0 },
+      "success_text": "\"Keep the copper, keep the story,\" you say loudly. Laughter embarrasses him more than shouting would, and he melts away empty-handed."
+    },
+    "flags": {
+      "success_flag": "flag_threat_cutpurse_resolved",
+      "failure_flag": "flag_threat_cutpurse_failed"
+    }
+  }
+]

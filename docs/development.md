@@ -32,9 +32,9 @@ All creative content must remain original; see
 ## Running the game
 
 Open the project in Godot (select `project.godot`), then press **F5** (Run
-Project). The main scene is `res://scenes/core/placeholder_test_a.tscn`, a
-placeholder room with walls, a player, and a door that transitions to
-`placeholder_test_b.tscn`.
+Project). The main scene is `res://scenes/world/waystone_inn.tscn`, a scripted
+opening at the Waystone Inn (frame story: Kote and Bast) that sets
+`waystone_opening_seen` and routes into Act I on `caravan_route.tscn`.
 
 From the command line:
 
@@ -57,7 +57,7 @@ not through the input map.
 
 ## Headless test suites
 
-Fourteen suites are `SceneTree` scripts run without a window. Each prints a
+Sixteen suites are `SceneTree` scripts run without a window. Each prints a
 `*_TEST: PASS` or `*_TEST: FAIL` line and exits with status `0` (pass) or `1`
 (fail). After adding `class_name` scripts, refresh the global class cache
 first:
@@ -82,6 +82,8 @@ first:
 | CHANDRIAN_ATTACK_TEST | `tests/test_chandrian_attack.gd` | Attack sequence beats and aftermath flags. |
 | VERTICAL_SLICE_TEST | `tests/test_vertical_slice_integration.gd` | GDD §24 slice checklist end-to-end. |
 | PHASE2_ARCH_TEST | `tests/test_phase2_architecture.gd` | Quest lifecycle, relationship tiers, schedule resolution, minigame host, save v1→v2 migration. |
+| SLICE_POLISH_TEST | `tests/test_slice_polish.gd` | Published LPC sheets, animated wiring, schedules, ambience, tint, prompts. |
+| COMBAT_PUZZLE_TEST | `tests/test_combat_puzzles.gd` | ThreatEncounter four resolutions, SympathyPuzzle workings, SympathyTarget world effects, Waystone opening, tutorial content. |
 
 Tool pipelines have their own Node test suites:
 `cd tools/lpc-factory && npm test` (21 tests) and
@@ -177,6 +179,41 @@ launch, exclusivity, teardown, and result/cancel signals.
 Versioned JSON slots with stepwise migrations (`_migrations[1]` upgrades v1
 payloads) and a `save_contributors` group so subsystems persist their own
 state under `payload.managers`. Saves newer than `SAVE_VERSION` fail closed.
+
+### BeatCutscene
+
+Generic data-driven narration cutscene: `{ id, beats: [{narration, effect,
+duration, set_flag, sfx, next_scene, autosave}] }` from any JSON path. Drives
+the Waystone Inn opening (`scenes/world/waystone_inn.tscn`, the project main
+scene) and is reusable for future scripted scenes. Works headless — overlay
+and label nodes are optional.
+
+### ThreatEncounter
+
+Threat resolution per GDD §7.5 — the game's replacement for conventional
+combat. A threat definition offers up to four resolutions: **flee** (route
+choice with risk), **hide** (timing window), **talk** (gated on reputation or
+a relationship), and **sympathy** (resolved through SympathyEngine at real
+Alar cost; composure drops as pressure rises). Failed attempts escalate
+`pressure`; hitting `pressure_limit` ends the encounter in forced failure.
+Definitions live in `data/threats/*.json`; `flags_for()` maps outcomes to
+world flags. Presented in-game by `ThreatPanel`
+(`scripts/ui/threat_panel.gd`). The playable tutorial lives at
+`scenes/world/combat_tutorial.tscn` (reachable through the campsite's east
+door): Abenthy's lesson dialogue, then the ford-carter encounter where all
+four doors open. Completion sets `flag_threat_tutorial_done`.
+
+### SympathyPuzzle / SympathyTarget
+
+Out-of-combat sympathy workings (GDD §8 applied to the world): open stuck
+doors/hatches and move jammed obstacles. A puzzle def pins link, target, and
+effect while offering a choice of energy sources (`data/workings/*.json`) —
+weaker sources raise Alar cost and risk through the shared engine formulas.
+`SympathyTarget` (Area2D) exposes the interactable in world scenes via
+WorldScene's `sympathy_targets` export and applies the committed working:
+`open_door` disables/fades its barrier, `move_obstacle` tweens it aside, then
+the success flag lands in GameState. `SympathyPuzzlePanel` renders the
+prompt, source choice, and live cost/risk preview.
 
 ## Conventions
 

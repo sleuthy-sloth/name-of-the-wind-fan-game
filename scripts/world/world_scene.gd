@@ -16,9 +16,17 @@ extends Node2D
 @export var spawn_troupe := false
 ## Apply GameState.time_block canvas tint.
 @export var tint_enabled := true
+## Out-of-combat sympathy puzzles placed into this scene.
+## Entries: {working_id: String, display_name: String, position: Vector2,
+##           obstacle_path: NodePath, move_offset: Vector2}
+@export var sympathy_targets: Array[Dictionary] = []
+## Additional scene doors beyond the LDtk Door entity.
+## Entries: {position: Vector2, target_scene: String}
+@export var extra_doors: Array[Dictionary] = []
 
 const PLAYER_SCENE := "res://scenes/player/player.tscn"
 const DOOR_SCENE_SCRIPT := "res://scripts/systems/scene_door.gd"
+const SYMPATHY_TARGET_SCRIPT := "res://scripts/world/sympathy_target.gd"
 
 const TINT_BY_BLOCK := {
 	"morning": Color(1.0, 0.96, 0.88),
@@ -54,6 +62,13 @@ func _ready() -> void:
 			if door_data is Dictionary:
 				_create_door(door_data as Dictionary)
 
+	for extra: Variant in extra_doors:
+		if extra is Dictionary and (extra as Dictionary).has("target_scene"):
+			_create_door(extra as Dictionary)
+
+	if not sympathy_targets.is_empty():
+		_setup_sympathy_targets()
+
 	_setup_ambience()
 	_setup_tint()
 	if spawn_troupe:
@@ -65,7 +80,8 @@ func _create_door(data: Dictionary) -> void:
 	var script := load(DOOR_SCENE_SCRIPT) as GDScript
 	if script != null:
 		door.set_script(script)
-		door.set("target_scene", door_target_scene)
+		var target: Variant = data.get("target_scene", door_target_scene)
+		door.set("target_scene", str(target))
 	var shape := RectangleShape2D.new()
 	shape.size = Vector2(16, 16)
 	var collision := CollisionShape2D.new()
@@ -75,6 +91,44 @@ func _create_door(data: Dictionary) -> void:
 	if pos is Vector2:
 		door.position = pos as Vector2
 	add_child(door)
+
+func _setup_sympathy_targets() -> void:
+	var panel := SympathyPuzzlePanel.new()
+	panel.name = "SympathyPuzzlePanel"
+	add_child(panel)
+	for entry: Variant in sympathy_targets:
+		if not entry is Dictionary:
+			continue
+		var data := entry as Dictionary
+		var script := load(SYMPATHY_TARGET_SCRIPT) as GDScript
+		if script == null:
+			continue
+		var target := Area2D.new()
+		target.set_script(script)
+		target.name = "SympathyTarget_" + str(data.get("working_id", "unnamed"))
+		target.position = data.get("position", Vector2.ZERO) as Vector2
+		target.set("working_id", str(data.get("working_id", "")))
+		target.set("display_name", str(data.get("display_name", "")))
+		var obstacle_ref := str(data.get("obstacle_path", ""))
+		if not obstacle_ref.is_empty():
+			target.set("obstacle_path", NodePath(obstacle_ref))
+		target.set("move_offset", data.get("move_offset", Vector2.ZERO) as Vector2)
+		add_child(target)
+		if target.has_signal("puzzle_requested"):
+			(target as Area2D).connect(
+				"puzzle_requested",
+				func(t) -> void: _open_sympathy_puzzle(panel, t)
+			)
+
+func _open_sympathy_puzzle(panel: SympathyPuzzlePanel, target: Area2D) -> void:
+	if panel.is_open():
+		return
+	var puzzle := target.call("build_puzzle") as SympathyPuzzle
+	if puzzle == null or puzzle.def.is_empty():
+		push_warning("WorldScene: no working def for '%s'" % target.name)
+		return
+	var gs := get_node_or_null("/root/GameState")
+	panel.open_for(puzzle, gs if gs != null else self)
 
 func _setup_ambience() -> void:
 	for event_id in ambience_events:

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "working_jammed_wagon_gate",
+    "title": "The Jammed Wagon Gate",
+    "prompt": "A rusted pin has seized the troupe's spare wagon gate half-open. Abenthy taps it: \"Iron remembers fire, lad. Find the heat, bind it true, and the pin will let go.\" Choose where the energy comes from.",
+    "mastery": 0.3,
+    "composure": 0.4,
+    "difficulty": 1.0,
+    "sources": [
+      { "id": "src_campfire_ember", "label": "Campfire ember", "domain": "thermal", "energy": 10.0 },
+      { "id": "src_body_heat", "label": "Your own body heat", "domain": "thermal", "energy": 4.0 }
+    ],
+    "link": { "id": "link_heated_nail", "label": "An iron nail heated in the fire", "domains": ["thermal"], "quality": 0.8 },
+    "target": { "id": "target_rusted_gate_pin", "label": "The rusted gate pin", "domain": "thermal", "tolerance": 6.0 },
+    "effect": { "id": "effect_loosen_pin", "label": "Loosen the seized pin", "domain": "thermal", "cost": 5.0, "payload": {} },
+    "world_effect": "move_obstacle",
+    "on_success_flag": "flag_camp_wagon_gate_moved",
+    "success_text": "The pin creaks, glows dull orange, and lets go. The gate swings wide and the wagon rolls clear."
+  },
+  {
+    "id": "working_swollen_hatch_latch",
+    "title": "The Swollen Supply Hatch",
+    "prompt": "Rain has swollen the wagon's supply hatch until the latch will not draw. A drop of sympathy — a whisper of heat along the hasp — should open it without splitting the wood.",
+    "mastery": 0.35,
+    "composure": 0.4,
+    "difficulty": 1.2,
+    "sources": [
+      { "id": "src_brazier_coal", "label": "Brazier coal", "domain": "thermal", "energy": 8.0 },
+      { "id": "src_friction_palm", "label": "Friction from your palms", "domain": "thermal", "energy": 3.5 }
+    ],
+    "link": { "id": "link_warm_coin", "label": "A coin warmed between your hands", "domains": ["thermal"], "quality": 0.7 },
+    "target": { "id": "target_iron_hasp", "label": "The iron hasp of the hatch", "domain": "thermal", "tolerance": 5.0 },
+    "effect": { "id": "effect_draw_the_latch", "label": "Draw the latch", "domain": "thermal", "cost": 4.0, "payload": {} },
+    "world_effect": "open_door",
+    "on_success_flag": "flag_camp_supply_hatch_opened",
+    "success_text": "The hasp expands with a soft tick and the latch slips free. The hatch swings open on its own."
+  }
+]
