@@ -91,8 +91,21 @@ members:
 - `build/groups/<name>/group-report.json`, `CREDITS.md`
 - `../../art/sprites/lpc/` — published sheets when `--publish` is passed
 
-## Testing
+`npm test` runs `node --test "tests/**/**.test.mjs"` (definition parsing,
+validator rules, palette math, NPC determinism, credit aggregation). Tests
+are hermetic — they read `metadata/asset-index.json` but never touch upstream
+PNGs.
 
-`npm test` runs `node --test tests/` (definition parsing, validator rules,
-palette math, NPC determinism, credit aggregation). Tests are hermetic —
-they read `metadata/asset-index.json` but never touch upstream PNGs.
+## Pending custom assets
+
+Roster definitions build cleanly from upstream LPC parts, but several NOTW
+signatures need original art before they're screen-final:
+
+| Item | Current stand-in | Needed |
+| --- | --- | --- |
+| Caesura | `weapon.saber` (steel) | Curved blade with notched/broken guard |
+| Kvothe's lute (prop) | none | Held lute prop layer for idle/performance |
+| Haliax's shadowed face | hood + pale skin | Face-shadow overlay layer |
+| Cinder's aura | glowsword blue only | Cold-blue rim light / frost overlay |
+| University masters' robes | longsleeve recolors | Distinct robe silhouettes with hoods |
+| Adem costume | generic longsword carrier | Adem red ribbon + fitted silhouette |
