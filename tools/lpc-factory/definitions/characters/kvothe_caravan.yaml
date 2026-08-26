@@ -1,4 +1,3 @@
-# kvothe_caravan.yaml — Kvothe as a young trouper with the Edema Ruh (Act 1)
 name: kvothe_caravan
 bodyType: male
 animations:
@@ -6,6 +5,12 @@ animations:
   - walk
 layers:
   - item: body.body_color
+    color: pale
+    palette: notw-body
+  - item: head.human_male
+    color: pale
+    palette: notw-body
+  - item: expression.neutral
     color: pale
     palette: notw-body
   - item: legs.pants

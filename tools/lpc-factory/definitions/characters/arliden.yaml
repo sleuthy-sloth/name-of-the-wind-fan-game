@@ -1,4 +1,3 @@
-# arliden.yaml — Kvothe's father, troupe songwriter
 name: arliden
 bodyType: male
 animations:
@@ -6,6 +5,12 @@ animations:
   - walk
 layers:
   - item: body.body_color
+    color: sun_touched
+    palette: notw-body
+  - item: head.human_male
+    color: sun_touched
+    palette: notw-body
+  - item: expression.neutral
     color: sun_touched
     palette: notw-body
   - item: legs.pants

@@ -1,4 +1,3 @@
-# elodin.yaml — Master Namer, "Elodin is mad in the way a storm is mad"
 name: elodin
 bodyType: male
 animations:
@@ -6,6 +5,12 @@ animations:
   - walk
 layers:
   - item: body.body_color
+    color: scholar_pale
+    palette: university-body
+  - item: head.human_male
+    color: scholar_pale
+    palette: university-body
+  - item: expression.neutral
     color: scholar_pale
     palette: university-body
   - item: legs.pants

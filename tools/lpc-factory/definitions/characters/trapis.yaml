@@ -1,4 +1,3 @@
-# trapis.yaml — the tinker of Trebon's waystone, cellar full of old stories
 name: trapis
 bodyType: male
 animations:
@@ -6,6 +5,12 @@ animations:
   - walk
 layers:
   - item: body.body_color
+    color: road_weathered
+    palette: ruh-body
+  - item: head.human_male
+    color: road_weathered
+    palette: ruh-body
+  - item: expression.neutral
     color: road_weathered
     palette: ruh-body
   - item: legs.pants

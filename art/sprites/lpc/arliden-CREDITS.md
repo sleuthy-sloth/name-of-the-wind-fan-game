@@ -10,7 +10,7 @@
 ## Authors
 
 ### bluecarrot16
-- **Items:** Body Color, Pants, Basic Boots, Longsleeve laced, Leather Belt
+- **Items:** Body Color, Human Male, Pants, Basic Boots, Longsleeve laced, Leather Belt
 - **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0, GPL 2.0
 - **URLs:**
   - https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles
@@ -40,7 +40,7 @@
   - https://opengameart.org/content/lpc-combat-armor-for-women
 
 ### JaidynReiman
-- **Items:** Body Color, Pants, Basic Boots, Longsleeve laced, Parted
+- **Items:** Body Color, Neutral, Pants, Basic Boots, Longsleeve laced, Parted
 - **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0, GPL 2.0
 - **URLs:**
   - https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles
@@ -59,6 +59,8 @@
   - https://opengameart.org/content/lpc-pregnancy-bases-maternity-wear
   - https://opengameart.org/content/lpc-7-womens-shirts
   - https://gitlab.com/vagabondgame/lpc-characters
+  - https://github.com/ElizaWy/LPC/tree/main/Characters/Head
+  - https://opengameart.org/content/ulpc-expanded-expressions
   - https://opengameart.org/content/lpc-expanded-pants
   - http://opengameart.org/content/lpc-clothing-updates
   - https://opengameart.org/content/lpc-clothes-and-hair
@@ -68,7 +70,7 @@
   - https://opengameart.org/content/lpc-expanded-hair
 
 ### Benjamin K. Smith (BenCreating)
-- **Items:** Body Color
+- **Items:** Body Color, Human Male
 - **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0
 - **URLs:**
   - https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles
@@ -229,7 +231,7 @@
   - https://opengameart.org/content/lpc-combat-armor-for-women
 
 ### Stephen Challener (Redshrike)
-- **Items:** Body Color, Pants, Longsleeve laced
+- **Items:** Body Color, Human Male, Neutral, Pants, Longsleeve laced
 - **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0
 - **URLs:**
   - https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles
@@ -251,6 +253,8 @@
   - https://opengameart.org/content/lpc-pregnancy-bases-maternity-wear
   - https://opengameart.org/content/lpc-child-standing-template
   - https://opengameart.org/content/lpc-children-walk-animation
+  - https://github.com/ElizaWy/LPC/tree/main/Characters/Head
+  - https://opengameart.org/content/ulpc-expanded-expressions
   - https://opengameart.org/content/lpc-expanded-pants
   - http://opengameart.org/content/lpc-clothing-updates
   - https://opengameart.org/content/lpc-pirates
@@ -273,7 +277,7 @@
   - https://opengameart.org/content/lpc-pregnancy-bases-maternity-wear
 
 ### ElizaWy
-- **Items:** Body Color, Pants, Trimmed Beard
+- **Items:** Body Color, Neutral, Pants, Trimmed Beard
 - **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0
 - **URLs:**
   - https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles
@@ -288,6 +292,8 @@
   - https://opengameart.org/content/lpc-runcycle-and-diagonal-walkcycle
   - https://opengameart.org/content/lpc-child-standing-template
   - https://opengameart.org/content/lpc-children-walk-animation
+  - https://github.com/ElizaWy/LPC/tree/main/Characters/Head
+  - https://opengameart.org/content/ulpc-expanded-expressions
   - https://opengameart.org/content/lpc-expanded-pants
   - http://opengameart.org/content/lpc-clothing-updates
   - https://github.com/ElizaWy/LPC/tree/main/Characters/Hair
@@ -424,6 +430,41 @@
 - **Authors:** bluecarrot16, Benjamin K. Smith (BenCreating), ElizaWy, MuffinElZangano, Durrani, Nila122, kheftel, Stephen Challener (Redshrike)
 - **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0
 - **URLs:** https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles, https://opengameart.org/content/lpc-child-standing-template, https://opengameart.org/content/lpc-children-walk-animation, https://opengameart.org/content/lpc-male-jumping-animation-by-durrani, https://opengameart.org/content/lpc-male-jumping-animation-by-durrani, https://opengameart.org/content/lpc-jump-expanded, https://opengameart.org/content/lpc-jump-expanded
+
+### Human Male (head.human_male)
+- **File:** head/heads/human/male
+- **Notes:** original head by Redshrike, tweaks by BenCreating, modular version by bluecarrot16
+- **Authors:** bluecarrot16, Benjamin K. Smith (BenCreating), Stephen Challener (Redshrike)
+- **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0
+- **URLs:** https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles, https://opengameart.org/content/lpc-character-bases
+
+### Neutral (expression.neutral)
+- **File:** head/faces
+- **Notes:** Original by Redshrike, Expressions by ElizaWy, mapped to all frames by JaidynReiman
+- **Authors:** JaidynReiman, ElizaWy, Stephen Challener (Redshrike)
+- **Licenses:** OGA-BY 3.0
+- **URLs:** https://github.com/ElizaWy/LPC/tree/main/Characters/Head, https://opengameart.org/content/ulpc-expanded-expressions
+
+### Neutral (expression.neutral)
+- **File:** head/faces/elderly/neutral
+- **Notes:** Original by Redshrike, Elderly Head/Eyes by ElizaWy, mapped to all frames by JaidynReiman
+- **Authors:** JaidynReiman, ElizaWy, Stephen Challener (Redshrike)
+- **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0
+- **URLs:** https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles, https://github.com/ElizaWy/LPC/tree/main/Characters/Head, https://opengameart.org/content/ulpc-expanded-expressions
+
+### Neutral (expression.neutral)
+- **File:** head/faces/female/neutral
+- **Notes:** Original by Redshrike, spellcast and jump overrides by JaidynReiman
+- **Authors:** JaidynReiman, Stephen Challener (Redshrike)
+- **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0
+- **URLs:** https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles, https://opengameart.org/content/ulpc-expanded-expressions
+
+### Neutral (expression.neutral)
+- **File:** head/faces/male/neutral
+- **Notes:** Original by Redshrike, spellcast and jump overrides by JaidynReiman
+- **Authors:** JaidynReiman, Stephen Challener (Redshrike)
+- **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0
+- **URLs:** https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles, https://opengameart.org/content/ulpc-expanded-expressions
 
 ### Pants (legs.pants)
 - **File:** legs/pants/male

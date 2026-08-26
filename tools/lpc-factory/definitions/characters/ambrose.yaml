@@ -1,4 +1,3 @@
-# ambrose.yaml — Ambrose Jakis, the Master's son with a grudge
 name: ambrose
 bodyType: male
 animations:
@@ -6,6 +5,12 @@ animations:
   - walk
 layers:
   - item: body.body_color
+    color: noble_pale
+    palette: nobility-body
+  - item: head.human_male
+    color: noble_pale
+    palette: nobility-body
+  - item: expression.neutral
     color: noble_pale
     palette: nobility-body
   - item: legs.pants

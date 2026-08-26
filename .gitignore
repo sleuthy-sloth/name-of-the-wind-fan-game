@@ -42,3 +42,4 @@ tools/audio-pipeline/.cache/
 # Game-ready re-encodes are derived: rebuild with `npm run audio:normalize`
 # inside tools/audio-pipeline (production copies live in tracked audio/).
 tools/audio-pipeline/processed/
+.retired/

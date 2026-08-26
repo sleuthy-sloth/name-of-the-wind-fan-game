@@ -1,5 +1,3 @@
-# kvothe_university.yaml — Kvothe in University blues (Act 2+)
-# NOTE: pending custom assets — no lute prop layer exists upstream yet.
 name: kvothe_university
 bodyType: male
 animations:
@@ -7,6 +5,12 @@ animations:
   - walk
 layers:
   - item: body.body_color
+    color: pale
+    palette: notw-body
+  - item: head.human_male
+    color: pale
+    palette: notw-body
+  - item: expression.neutral
     color: pale
     palette: notw-body
   - item: legs.pants

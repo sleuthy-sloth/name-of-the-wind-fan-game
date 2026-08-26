@@ -10,7 +10,7 @@
 ## Authors
 
 ### bluecarrot16
-- **Items:** Body Color
+- **Items:** Body Color, Human Female
 - **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0
 - **URLs:**
   - https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles
@@ -32,9 +32,10 @@
   - https://opengameart.org/content/lpc-pregnancy-bases-maternity-wear
   - https://opengameart.org/content/lpc-child-standing-template
   - https://opengameart.org/content/lpc-children-walk-animation
+  - https://opengameart.org/content/
 
 ### JaidynReiman
-- **Items:** Body Color
+- **Items:** Body Color, Neutral
 - **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0
 - **URLs:**
   - https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles
@@ -53,9 +54,11 @@
   - https://opengameart.org/content/lpc-pregnancy-bases-maternity-wear
   - https://opengameart.org/content/lpc-7-womens-shirts
   - https://gitlab.com/vagabondgame/lpc-characters
+  - https://github.com/ElizaWy/LPC/tree/main/Characters/Head
+  - https://opengameart.org/content/ulpc-expanded-expressions
 
 ### Benjamin K. Smith (BenCreating)
-- **Items:** Body Color
+- **Items:** Body Color, Human Female
 - **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0
 - **URLs:**
   - https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles
@@ -77,6 +80,7 @@
   - https://opengameart.org/content/lpc-pregnancy-bases-maternity-wear
   - https://opengameart.org/content/lpc-child-standing-template
   - https://opengameart.org/content/lpc-children-walk-animation
+  - https://opengameart.org/content/
 
 ### Evert
 - **Items:** Body Color
@@ -212,7 +216,7 @@
   - https://opengameart.org/content/lpc-pregnancy-bases-maternity-wear
 
 ### Stephen Challener (Redshrike)
-- **Items:** Body Color
+- **Items:** Body Color, Human Female, Neutral
 - **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0
 - **URLs:**
   - https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles
@@ -234,6 +238,9 @@
   - https://opengameart.org/content/lpc-pregnancy-bases-maternity-wear
   - https://opengameart.org/content/lpc-child-standing-template
   - https://opengameart.org/content/lpc-children-walk-animation
+  - https://opengameart.org/content/
+  - https://github.com/ElizaWy/LPC/tree/main/Characters/Head
+  - https://opengameart.org/content/ulpc-expanded-expressions
 
 ### Pierre Vigier (pvigier)
 - **Items:** Body Color
@@ -253,7 +260,7 @@
   - https://opengameart.org/content/lpc-pregnancy-bases-maternity-wear
 
 ### ElizaWy
-- **Items:** Body Color, Braid
+- **Items:** Body Color, Neutral, Braid
 - **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0, GPL 2.0
 - **URLs:**
   - https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles
@@ -268,6 +275,8 @@
   - https://opengameart.org/content/lpc-runcycle-and-diagonal-walkcycle
   - https://opengameart.org/content/lpc-child-standing-template
   - https://opengameart.org/content/lpc-children-walk-animation
+  - https://github.com/ElizaWy/LPC/tree/main/Characters/Head
+  - https://opengameart.org/content/ulpc-expanded-expressions
   - https://opengameart.org/content/3-hairs-for-lpc
   - https://opengameart.org/content/lpc-hair
 
@@ -385,6 +394,41 @@
 - **Authors:** bluecarrot16, Benjamin K. Smith (BenCreating), ElizaWy, MuffinElZangano, Durrani, Nila122, kheftel, Stephen Challener (Redshrike)
 - **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0
 - **URLs:** https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles, https://opengameart.org/content/lpc-child-standing-template, https://opengameart.org/content/lpc-children-walk-animation, https://opengameart.org/content/lpc-male-jumping-animation-by-durrani, https://opengameart.org/content/lpc-male-jumping-animation-by-durrani, https://opengameart.org/content/lpc-jump-expanded, https://opengameart.org/content/lpc-jump-expanded
+
+### Human Female (head.human_female)
+- **File:** head/heads/human/female
+- **Notes:** original head by Redshrike, tweaks by BenCreating, modular version by bluecarrot16
+- **Authors:** bluecarrot16, Benjamin K. Smith (BenCreating), Stephen Challener (Redshrike)
+- **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0
+- **URLs:** https://opengameart.org/content/, https://opengameart.org/content/lpc-character-bases
+
+### Neutral (expression.neutral)
+- **File:** head/faces
+- **Notes:** Original by Redshrike, Expressions by ElizaWy, mapped to all frames by JaidynReiman
+- **Authors:** JaidynReiman, ElizaWy, Stephen Challener (Redshrike)
+- **Licenses:** OGA-BY 3.0
+- **URLs:** https://github.com/ElizaWy/LPC/tree/main/Characters/Head, https://opengameart.org/content/ulpc-expanded-expressions
+
+### Neutral (expression.neutral)
+- **File:** head/faces/elderly/neutral
+- **Notes:** Original by Redshrike, Elderly Head/Eyes by ElizaWy, mapped to all frames by JaidynReiman
+- **Authors:** JaidynReiman, ElizaWy, Stephen Challener (Redshrike)
+- **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0
+- **URLs:** https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles, https://github.com/ElizaWy/LPC/tree/main/Characters/Head, https://opengameart.org/content/ulpc-expanded-expressions
+
+### Neutral (expression.neutral)
+- **File:** head/faces/female/neutral
+- **Notes:** Original by Redshrike, spellcast and jump overrides by JaidynReiman
+- **Authors:** JaidynReiman, Stephen Challener (Redshrike)
+- **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0
+- **URLs:** https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles, https://opengameart.org/content/ulpc-expanded-expressions
+
+### Neutral (expression.neutral)
+- **File:** head/faces/male/neutral
+- **Notes:** Original by Redshrike, spellcast and jump overrides by JaidynReiman
+- **Authors:** JaidynReiman, Stephen Challener (Redshrike)
+- **Licenses:** OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0
+- **URLs:** https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles, https://opengameart.org/content/ulpc-expanded-expressions
 
 ### Robe (clothes.robe)
 - **File:** torso/clothes/robe

@@ -9,6 +9,22 @@ import fs from "fs";
 import path from "path";
 import { resolveAnimName, getFrameSize } from "./lpc-source.mjs";
 
+// Head-style used to expand ${head} templates in sheet-definition paths
+// (e.g. expressions): sheet_definitions map Human_* heads onto these dirs.
+const HEAD_STYLE_BY_BODY = {
+  male: "male",
+  female: "female",
+  muscular: "male",
+  pregnant: "female",
+  teen: "male",
+  child: "male",
+};
+
+export function expandPathTemplates(bodyPath, bodyType) {
+  if (!bodyPath.includes("${head}")) return bodyPath;
+  return bodyPath.replace("${head}", HEAD_STYLE_BY_BODY[bodyType] ?? "male");
+}
+
 function mkResult(layerKey, zPos, file, frameSize, type) {
   return { layerKey, zPos, file, frameSize, type };
 }
@@ -16,8 +32,9 @@ function mkResult(layerKey, zPos, file, frameSize, type) {
 export function resolveLayerFile(item, layerKey, bodyType, animation, upstreamRoot, variant) {
   const layer = item.layers[layerKey];
   if (!layer) return null;
-  const bodyPath = layer.paths[bodyType];
-  if (!bodyPath) return null;
+  const rawBodyPath = layer.paths[bodyType];
+  if (!rawBodyPath) return null;
+  const bodyPath = expandPathTemplates(rawBodyPath, bodyType);
 
   // Layer tied to a different custom animation than requested -> skip
   if (layer.customAnimation && layer.customAnimation !== animation) return null;
