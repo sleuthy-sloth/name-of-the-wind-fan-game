@@ -28,6 +28,7 @@ var _hold_timer: Timer = null
 func _ready() -> void:
 	_play_ambience()
 	_style_labels()
+	_style_buttons()
 	_wire_buttons()
 	_apply_continue_state()
 	_play_fade_in()
@@ -69,6 +70,30 @@ func _style_labels() -> void:
 		_byline_label.text = "In the world we make, words are the most honest tools we have."
 		_byline_label.add_theme_font_size_override("font_size", 12)
 		_byline_label.add_theme_color_override("font_color", Color(0.6, 0.5, 0.38))
+
+func _style_buttons() -> void:
+	for button in [_new_button, _continue_button, _settings_button, _credits_button, _quit_button]:
+		if button == null:
+			continue
+		button.add_theme_font_size_override("font_size", 17)
+		button.add_theme_color_override("font_color", Color("f3e5c4"))
+		button.add_theme_color_override("font_hover_color", Color("fff6d8"))
+		button.add_theme_color_override("font_pressed_color", Color("d7b67c"))
+		var normal := StyleBoxFlat.new()
+		normal.bg_color = Color(0.10, 0.07, 0.05, 0.86)
+		normal.border_color = Color(0.73, 0.56, 0.31, 0.72)
+		normal.set_border_width_all(1)
+		normal.corner_radius_top_left = 4
+		normal.corner_radius_top_right = 4
+		normal.corner_radius_bottom_left = 4
+		normal.corner_radius_bottom_right = 4
+		normal.content_margin_top = 10
+		normal.content_margin_bottom = 10
+		button.add_theme_stylebox_override("normal", normal)
+		var hover := normal.duplicate()
+		hover.bg_color = Color(0.30, 0.17, 0.08, 0.94)
+		hover.border_color = Color("e4bd70")
+		button.add_theme_stylebox_override("hover", hover)
 
 func _wire_buttons() -> void:
 	if _new_button != null:

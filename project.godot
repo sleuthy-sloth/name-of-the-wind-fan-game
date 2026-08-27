@@ -32,6 +32,9 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep"
+# Preserve whole-pixel scaling for the 16 px source tiles. This keeps the
+# licensed pixel-art layers sharp when the game window is resized.
+window/stretch/scale_mode="integer"
 
 [input]
 

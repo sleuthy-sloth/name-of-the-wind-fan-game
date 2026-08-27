@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/world/world_scene.gd" id="1_world"]
 [ext_resource type="PackedScene" path="res://scenes/npcs/npc.tscn" id="2_npc"]
+[ext_resource type="Script" path="res://scripts/world/waystone_interior_presentation.gd" id="3_presentation"]
 
 [node name="WaystoneInnInterior" type="Node2D"]
 script = ExtResource("1_world")
@@ -9,6 +10,10 @@ ldtk_path = "res://maps/waystone_inn_interior.ldtk"
 door_target_scene = "res://scenes/world/caravan_route.tscn"
 ambience_events = Array[String](["AMB_FIRE_SMALL"])
 tint_enabled = false
+
+[node name="WaystoneInteriorPresentation" type="Node2D" parent="."]
+z_index = -1
+script = ExtResource("3_presentation")
 sympathy_targets = Array[Dictionary]([{
 "working_id": "working_light_the_lamp",
 "display_name": "The cold lamp",
