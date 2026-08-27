@@ -76,6 +76,35 @@ func _run_tests() -> void:
 	var baseline_path := "res://tests/fixtures/opening_art_baseline.json"
 	_check(FileAccess.file_exists(baseline_path), "opening map gameplay baseline exists")
 	var baseline := JSON.parse_string(FileAccess.get_file_as_string(baseline_path)) as Dictionary
+	var transparent_exterior_path := "res://art/tilesets/openrtp/derived/exterior_transparent.png"
+	var derivative_record_path := "res://art/tilesets/openrtp/derived/PROVENANCE.json"
+	_check(FileAccess.file_exists(transparent_exterior_path), "transparent OpenRTP exterior derivative exists")
+	_check(FileAccess.file_exists(derivative_record_path), "transparent OpenRTP derivative provenance exists")
+	if FileAccess.file_exists(derivative_record_path):
+		var derivative_record := JSON.parse_string(FileAccess.get_file_as_string(derivative_record_path)) as Dictionary
+		_check(derivative_record.get("derived_from") == "../exterior.png", "transparent derivative identifies its upstream source")
+		_check(
+			derivative_record.get("source_sha256") == _sha256_file("res://art/tilesets/openrtp/exterior.png"),
+			"transparent derivative records the upstream source hash",
+		)
+		_check(
+			derivative_record.get("derived_sha256") == _sha256_file(transparent_exterior_path),
+			"transparent derivative hash matches",
+		)
+	if FileAccess.file_exists(transparent_exterior_path):
+		var exterior_texture := load(transparent_exterior_path) as Texture2D
+		var exterior_image := exterior_texture.get_image()
+		var visible_chroma_pixels := 0
+		var transparent_pixels := 0
+		for pixel_y in range(exterior_image.get_height()):
+			for pixel_x in range(exterior_image.get_width()):
+				var pixel := exterior_image.get_pixel(pixel_x, pixel_y)
+				if pixel.a < 0.01:
+					transparent_pixels += 1
+				elif pixel.r8 == 255 and pixel.g8 == 103 and pixel.b8 == 139:
+					visible_chroma_pixels += 1
+		_check(visible_chroma_pixels == 0, "derived Props atlas has no visible magenta chroma key")
+		_check(transparent_pixels > 0, "derived Props atlas contains transparent pixels")
 	for map_record in [
 		{"id": "caravan_route", "path": "res://maps/caravan_route.ldtk"},
 		{"id": "forest_campsite", "path": "res://maps/forest_campsite.ldtk"},
@@ -86,14 +115,14 @@ func _run_tests() -> void:
 		var project := JSON.parse_string(source) as Dictionary
 		_check(not source.contains("zeldalike_overworld.png"), "legacy atlas removed: " + map_path)
 		_check(source.contains("openrtp/world.png"), "OpenRTP world atlas mapped: " + map_path)
-		_check(source.contains("openrtp/exterior.png"), "OpenRTP exterior atlas mapped: " + map_path)
+		_check(source.contains("openrtp/derived/exterior_transparent.png"), "transparent OpenRTP exterior atlas mapped: " + map_path)
 		_check(
 			_layer_by_name(project, "Ground").get("__tilesetRelPath") == "../art/tilesets/openrtp/world.png",
 			"Ground owns the OpenRTP world atlas: " + map_path,
 		)
 		_check(
-			_layer_by_name(project, "Props").get("__tilesetRelPath") == "../art/tilesets/openrtp/exterior.png",
-			"Props owns the OpenRTP exterior atlas: " + map_path,
+			_layer_by_name(project, "Props").get("__tilesetRelPath") == "../art/tilesets/openrtp/derived/exterior_transparent.png",
+			"Props owns the transparent OpenRTP exterior atlas: " + map_path,
 		)
 		_check(
 			_gameplay_layers(project) == baseline.get(map_id, []),

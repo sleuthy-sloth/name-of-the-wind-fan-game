@@ -124,7 +124,7 @@
       {
         "uid": 23,
         "identifier": "openrtp_exterior",
-        "relPath": "../art/tilesets/openrtp/exterior.png",
+        "relPath": "../art/tilesets/openrtp/derived/exterior_transparent.png",
         "pxWid": 480,
         "pxHei": 256,
         "tileGridSize": 16,
@@ -3327,7 +3327,7 @@
               "f": 0
             }
           ],
-          "__tilesetRelPath": "../art/tilesets/openrtp/exterior.png"
+          "__tilesetRelPath": "../art/tilesets/openrtp/derived/exterior_transparent.png"
         },
         {
           "layerDefUid": 1,

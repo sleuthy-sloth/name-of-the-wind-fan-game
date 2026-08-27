@@ -1,0 +1,14 @@
+{
+  "artifact": "exterior_transparent.png",
+  "derived_from": "../exterior.png",
+  "derived_sha256": "1aaec71050b1e8c1e229110cce9aafe9d306fd68feabd22dcecae08c4dba3167",
+  "generator": "tools/build_openrtp_maps.py",
+  "license": "CC0-1.0",
+  "operation": "set OpenRTP #FF678B palette entries transparent",
+  "source_pack": "openrtp",
+  "source_sha256": "65366c85efee8a71cdc77a87a94d51ee3884d25e0833d4e68839201a02c679d2",
+  "transparent_palette_indices": [
+    0
+  ],
+  "transparent_rgb": "#FF678B"
+}

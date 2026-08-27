@@ -4,9 +4,13 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import os
 import struct
 import sys
+import tempfile
+import zlib
 from copy import deepcopy
 from pathlib import Path
 from typing import Any
@@ -15,6 +19,11 @@ from typing import Any
 TILE_SIZE = 16
 WORLD_TILESET_UID = 20
 EXTERIOR_TILESET_UID = 23
+PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
+CHROMA_RGB = (255, 103, 139)
+DERIVED_EXTERIOR_PATH = Path("art/tilesets/openrtp/derived/exterior_transparent.png")
+DERIVED_PROVENANCE_PATH = Path("art/tilesets/openrtp/derived/PROVENANCE.json")
+PROPS_TILESET_REL_PATH = "../art/tilesets/openrtp/derived/exterior_transparent.png"
 
 ATLAS_PATHS = {
     "world": Path("art/tilesets/openrtp/world.png"),
@@ -72,9 +81,104 @@ def png_size(path: Path) -> tuple[int, int]:
         raise ValueError(f"missing OpenRTP atlas: {path}")
     with path.open("rb") as image_file:
         header = image_file.read(24)
-    if len(header) != 24 or header[:8] != b"\x89PNG\r\n\x1a\n" or header[12:16] != b"IHDR":
+    if len(header) != 24 or header[:8] != PNG_SIGNATURE or header[12:16] != b"IHDR":
         raise ValueError(f"not a valid PNG atlas: {path}")
     return struct.unpack(">II", header[16:24])
+
+
+def png_chunk(chunk_type: bytes, chunk_data: bytes) -> bytes:
+    checksum = zlib.crc32(chunk_type)
+    checksum = zlib.crc32(chunk_data, checksum) & 0xFFFFFFFF
+    return struct.pack(">I", len(chunk_data)) + chunk_type + chunk_data + struct.pack(">I", checksum)
+
+
+def parse_png_chunks(source: bytes) -> list[tuple[bytes, bytes]]:
+    if not source.startswith(PNG_SIGNATURE):
+        raise ValueError("OpenRTP exterior source is not a PNG")
+    chunks: list[tuple[bytes, bytes]] = []
+    offset = len(PNG_SIGNATURE)
+    while offset < len(source):
+        if offset + 12 > len(source):
+            raise ValueError("truncated OpenRTP exterior PNG chunk")
+        length = struct.unpack(">I", source[offset : offset + 4])[0]
+        chunk_type = source[offset + 4 : offset + 8]
+        data_start = offset + 8
+        data_end = data_start + length
+        chunk_end = data_end + 4
+        if chunk_end > len(source):
+            raise ValueError("truncated OpenRTP exterior PNG data")
+        chunk_data = source[data_start:data_end]
+        expected_crc = struct.unpack(">I", source[data_end:chunk_end])[0]
+        actual_crc = zlib.crc32(chunk_type)
+        actual_crc = zlib.crc32(chunk_data, actual_crc) & 0xFFFFFFFF
+        if actual_crc != expected_crc:
+            raise ValueError(f"invalid CRC in OpenRTP exterior PNG chunk {chunk_type!r}")
+        chunks.append((chunk_type, chunk_data))
+        offset = chunk_end
+        if chunk_type == b"IEND":
+            if offset != len(source):
+                raise ValueError("unexpected data after OpenRTP exterior PNG IEND")
+            return chunks
+    raise ValueError("OpenRTP exterior PNG has no IEND chunk")
+
+
+def transparent_exterior(source: bytes) -> tuple[bytes, list[int]]:
+    chunks = parse_png_chunks(source)
+    header = next((data for chunk_type, data in chunks if chunk_type == b"IHDR"), None)
+    palette = next((data for chunk_type, data in chunks if chunk_type == b"PLTE"), None)
+    if header is None or len(header) != 13 or header[9] != 3:
+        raise ValueError("OpenRTP exterior PNG must use indexed color")
+    if palette is None or len(palette) % 3 != 0:
+        raise ValueError("OpenRTP exterior PNG has no valid palette")
+
+    chroma_indices = [
+        index
+        for index in range(len(palette) // 3)
+        if tuple(palette[index * 3 : index * 3 + 3]) == CHROMA_RGB
+    ]
+    if not chroma_indices:
+        raise ValueError("OpenRTP exterior PNG is missing the expected #FF678B chroma key")
+
+    existing_transparency = next(
+        (data for chunk_type, data in chunks if chunk_type == b"tRNS"), b""
+    )
+    alphas = bytearray([255] * (max(chroma_indices) + 1))
+    alphas[: min(len(alphas), len(existing_transparency))] = existing_transparency[: len(alphas)]
+    for palette_index in chroma_indices:
+        alphas[palette_index] = 0
+
+    output = bytearray(PNG_SIGNATURE)
+    for chunk_type, chunk_data in chunks:
+        if chunk_type == b"tRNS":
+            continue
+        output.extend(png_chunk(chunk_type, chunk_data))
+        if chunk_type == b"PLTE":
+            output.extend(png_chunk(b"tRNS", bytes(alphas)))
+    return bytes(output), chroma_indices
+
+
+def derivative_outputs(project_root: Path) -> dict[Path, bytes]:
+    source_path = project_root / ATLAS_PATHS["exterior"]
+    source = source_path.read_bytes()
+    derived, chroma_indices = transparent_exterior(source)
+    provenance = {
+        "artifact": DERIVED_EXTERIOR_PATH.name,
+        "derived_from": "../exterior.png",
+        "derived_sha256": hashlib.sha256(derived).hexdigest(),
+        "generator": "tools/build_openrtp_maps.py",
+        "license": "CC0-1.0",
+        "operation": "set OpenRTP #FF678B palette entries transparent",
+        "source_pack": "openrtp",
+        "source_sha256": hashlib.sha256(source).hexdigest(),
+        "transparent_palette_indices": chroma_indices,
+        "transparent_rgb": "#FF678B",
+    }
+    return {
+        project_root / DERIVED_EXTERIOR_PATH: derived,
+        project_root / DERIVED_PROVENANCE_PATH: (
+            json.dumps(provenance, indent=2, sort_keys=True) + "\n"
+        ).encode("utf-8"),
+    }
 
 
 def atlas_dimensions(project_root: Path) -> dict[str, tuple[int, int]]:
@@ -326,7 +430,7 @@ def rebuild_project(
         tileset_definition(
             EXTERIOR_TILESET_UID,
             "openrtp_exterior",
-            "../art/tilesets/openrtp/exterior.png",
+            PROPS_TILESET_REL_PATH,
             dimensions["exterior"],
         ),
     ]
@@ -353,27 +457,57 @@ def rebuild_project(
         ground_layer["gridTiles"] = ground_tiles(recipe["ground"], width, height, dimensions)
         ground_layer["__tilesetRelPath"] = "../art/tilesets/openrtp/world.png"
         props_layer["gridTiles"] = prop_tiles(map_name, recipe["props"], width, height, dimensions)
-        props_layer["__tilesetRelPath"] = "../art/tilesets/openrtp/exterior.png"
+        props_layer["__tilesetRelPath"] = PROPS_TILESET_REL_PATH
 
     if gameplay_payload(project) != baseline:
         raise RuntimeError(f"refusing to write {map_name}: gameplay layers changed")
     return project
 
 
+def atomic_replace_outputs(outputs: dict[Path, bytes]) -> None:
+    temporary_paths: dict[Path, Path] = {}
+    try:
+        for output_path, content in outputs.items():
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            file_descriptor, temporary_name = tempfile.mkstemp(
+                prefix=f".{output_path.name}.",
+                dir=output_path.parent,
+            )
+            temporary_path = Path(temporary_name)
+            temporary_paths[output_path] = temporary_path
+            with os.fdopen(file_descriptor, "wb") as output_file:
+                output_file.write(content)
+                output_file.flush()
+                os.fsync(output_file.fileno())
+        for output_path, temporary_path in temporary_paths.items():
+            os.replace(temporary_path, output_path)
+    finally:
+        for temporary_path in temporary_paths.values():
+            temporary_path.unlink(missing_ok=True)
+
+
 def build_maps(project_root: Path) -> int:
     try:
         dimensions = atlas_dimensions(project_root)
+        outputs = derivative_outputs(project_root)
+        build_records: list[tuple[str, int, int]] = []
+
+        # Validate and serialize every project before creating any output file.
         for map_name in RECIPES:
             map_path = project_root / "maps" / f"{map_name}.ldtk"
             project = json.loads(map_path.read_text(encoding="utf-8"))
             rebuilt = rebuild_project(project, map_name, dimensions)
-            map_path.write_text(json.dumps(rebuilt, indent=2) + "\n", encoding="utf-8")
-            level = rebuilt["levels"][0]
-            layers = level["layerInstances"]
+            outputs[map_path] = (json.dumps(rebuilt, indent=2) + "\n").encode("utf-8")
+            layers = rebuilt["levels"][0]["layerInstances"]
             ground_count = len(layer_by_name(layers, "Ground", map_name)["gridTiles"])
             props_count = len(layer_by_name(layers, "Props", map_name)["gridTiles"])
-            print(f"BUILT: {map_path.name} ({ground_count} ground, {props_count} props)")
-    except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as error:
+            build_records.append((map_path.name, ground_count, props_count))
+
+        atomic_replace_outputs(outputs)
+        for map_filename, ground_count, props_count in build_records:
+            print(f"BUILT: {map_filename} ({ground_count} ground, {props_count} props)")
+        print(f"BUILT: {DERIVED_EXTERIOR_PATH}")
+    except (OSError, KeyError, RuntimeError, TypeError, ValueError, json.JSONDecodeError) as error:
         print(f"ERROR: {error}")
         return 1
     return 0
