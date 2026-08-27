@@ -15,12 +15,20 @@ func _check(condition: bool, label: String) -> void:
 
 func _run() -> void:
 	_check(ResourceLoader.exists("res://scripts/ui/chronicle_canvas.gd"), "ChronicleCanvas exists")
+	_test_interaction_prompt()
 	await _test_title_canvas()
 	await _test_waystone_prologue()
 	await _test_caravan_presentation()
 	_check(FileAccess.file_exists("res://tools/capture_opening_screenshots.gd"), "capture tool exists")
 	print("OPENING_PRESENTATION_TEST: %s" % ("PASS" if _failures == 0 else "FAIL (%d failure(s))" % _failures))
 	quit(0 if _failures == 0 else 1)
+
+
+func _test_interaction_prompt() -> void:
+	_check(InteractionPrompt.binding_label(&"interact") == "E", "interact binding resolves to E")
+	var label := Label.new()
+	InteractionPrompt.configure(label, &"interact", "Speak with Abenthy", Color.WHITE)
+	_check(label.text == "[E] Speak with Abenthy", "prompt combines binding and context")
 
 
 func _test_title_canvas() -> void:
