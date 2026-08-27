@@ -14,6 +14,7 @@ func _check(condition: bool, label: String) -> void:
 
 
 func _run() -> void:
+	_test_project_rendering_contract()
 	_check(ResourceLoader.exists("res://scripts/ui/chronicle_canvas.gd"), "ChronicleCanvas exists")
 	_test_interaction_prompt()
 	await _test_title_canvas()
@@ -23,6 +24,14 @@ func _run() -> void:
 	_test_capture_contract()
 	print("OPENING_PRESENTATION_TEST: %s" % ("PASS" if _failures == 0 else "FAIL (%d failure(s))" % _failures))
 	quit(0 if _failures == 0 else 1)
+
+
+func _test_project_rendering_contract() -> void:
+	var project := FileAccess.get_file_as_string("res://project.godot")
+	_check(project.contains('window/stretch/mode="canvas_items"'), "project uses canvas item stretch")
+	_check(project.contains('window/stretch/aspect="keep"'), "project preserves aspect ratio")
+	_check(project.contains('window/stretch/scale_mode="integer"'), "project uses integer pixel scaling")
+	_check(project.contains("textures/canvas_textures/default_texture_filter=0"), "project uses nearest texture filtering")
 
 
 func _test_interaction_prompt() -> void:
