@@ -72,5 +72,39 @@ class AtomicMapWriteTest(unittest.TestCase):
                 )
 
 
+class TutorialLayoutContractTest(unittest.TestCase):
+    def test_forest_campsite_is_a_large_four_zone_tutorial_map(self) -> None:
+        project = json.loads(
+            (PROJECT_ROOT / "maps/forest_campsite.ldtk").read_text(encoding="utf-8")
+        )
+        level = project["levels"][0]
+        self.assertEqual((level["pxWid"], level["pxHei"]), (640, 448))
+
+        layers = {layer["identifier"]: layer for layer in level["layerInstances"]}
+        for layer_name in ("Ground", "Props", "Collision", "Decoration", "Foreground", "Lighting", "Entities"):
+            self.assertEqual(
+                (layers[layer_name]["__cWid"], layers[layer_name]["__cHei"]),
+                (40, 28),
+                f"{layer_name} uses the expanded tutorial bounds",
+            )
+
+        entities = {
+            entity["__identifier"]: tuple(entity["px"])
+            for entity in layers["Entities"]["entityInstances"]
+        }
+        self.assertEqual(entities["Spawn"], (112, 240))
+        self.assertEqual(entities["Door"], (32, 240))
+        self.assertEqual(entities["Interaction"], (320, 176))
+
+        collision_rows = [
+            [int(cell) for cell in row.split(",")]
+            for row in layers["Collision"]["intGridCsv"].splitlines()
+        ]
+        self.assertEqual(collision_rows[14][0], 0, "west arrival opening remains walkable")
+        self.assertEqual(collision_rows[14][39], 0, "east tutorial opening remains walkable")
+        self.assertEqual(collision_rows[6][20], 1, "north grove barrier is readable")
+        self.assertEqual(collision_rows[22][20], 1, "south creek barrier is readable")
+
+
 if __name__ == "__main__":
     unittest.main()

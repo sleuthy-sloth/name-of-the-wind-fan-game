@@ -164,10 +164,26 @@ func _run_tests() -> void:
 			_layer_by_name(project, "Props").get("__tilesetRelPath") == "../art/tilesets/openrtp/derived/exterior_transparent.png",
 			"Props owns the transparent OpenRTP exterior atlas: " + map_path,
 		)
-		_check(
-			_gameplay_layers(project) == baseline.get(map_id, []),
-			"gameplay layers preserved: " + map_path,
-		)
+		if map_id == "forest_campsite":
+			var level := (project.get("levels", []) as Array)[0] as Dictionary
+			_check(
+				int(level.get("pxWid", 0)) == 640 and int(level.get("pxHei", 0)) == 448,
+				"forest tutorial uses expanded 640x448 bounds",
+			)
+			var collision := _layer_by_name(project, "Collision")
+			var collision_rows := str(collision.get("intGridCsv", "")).split("\n", false)
+			_check(collision_rows.size() == 28, "forest collision grid has 28 rows")
+			if collision_rows.size() == 28:
+				var middle_row := collision_rows[14].split(",")
+				_check(
+					middle_row.size() == 40 and middle_row[0] == "0" and middle_row[39] == "0",
+					"forest tutorial keeps west/east arrival openings",
+				)
+		else:
+			_check(
+				_gameplay_layers(project) == baseline.get(map_id, []),
+				"gameplay layers preserved: " + map_path,
+			)
 
 	if _failures == 0:
 		print("OPENING_ART_TEST: PASS (" + str(_checks) + " checks)")

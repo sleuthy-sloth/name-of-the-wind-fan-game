@@ -68,10 +68,22 @@ RECIPES = {
     "caravan_route": {
         "ground": "meadow_road",
         "props": ["tree_border", "wildflowers", "fence", "camp_tent", "crate"],
+        "size": (20, 15),
+        "expand_gameplay": False,
     },
     "forest_campsite": {
-        "ground": "clearing_path",
-        "props": ["dense_tree_border", "fire_ring", "bedroll", "camp_tent", "crate"],
+        "ground": "campsite_expanded",
+        "props": [
+            "dense_tree_border",
+            "lesson_grove",
+            "south_trail",
+            "fire_ring",
+            "bedroll",
+            "camp_tent",
+            "crate",
+        ],
+        "size": (40, 28),
+        "expand_gameplay": True,
     },
 }
 
@@ -246,6 +258,31 @@ def ground_tiles(
                 path_bottom = (in_clearing and cell_y == 10) or (
                     (west_approach or east_approach) and cell_y == 8
                 )
+            elif recipe_name == "campsite_expanded":
+                central_clearing = 11 <= cell_x <= 28 and 9 <= cell_y <= 18
+                west_approach = cell_x <= 10 and 14 <= cell_y <= 15
+                east_approach = cell_x >= 29 and 14 <= cell_y <= 15
+                north_lesson_path = 18 <= cell_x <= 22 and 4 <= cell_y <= 8
+                south_return_path = 18 <= cell_x <= 22 and 19 <= cell_y <= 25
+                on_path = (
+                    central_clearing
+                    or west_approach
+                    or east_approach
+                    or north_lesson_path
+                    or south_return_path
+                )
+                path_top = (
+                    (11 <= cell_x <= 28 and cell_y == 9)
+                    or (18 <= cell_x <= 22 and cell_y == 4)
+                    or (18 <= cell_x <= 22 and cell_y == 19)
+                    or ((west_approach or east_approach) and cell_y == 14)
+                )
+                path_bottom = (
+                    (11 <= cell_x <= 28 and cell_y == 18)
+                    or (18 <= cell_x <= 22 and cell_y == 8)
+                    or (18 <= cell_x <= 22 and cell_y == 25)
+                    or ((west_approach or east_approach) and cell_y == 15)
+                )
             else:
                 raise ValueError(f"unknown ground recipe: {recipe_name}")
 
@@ -344,18 +381,55 @@ def prop_tiles(
                 add_prop(output, start_x + 1, cell_y, "fence_middle", dimensions)
                 add_prop(output, start_x + 2, cell_y, "fence_right", dimensions)
         elif recipe_name == "fire_ring":
-            add_prop(output, 10, 7, "campfire", dimensions)
+            add_prop(output, 20, 13, "campfire", dimensions)
         elif recipe_name == "bedroll":
-            add_prop(output, 12, 8, "bedroll", dimensions)
+            add_prop(output, 17, 14, "bedroll", dimensions)
         elif recipe_name == "camp_tent":
-            tent_position = (10, 3) if map_name == "caravan_route" else (7, 4)
-            add_tent(output, *tent_position, dimensions)
+            tent_positions = [(10, 3)] if map_name == "caravan_route" else [(12, 11), (25, 11)]
+            for tent_position in tent_positions:
+                add_tent(output, *tent_position, dimensions)
         elif recipe_name == "crate":
-            crate_position = (13, 4) if map_name == "caravan_route" else (13, 6)
-            add_prop(output, *crate_position, "crate", dimensions)
+            crate_positions = [(13, 4)] if map_name == "caravan_route" else [(27, 13), (15, 16)]
+            for crate_position in crate_positions:
+                add_prop(output, *crate_position, "crate", dimensions)
+        elif recipe_name == "lesson_grove":
+            for tree_position in [(13, 2), (17, 2), (23, 2), (27, 2), (14, 4), (26, 4)]:
+                add_large_tree(output, *tree_position, dimensions)
+            for flower_position in [(16, 6), (24, 6), (15, 8), (26, 8)]:
+                add_prop(output, *flower_position, "wildflowers", dimensions)
+        elif recipe_name == "south_trail":
+            for rock_position in [(7, 20), (31, 20), (10, 24), (29, 24)]:
+                add_prop(output, *rock_position, "rock", dimensions)
+            for start_x, cell_y in ((13, 22), (25, 22)):
+                add_prop(output, start_x, cell_y, "fence_left", dimensions)
+                add_prop(output, start_x + 1, cell_y, "fence_middle", dimensions)
+                add_prop(output, start_x + 2, cell_y, "fence_right", dimensions)
         else:
             raise ValueError(f"unknown props recipe: {recipe_name}")
     return output
+
+
+def expanded_collision_csv(map_name: str, width: int, height: int) -> str:
+    """Build the walkable shell and readable lesson/creek barriers."""
+    rows = [[0 for _ in range(width)] for _ in range(height)]
+    for cell_x in range(width):
+        rows[0][cell_x] = 1
+        rows[height - 1][cell_x] = 1
+    for cell_y in range(height):
+        rows[cell_y][0] = 1
+        rows[cell_y][width - 1] = 1
+
+    if map_name == "forest_campsite":
+        for cell_x in range(12, 29):
+            if cell_x not in (16, 24):
+                rows[6][cell_x] = 1
+        for cell_x in range(8, 33):
+            if cell_x not in (17, 24):
+                rows[22][cell_x] = 1
+        for cell_y in (14, 15):
+            rows[cell_y][0] = 0
+            rows[cell_y][width - 1] = 0
+    return "\n".join(",".join(str(value) for value in row) for row in rows)
 
 
 def tileset_definition(
@@ -447,19 +521,43 @@ def rebuild_project(
         grid_size = ground_layer.get("__gridSize")
         if grid_size != TILE_SIZE or props_layer.get("__gridSize") != TILE_SIZE:
             raise ValueError(f"{map_name} Ground and Props layers must use a {TILE_SIZE}px grid")
-        width = ground_layer.get("__cWid")
-        height = ground_layer.get("__cHei")
+        width, height = recipe["size"]
         if not isinstance(width, int) or not isinstance(height, int):
-            raise ValueError(f"invalid tile-layer dimensions in {map_name}")
-        if props_layer.get("__cWid") != width or props_layer.get("__cHei") != height:
-            raise ValueError(f"Ground/Props dimensions disagree in {map_name}")
+            raise ValueError(f"invalid recipe dimensions in {map_name}")
+
+        level["pxWid"] = width * TILE_SIZE
+        level["pxHei"] = height * TILE_SIZE
+        for layer in layer_instances:
+            layer["__cWid"] = width
+            layer["__cHei"] = height
 
         ground_layer["gridTiles"] = ground_tiles(recipe["ground"], width, height, dimensions)
         ground_layer["__tilesetRelPath"] = "../art/tilesets/openrtp/world.png"
         props_layer["gridTiles"] = prop_tiles(map_name, recipe["props"], width, height, dimensions)
         props_layer["__tilesetRelPath"] = PROPS_TILESET_REL_PATH
 
-    if gameplay_payload(project) != baseline:
+        if recipe["expand_gameplay"]:
+            collision_layer = layer_by_name(layer_instances, "Collision", f"{map_name} level")
+            collision_layer["intGridCsv"] = expanded_collision_csv(map_name, width, height)
+            zero_grid = "\n".join(
+                ",".join("0" for _ in range(width)) for _ in range(height)
+            )
+            for layer_name in ("Decoration", "Foreground", "Lighting"):
+                layer_by_name(layer_instances, layer_name, f"{map_name} level")["intGridCsv"] = zero_grid
+
+        if map_name == "forest_campsite":
+            entities_layer = layer_by_name(layer_instances, "Entities", f"{map_name} level")
+            entity_positions = {
+                "Spawn": [112, 240],
+                "Door": [32, 240],
+                "Interaction": [320, 176],
+            }
+            for entity in entities_layer.get("entityInstances", []):
+                identifier = entity.get("__identifier")
+                if identifier in entity_positions:
+                    entity["px"] = entity_positions[identifier]
+
+    if not recipe["expand_gameplay"] and gameplay_payload(project) != baseline:
         raise RuntimeError(f"refusing to write {map_name}: gameplay layers changed")
     return project
 
