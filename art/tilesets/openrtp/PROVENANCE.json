@@ -1,0 +1,23 @@
+{
+  "creator": "finalbossblues",
+  "downloaded_at": "2026-08-26",
+  "files": [
+    "world.png",
+    "exterior.png",
+    "interior.png",
+    "dungeon.png",
+    "ship.png",
+    "ReadMe.txt"
+  ],
+  "license": "CC0-1.0",
+  "pack_id": "openrtp",
+  "sha256": {
+    "ReadMe.txt": "9b4b6bcd68dada51c91f977d3baa7c0b29cdf1408d7a74ea34e83010b646912c",
+    "dungeon.png": "6eaed4e10fdeeb4c09dd76604c5fd84b9b72806d4057f86231d6587f1373f8e9",
+    "exterior.png": "65366c85efee8a71cdc77a87a94d51ee3884d25e0833d4e68839201a02c679d2",
+    "interior.png": "e113c921e437990a5f7628ec98e3dc2e99756c268c24440a226ce1b790323814",
+    "ship.png": "89e49d7898194410c02b62bb91d7df67acf38945b0ee3dce22025dab3ea58ddc",
+    "world.png": "7d3f28e1d825b254c6b5d8afca36e31575e54d9ab58a98678d89ab3573ba6855"
+  },
+  "source_url": "https://finalbossblues.itch.io/openrtp-tiles"
+}
