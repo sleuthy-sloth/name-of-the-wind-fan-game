@@ -15,7 +15,25 @@ func _check(condition: bool, label: String) -> void:
 
 func _run() -> void:
 	_check(ResourceLoader.exists("res://scripts/ui/chronicle_canvas.gd"), "ChronicleCanvas exists")
+	await _test_title_canvas()
 	_check(ResourceLoader.exists("res://scripts/world/caravan_presentation.gd"), "CaravanPresentation exists")
 	_check(FileAccess.file_exists("res://tools/capture_opening_screenshots.gd"), "capture tool exists")
 	print("OPENING_PRESENTATION_TEST: %s" % ("PASS" if _failures == 0 else "FAIL (%d failure(s))" % _failures))
 	quit(0 if _failures == 0 else 1)
+
+
+func _test_title_canvas() -> void:
+	var packed := load("res://scenes/ui/title_menu.tscn") as PackedScene
+	_check(packed != null, "title scene loads")
+	if packed == null:
+		return
+	var scene := packed.instantiate()
+	root.add_child(scene)
+	await process_frame
+	var canvas := scene.get_node_or_null("ChronicleCanvas")
+	_check(canvas != null, "title contains ChronicleCanvas")
+	if canvas != null:
+		var signature: Dictionary = canvas.render_signature()
+		_check(signature.get("illustration") == "title_page", "title illustration is a chronicle page")
+		_check(int(signature.get("layer_count", 0)) >= 6, "title has six visual layers")
+	scene.queue_free()
