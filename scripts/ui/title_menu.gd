@@ -10,6 +10,8 @@ extends Control
 const NEW_GAME_SCENE := "res://scenes/world/waystone_inn.tscn"
 const SAVE_SLOT := 0
 const HOLD_AGE_MS := 600
+## Set only by the screenshot capture process before this scene enters the tree.
+const CAPTURE_FORCE_NO_SAVE_CONTINUE_META := &"capture_force_no_save_continue"
 
 @onready var _title_label: Label = get_node_or_null("TitleLabel")
 @onready var _subtitle_label: Label = get_node_or_null("SubtitleLabel")
@@ -82,6 +84,10 @@ func _wire_buttons() -> void:
 
 func _apply_continue_state() -> void:
 	if _continue_button == null:
+		return
+	if bool(get_tree().root.get_meta(CAPTURE_FORCE_NO_SAVE_CONTINUE_META, false)):
+		_continue_button.disabled = true
+		_continue_button.text = "Continue (no save)"
 		return
 	var save_manager := get_node_or_null("/root/SaveManager")
 	var has_save := false
