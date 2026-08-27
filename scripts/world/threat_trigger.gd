@@ -35,14 +35,7 @@ func _setup_visuals() -> void:
 func _setup_prompt() -> void:
 	_prompt = Label.new()
 	_prompt.name = "InteractPrompt"
-	var label_text := "[E]"
-	if not display_name.is_empty():
-		label_text = "[E] " + display_name
-	_prompt.text = label_text
-	_prompt.add_theme_font_size_override("font_size", 10)
-	_prompt.add_theme_color_override("font_color", Color(1.0, 0.82, 0.6))
-	_prompt.add_theme_color_override("font_outline_color", Color(0.1, 0.05, 0.02, 0.9))
-	_prompt.add_theme_constant_override("outline_size", 3)
+	InteractionPrompt.configure(_prompt, &"interact", display_name, Color(1.0, 0.82, 0.6))
 	_prompt.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_prompt.position = Vector2(-40, -44)
 	_prompt.size = Vector2(80, 14)

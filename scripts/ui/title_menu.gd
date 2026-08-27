@@ -95,6 +95,10 @@ func _play_fade_in() -> void:
 	if _fade_rect == null:
 		return
 	_fade_rect.modulate.a = 1.0
+	var settings := get_node_or_null("/root/Settings")
+	if settings != null and bool(settings.get("reduce_motion")):
+		_fade_rect.modulate.a = 0.0
+		return
 	var tween := create_tween()
 	if tween != null:
 		tween.tween_property(_fade_rect, "modulate:a", 0.0, 0.6)
