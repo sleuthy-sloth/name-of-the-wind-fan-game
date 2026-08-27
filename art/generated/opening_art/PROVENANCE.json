@@ -1,0 +1,52 @@
+{
+  "generated_by": "tools/build_opening_art.py",
+  "license": "CC0-1.0",
+  "outputs": {
+    "campfire.png": "cbcf1182c277e63bace512013848c2b49ea6f125faa85782cd84ef08a4c75f48",
+    "caravan_wagon_a.png": "7764ef101f772b0d628f242e6f8c44482033360a3e6cce4f111aa6c659eaf538",
+    "caravan_wagon_b.png": "f29e3d511067983d7b80a80cbf8432b8920438990d9b5f389561e82618621221",
+    "tent_shadow.png": "00be30a98a99ba3abffbb4618203109334d310fdcd2a83bb16ba442b8045c56c"
+  },
+  "regions": {
+    "campfire": [
+      336,
+      192,
+      352,
+      224
+    ],
+    "cargo_barrel": [
+      432,
+      80,
+      448,
+      96
+    ],
+    "cargo_crate": [
+      432,
+      48,
+      448,
+      64
+    ],
+    "tent_shadow": [
+      448,
+      208,
+      480,
+      256
+    ],
+    "wagon_a": [
+      0,
+      0,
+      48,
+      32
+    ],
+    "wagon_b": [
+      96,
+      0,
+      144,
+      32
+    ]
+  },
+  "sources": {
+    "art/props/frontier_wagons/frontier_wagons.png": "83d34515491683dbff2013db9ec5de661e583bea0878f5f1cbe74afa11bb262c",
+    "art/tilesets/openrtp/derived/exterior_transparent.png": "1aaec71050b1e8c1e229110cce9aafe9d306fd68feabd22dcecae08c4dba3167"
+  }
+}

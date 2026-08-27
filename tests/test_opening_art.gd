@@ -48,7 +48,47 @@ func _layer_by_name(project: Dictionary, layer_name: String) -> Dictionary:
 			return layer
 	return {}
 
+func _contains_collision_object(node: Node) -> bool:
+	if node is CollisionObject2D:
+		return true
+	for child in node.get_children():
+		if _contains_collision_object(child):
+			return true
+	return false
+
+func _test_caravan_presentation() -> void:
+	var caravan_source := FileAccess.get_file_as_string("res://scripts/world/caravan_presentation.gd")
+	_check(not caravan_source.contains("draw_colored_polygon"), "caravan no longer draws primitive tents or fire")
+	_check(not caravan_source.contains("draw_circle"), "caravan no longer draws primitive trees or wheels")
+	_check(caravan_source.contains("res://art/generated/opening_art/caravan_wagon_a.png"), "caravan loads generated wagon art")
+
+	for texture_path in [
+		"res://art/generated/opening_art/caravan_wagon_a.png",
+		"res://art/generated/opening_art/caravan_wagon_b.png",
+		"res://art/generated/opening_art/campfire.png",
+		"res://art/generated/opening_art/tent_shadow.png",
+	]:
+		_check(FileAccess.file_exists(texture_path), "generated caravan texture exists: " + texture_path)
+		if FileAccess.file_exists(texture_path):
+			_check(load(texture_path) is Texture2D, "generated caravan texture loads: " + texture_path)
+
+	var packed := load("res://scenes/world/caravan_presentation.tscn") as PackedScene
+	_check(packed != null, "caravan presentation scene loads")
+	if packed == null:
+		return
+	var presentation := packed.instantiate()
+	root.add_child(presentation)
+	_check(not _contains_collision_object(presentation), "caravan presentation remains visual-only")
+	_check(presentation.has_method("set_reduced_motion"), "caravan exposes reduced-motion control")
+	if presentation.has_method("set_reduced_motion"):
+		presentation.call("set_reduced_motion", true)
+		var elapsed_before := float(presentation.get("_elapsed"))
+		presentation.call("_process", 1.0)
+		_check(is_equal_approx(float(presentation.get("_elapsed")), elapsed_before), "reduced motion freezes caravan atmosphere")
+	presentation.queue_free()
+
 func _run_tests() -> void:
+	_test_caravan_presentation()
 	for record_path in [
 		"res://art/tilesets/openrtp/PROVENANCE.json",
 		"res://art/tilesets/gloomy_fantasy/PROVENANCE.json",
