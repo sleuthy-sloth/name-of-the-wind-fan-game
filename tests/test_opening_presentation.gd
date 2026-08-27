@@ -16,6 +16,7 @@ func _check(condition: bool, label: String) -> void:
 func _run() -> void:
 	_check(ResourceLoader.exists("res://scripts/ui/chronicle_canvas.gd"), "ChronicleCanvas exists")
 	await _test_title_canvas()
+	await _test_waystone_prologue()
 	_check(ResourceLoader.exists("res://scripts/world/caravan_presentation.gd"), "CaravanPresentation exists")
 	_check(FileAccess.file_exists("res://tools/capture_opening_screenshots.gd"), "capture tool exists")
 	print("OPENING_PRESENTATION_TEST: %s" % ("PASS" if _failures == 0 else "FAIL (%d failure(s))" % _failures))
@@ -37,3 +38,20 @@ func _test_title_canvas() -> void:
 		_check(signature.get("illustration") == "title_page", "title illustration is a chronicle page")
 		_check(int(signature.get("layer_count", 0)) >= 6, "title has six visual layers")
 	scene.queue_free()
+
+
+func _test_waystone_prologue() -> void:
+	var packed := load("res://scenes/world/waystone_inn.tscn") as PackedScene
+	_check(packed != null, "Waystone prologue loads")
+	if packed != null:
+		var scene := packed.instantiate()
+		root.add_child(scene)
+		await process_frame
+		var canvas := scene.get_node_or_null("ChronicleCanvas")
+		_check(canvas != null, "Waystone has ChronicleCanvas")
+		if canvas != null:
+			_check(canvas.render_signature().get("illustration") == "waystone_fire", "Waystone draws fireplace page")
+		scene.queue_free()
+	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/story/waystone_opening.json"))
+	var beats: Array = data.get("beats", [])
+	_check((beats.back() as Dictionary).get("next_scene") == "res://scenes/world/caravan_route.tscn", "Waystone routes to caravan")

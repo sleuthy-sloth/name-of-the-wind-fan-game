@@ -692,8 +692,8 @@ func _test_waystone_opening_data() -> void:
 	var last := (beats as Array)[(beats as Array).size() - 1] as Dictionary
 	_check(str(last.get("set_flag", "")) == "waystone_opening_seen", "final beat sets opening flag")
 	_check(
-		str(last.get("next_scene", "")) == "res://scenes/world/waystone_inn_interior.tscn",
-		"final beat routes into walkable inn interior"
+		str(last.get("next_scene", "")) == "res://scenes/world/caravan_route.tscn",
+		"final beat routes into illustrated prologue caravan handoff"
 	)
 	var sfx_ok := true
 	for beat_v: Variant in beats as Array:

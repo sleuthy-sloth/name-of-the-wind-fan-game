@@ -1,10 +1,22 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/systems/beat_cutscene.gd" id="beat_cutscene_gd"]
+[ext_resource type="Script" path="res://scripts/ui/chronicle_canvas.gd" id="chronicle_canvas_gd"]
 
 [node name="WaystoneInnOpening" type="Node"]
 script = ExtResource("beat_cutscene_gd")
 beats_path = "res://data/story/waystone_opening.json"
+
+[node name="ChronicleCanvas" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("chronicle_canvas_gd")
+illustration = 1
 
 [node name="OverlayLayer" type="CanvasLayer" parent="."]
 layer = 50
