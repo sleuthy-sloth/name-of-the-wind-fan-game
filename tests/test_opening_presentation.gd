@@ -20,6 +20,7 @@ func _run() -> void:
 	await _test_waystone_prologue()
 	await _test_caravan_presentation()
 	_check(FileAccess.file_exists("res://tools/capture_opening_screenshots.gd"), "capture tool exists")
+	_test_capture_contract()
 	print("OPENING_PRESENTATION_TEST: %s" % ("PASS" if _failures == 0 else "FAIL (%d failure(s))" % _failures))
 	quit(0 if _failures == 0 else 1)
 
@@ -79,3 +80,9 @@ func _test_caravan_presentation() -> void:
 	for layer_name in ["Canopy", "Wagons", "Tents", "Campfire", "Shadows", "Atmosphere"]:
 		_check(presentation != null and presentation.get_node_or_null(layer_name) != null, "caravan has " + layer_name)
 	scene.queue_free()
+
+
+func _test_capture_contract() -> void:
+	var source := FileAccess.get_file_as_string("res://tools/capture_opening_screenshots.gd")
+	for filename in ["title-chronicle.png", "waystone-prologue.png", "caravan-dawn.png"]:
+		_check(source.contains(filename), "capture declares " + filename)

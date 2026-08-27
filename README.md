@@ -211,6 +211,25 @@ review queue awaiting human approval. See
 
 ---
 
+## Screenshots
+
+The opening presentation is captured from the live Godot scenes at the
+project's fixed 1280×720 viewport.
+
+![Chronicle title page](docs/screenshots/title-chronicle.png)
+
+![Waystone Inn prologue](docs/screenshots/waystone-prologue.png)
+
+![Caravan at dawn](docs/screenshots/caravan-dawn.png)
+
+Regenerate the gallery from the repository root:
+
+```sh
+"/Applications/Godot.app/Contents/MacOS/Godot" --path . --script tools/capture_opening_screenshots.gd
+```
+
+---
+
 ## Getting started
 
 ### Prerequisites
