@@ -18,7 +18,7 @@ This document inventories every placeholder asset currently used in *The Name of
 | Asset | Current File | What It Is | Final Asset | Priority |
 |---|---|---|---|---|
 | Caravan route map | `maps/caravan_route.ldtk` | LDtk level with IntGrid collision, Ground/Props Tiles layers using `zeldalike_overworld.png` (CC0), and Spawn/Door/Interaction entities. | Authored caravan-route tileset (road, wagons, trees, sky) with parallax background. | High |
-| Forest campsite map | `maps/forest_campsite.ldtk` | LDtk level with IntGrid collision, Ground/Props Tiles layers (dirt clearing + tree border), and camp layout entities. | Final forest campsite tileset (tents, campfire, wagons, foliage) and lighting overlay. | High |
+| Forest campsite map | `maps/forest_campsite.ldtk` | Expanded 40×28-tile LDtk tutorial level with arrival road, central clearing, north lesson grove, south return trail, OpenRTP Ground/Props layers, collision barriers, and camp entities. | Final forest campsite tileset (tents, campfire, wagons, foliage) and lighting overlay. | High |
 | Caravan blockout | `maps/test_caravan_blockout.ldtk` | Early geometric block-out for layout testing. | Replace with the final caravan-route art or remove once the real map is validated. | Low |
 | Campfire source (Sympathy) | Created at runtime by `scripts/minigames/sympathy_lighting.gd` | `ColorRect` placeholder representing the campfire source for light/heat workings. | Final campfire sprite/particle effect with palette-swap support. | Medium |
 | Lamp target (Sympathy) | Created at runtime by `scripts/minigames/sympathy_lighting.gd` | `ColorRect` placeholder representing the lamp target for light/heat workings. | Final lamp/prop sprite with modulate-driven brightening. | Medium |

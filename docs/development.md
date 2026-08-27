@@ -221,7 +221,9 @@ amber marker); a successfully resolved trigger retires itself. The playable
 tutorial lives at `scenes/world/combat_tutorial.tscn` (reachable through the
 campsite's east door): Abenthy's lesson dialogue, then the ford-carter
 encounter where all four doors open — completion sets
-`flag_threat_tutorial_done`. `caravan_route.tscn` hosts the road-dogs threat
+`flag_threat_tutorial_done`. The expanded `forest_campsite` map is a 40×28 tile
+training space with an arrival road, central troupe clearing, north lesson
+grove, and south return trail. `caravan_route.tscn` hosts the road-dogs threat
 (flee/hide only, showing subset threats) plus the tutorial door.
 
 ### SympathyPuzzle / SympathyTarget

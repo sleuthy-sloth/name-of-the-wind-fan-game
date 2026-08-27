@@ -64,8 +64,10 @@ func _run_tests() -> void:
 	total_checks += 1
 	var caravan_spawn: Variant = caravan_node.get_meta("spawn_position", Vector2.ZERO)
 	var forest_spawn: Variant = forest_node.get_meta("spawn_position", Vector2.ZERO)
-	var caravan_bounds := Rect2(0, 0, 320, 240)
-	var forest_bounds := Rect2(0, 0, 320, 240)
+	var caravan_level := (caravan_project.get("levels", []) as Array)[0] as Dictionary
+	var forest_level := (forest_project.get("levels", []) as Array)[0] as Dictionary
+	var caravan_bounds := Rect2(0, 0, float(caravan_level.get("pxWid", 0)), float(caravan_level.get("pxHei", 0)))
+	var forest_bounds := Rect2(0, 0, float(forest_level.get("pxWid", 0)), float(forest_level.get("pxHei", 0)))
 	if caravan_spawn is Vector2 and forest_spawn is Vector2 \
 			and caravan_bounds.has_point(caravan_spawn as Vector2) \
 			and forest_bounds.has_point(forest_spawn as Vector2):
