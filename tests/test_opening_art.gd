@@ -23,6 +23,31 @@ func _sha256_file(path: String) -> String:
 	context.update(file.get_buffer(file.get_length()))
 	return context.finish().hex_encode()
 
+func _gameplay_layers(project: Dictionary) -> Array:
+	var snapshots: Array = []
+	for level_variant in project.get("levels", []) as Array:
+		var level := level_variant as Dictionary
+		var gameplay_layers: Array = []
+		for layer_variant in level.get("layerInstances", []) as Array:
+			var layer := layer_variant as Dictionary
+			if layer.get("__type") in ["IntGrid", "Entities"]:
+				gameplay_layers.append(layer)
+		snapshots.append({
+			"identifier": level.get("identifier", ""),
+			"layerInstances": gameplay_layers,
+		})
+	return snapshots
+
+func _layer_by_name(project: Dictionary, layer_name: String) -> Dictionary:
+	var levels := project.get("levels", []) as Array
+	if levels.is_empty():
+		return {}
+	for layer_variant in (levels[0] as Dictionary).get("layerInstances", []) as Array:
+		var layer := layer_variant as Dictionary
+		if layer.get("identifier") == layer_name:
+			return layer
+	return {}
+
 func _run_tests() -> void:
 	for record_path in [
 		"res://art/tilesets/openrtp/PROVENANCE.json",
@@ -47,6 +72,33 @@ func _run_tests() -> void:
 					_sha256_file(source_path) == hashes[source_file],
 					"source hash matches: " + source_path,
 				)
+
+	var baseline_path := "res://tests/fixtures/opening_art_baseline.json"
+	_check(FileAccess.file_exists(baseline_path), "opening map gameplay baseline exists")
+	var baseline := JSON.parse_string(FileAccess.get_file_as_string(baseline_path)) as Dictionary
+	for map_record in [
+		{"id": "caravan_route", "path": "res://maps/caravan_route.ldtk"},
+		{"id": "forest_campsite", "path": "res://maps/forest_campsite.ldtk"},
+	]:
+		var map_id := map_record["id"] as String
+		var map_path := map_record["path"] as String
+		var source := FileAccess.get_file_as_string(map_path)
+		var project := JSON.parse_string(source) as Dictionary
+		_check(not source.contains("zeldalike_overworld.png"), "legacy atlas removed: " + map_path)
+		_check(source.contains("openrtp/world.png"), "OpenRTP world atlas mapped: " + map_path)
+		_check(source.contains("openrtp/exterior.png"), "OpenRTP exterior atlas mapped: " + map_path)
+		_check(
+			_layer_by_name(project, "Ground").get("__tilesetRelPath") == "../art/tilesets/openrtp/world.png",
+			"Ground owns the OpenRTP world atlas: " + map_path,
+		)
+		_check(
+			_layer_by_name(project, "Props").get("__tilesetRelPath") == "../art/tilesets/openrtp/exterior.png",
+			"Props owns the OpenRTP exterior atlas: " + map_path,
+		)
+		_check(
+			_gameplay_layers(project) == baseline.get(map_id, []),
+			"gameplay layers preserved: " + map_path,
+		)
 
 	if _failures == 0:
 		print("OPENING_ART_TEST: PASS (" + str(_checks) + " checks)")
