@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/world/world_scene.gd" id="1_world"]
+[ext_resource type="PackedScene" path="res://scenes/world/caravan_presentation.tscn" id="2_presentation"]
 
 [sub_resource type="RectangleShape2D" id="boulder_shape"]
 size = Vector2(56, 48)
@@ -12,6 +13,7 @@ size = Vector2(30, 26)
 script = ExtResource("1_world")
 ldtk_path = "res://maps/caravan_route.ldtk"
 door_target_scene = "res://scenes/world/forest_campsite.tscn"
+presentation_scene = ExtResource("2_presentation")
 ambience_events = Array[String](["AMB_FOREST_NIGHT", "AMB_WIND_LIGHT_LAYER"])
 extra_doors = Array[Dictionary]([{
 "position": Vector2(600, 300),

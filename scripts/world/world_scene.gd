@@ -9,6 +9,8 @@ extends Node2D
 
 @export var ldtk_path: String = ""
 @export var door_target_scene: String = ""
+## Optional non-interactive art layered above the LDtk level and below actors.
+@export var presentation_scene: PackedScene
 ## Logical audio events played as looping layers (AMB_*).
 @export var ambience_events: Array[String] = []
 @export var ambience_volume_db: float = -12.0
@@ -72,6 +74,9 @@ func _ready() -> void:
 		return
 	var level := LdtkLoader.build_level_node(project)
 	add_child(level)
+	if presentation_scene != null:
+		var presentation := presentation_scene.instantiate()
+		add_child(presentation)
 
 	var spawn_position: Variant = level.get_meta("spawn_position", Vector2.ZERO)
 	if not spawn_position is Vector2:
